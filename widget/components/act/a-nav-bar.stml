@@ -1,9 +1,9 @@
 <template name="a-nav-bar">
-  superNode.call(this,
+  superNode(
   <safe-area class="a-nav-bar">
     <view class="a-nav-bar__content">
 
-      <view class="van-nav-bar__click-warp van-nav-bar__left" _slot="left">
+      <view class="van-nav-bar__click-warp van-nav-bar__left" _slot="left" @click="leftClick">
         {
         this.props['left-arrow'] &&
         <a-icon name="arrow-left" class="van-nav-bar__icon" color="#333"/>
@@ -19,14 +19,14 @@
       </text>
 
 
-      <view class="van-nav-bar__click-warp van-nav-bar__right" _slot="right">
+      <view class="van-nav-bar__click-warp van-nav-bar__right" _slot="right" @click="rightClick">
         <text class="van-nav-bar__text">{this.props['right-text']}</text>
       </view>
 
 
     </view>
   </safe-area>
-  )
+  , this.props)
 </template>
 
 <script>
@@ -36,7 +36,24 @@ import {superNode} from "./index";
 
 export default {
   name: "a-nav-bar",
-  components: {AIcon}
+  components: {AIcon},
+  install() {
+    api.setStatusBarStyle && api.setStatusBarStyle({
+      style: 'dark', color: '-'
+    });
+  },
+  methods: {
+    leftClick(e) {
+      if (this.props['onClick-left']) {
+        this.props['onClick-left'](e)
+      } else {
+        api.closeWin();
+      }
+    },
+    rightClick(e) {
+      typeof this.props['onClick-right'] === "function" && this.props['onClick-right'](e)
+    }
+  }
 }
 
 </script>
