@@ -1,15 +1,20 @@
 <template name="extend">
   <view class="page">
+    <a-nav-bar title="组合拓展"/>
     <scroll-view style="flex: 1;">
-      <text>extend</text>
+
     </scroll-view>
   </view>
 </template>
 
 <script>
 
+import ANavBar from "../../components/act/a-nav-bar.stml";
+
 export default {
   name: "extend",
+  components: {ANavBar},
+  methods: {}
 }
 </script>
 

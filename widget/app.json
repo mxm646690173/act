@@ -1,6 +1,5 @@
 {
   "name": "root",
-  "hideTabBar": true,
   "tabBar": {
     "frames": [
       {
@@ -38,7 +37,8 @@
     ],
     "color": "#666",
     "selectedColor": "#3a6",
-    "animated": true,
-    "scrollEnabled": true
+    "animated": false,
+    "scrollEnabled": false,
+    "preload": 2
   }
 }
