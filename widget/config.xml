@@ -1,0 +1,5 @@
+<widget id="A6030005125296" version="0.0.1">
+    <name>ACT</name>
+    <preference name="avm" value="true"/>
+    <content src="app.json"/>
+</widget>

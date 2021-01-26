@@ -1,0 +1,28 @@
+<template name="template">
+  <view class="page">
+
+
+    <scroll-view style="flex: 1;">
+      <text>template</text>
+    </scroll-view>
+  </view>
+</template>
+
+<script>
+import { Toast } from '../../components/act';
+export default {
+  name: "template",
+  methods: {
+    onClickLeft() {
+      Toast('返回');
+    }
+  }
+}
+</script>
+
+<style scoped>
+.page {
+  height: 100%;
+  background-color: #F8F8F8;
+}
+</style>

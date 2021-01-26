@@ -1,0 +1,83 @@
+<template name="a-nav-bar">
+  superNode.call(this,
+  <safe-area class="a-nav-bar">
+    <view class="a-nav-bar__content">
+
+      <view class="van-nav-bar__click-warp van-nav-bar__left" _slot="left">
+        {
+        this.props['left-arrow'] &&
+        <a-icon name="arrow-left" class="van-nav-bar__icon" color="#333"/>
+        }
+        {
+        this.props['left-text'] &&
+        <text class="van-nav-bar__text">{this.props['left-text']}</text>
+        }
+      </view>
+
+      <text class="van-nav-bar__title">
+        {this.props['title']}
+      </text>
+
+
+      <view class="van-nav-bar__click-warp van-nav-bar__right" _slot="right">
+        <text class="van-nav-bar__text">{this.props['right-text']}</text>
+      </view>
+
+
+    </view>
+  </safe-area>
+  )
+</template>
+
+<script>
+
+import AIcon from "./a-icon.stml";
+import {superNode} from "./index";
+
+export default {
+  name: "a-nav-bar",
+  components: {AIcon}
+}
+
+</script>
+
+<style scoped>
+
+.a-nav-bar {
+  background-color: #fff;
+  box-shadow: 1px 1px 1px #e6e6e6;
+}
+
+.a-nav-bar__content {
+  flex-flow: row nowrap;
+  height: 46px;
+}
+
+
+.van-nav-bar__click-warp {
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.van-nav-bar__text {
+  color: #333;
+  font-size: 14px;
+}
+
+.van-nav-bar__icon {
+  height: 16px;
+  width: 16px;
+}
+
+.van-nav-bar__title {
+  flex: 1;
+  align-self: center;
+  text-align: center;
+  font-weight: 500;
+  font-size: 16px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+</style>

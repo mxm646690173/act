@@ -1,0 +1,21 @@
+<template name="extend">
+  <view class="page">
+    <scroll-view style="flex: 1;">
+      <text>extend</text>
+    </scroll-view>
+  </view>
+</template>
+
+<script>
+
+export default {
+  name: "extend",
+}
+</script>
+
+<style scoped>
+.page {
+  height: 100%;
+  background-color: #F8F8F8;
+}
+</style>

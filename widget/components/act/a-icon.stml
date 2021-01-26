@@ -1,0 +1,15 @@
+<template name="a-icon">
+  <img :class="`a-icon a-icon__${this.props.name} ${this.props.class}`"
+       :style="`width:${this.props.size||16}px;height:${this.props.size||16}px;`"
+       src={`http://icon.yangyongan.com/?name=${this.props.name}&color=${(this.props.color||'#666').replace('#','_')}&size=${this.props.size||16}&scale=${this.props.scale||2}`}/>
+</template>
+
+<script>
+
+export default {
+  name: "a-icon"
+}
+</script>
+
+<style scoped>
+</style>
