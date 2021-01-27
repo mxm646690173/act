@@ -54,3 +54,21 @@ export function superNode(VNode, props) {
     console.log(VNode)
     return VNode;
 }
+
+
+export function linkTo(to) {
+    let options = {};
+    if (typeof to === 'string') {
+        if (to.endsWith('.stml')) {
+            options.name = to.split('/').pop().replace('.stml', '');
+            options.url = to;
+        } else {
+            options.name = to;
+            options.url = `../${to}/${to}.stml`;
+        }
+    } else {
+        options = to;
+    }
+    console.log(['a-link:to', JSON.stringify(options)]);
+    return api.openWin(options);
+}
