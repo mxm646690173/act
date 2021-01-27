@@ -1,9 +1,22 @@
+/**
+ * 快捷 toast
+ * @param msg
+ * @param location
+ * @param duration
+ * @returns {*}
+ * @constructor
+ */
 export function Toast(msg, location = 'middle', duration = 1500) {
     return api.toast({
         msg, location, duration
     })
 }
 
+/**
+ * 插槽支持
+ * @param VNode
+ * @param children
+ */
 function slotSupport(VNode, children) {
     let slots = {
         default: []
@@ -40,6 +53,11 @@ function extendsClassStyle(VNode, props) {
     props.style && (VNode.attributes.style = props.style);
 }
 
+/**
+ * 继承父组件的事件
+ * @param VNode
+ * @param props
+ */
 function extendsEvent(VNode, props) {
     Object.entries(props)
         .filter(item => item[0].startsWith('on'))//筛选on开头的属性
@@ -47,6 +65,13 @@ function extendsEvent(VNode, props) {
         .forEach(([ev, fn]) => VNode.attributes[ev] = fn);//绑定到子组件上
 }
 
+
+/**
+ * 超级节点
+ * @param VNode
+ * @param props
+ * @returns {*}
+ */
 export function superNode(VNode, props) {
     slotSupport(VNode, props.children)
     extendsClassStyle(VNode, props);
@@ -55,7 +80,11 @@ export function superNode(VNode, props) {
     return VNode;
 }
 
-
+/**
+ * 通用api.openWin打开页面
+ * @param to
+ * @returns {*}
+ */
 export function linkTo(to) {
     let options = {};
     if (typeof to === 'string') {
@@ -71,4 +100,17 @@ export function linkTo(to) {
     }
     console.log(['a-link:to', JSON.stringify(options)]);
     return api.openWin(options);
+}
+
+
+/**
+ * 混合class类
+ * @param cls
+ * @param extra
+ * @returns {string}
+ */
+export function mixedClass(cls, extra) {
+    let classList = [cls];
+    extra && Object.entries(extra).forEach(([key, val]) => val && classList.push(key));
+    return classList.join(' ');
 }
