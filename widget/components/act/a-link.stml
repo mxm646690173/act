@@ -1,0 +1,20 @@
+<script>
+
+import {linkTo} from "./index";
+
+export default {
+  name: "a-link",
+  install() {
+    this.render = () => {
+      const VNode = this.props.children[0];
+      VNode.attributes.onClick = () => {
+        return linkTo(this.props.to);
+      }
+      return this.props.children[0];
+    }
+  }
+}
+</script>
+
+<style scoped>
+</style>
