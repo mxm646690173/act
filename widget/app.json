@@ -20,17 +20,17 @@
     ],
     "list": [
       {
-        "text": "基础组件",
+        "text": "组件",
         "iconPath": "./image/icon__tab--component-0.png",
         "selectedIconPath": "./image/icon__tab--component-1.png"
       },
       {
-        "text": "组合拓展",
+        "text": "拓展",
         "iconPath": "./image/icon__tab--extend-0.png",
         "selectedIconPath": "./image/icon__tab--extend-1.png"
       },
       {
-        "text": "业务模板",
+        "text": "模板",
         "iconPath": "./image/icon__tab--template-0.png",
         "selectedIconPath": "./image/icon__tab--template-1.png"
       }
