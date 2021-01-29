@@ -17,7 +17,7 @@ export function Toast(msg, location = 'middle', duration = 1500) {
  * @param VNode
  * @param children
  */
-function slotSupport(VNode, children) {
+export function slotSupport(VNode, children) {
     let slots = {
         default: []
     };
@@ -48,9 +48,10 @@ function slotSupport(VNode, children) {
  * @param props
  * @returns {*}
  */
-function extendsClassStyle(VNode, props) {
+export function extendsClassStyle(VNode, props) {
     props.class && (VNode.attributes.class += ' ' + props.class);
     props.style && (VNode.attributes.style = props.style);
+    return VNode;
 }
 
 /**
@@ -58,7 +59,7 @@ function extendsClassStyle(VNode, props) {
  * @param VNode
  * @param props
  */
-function extendsEvent(VNode, props) {
+export function extendsEvent(VNode, props) {
     Object.entries(props)
         .filter(item => item[0].startsWith('on'))//筛选on开头的属性
         .map(item => [item[0].replace(/-(\w)/g, ($, $1) => $1.toUpperCase()), item[1]])//统一写成驼峰形式

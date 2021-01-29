@@ -76,6 +76,23 @@
           <a-cell title="路由跳转" is-link to="simple-button"/>
         </a-cell-group>
       </view>
+
+
+      <view class="simple">
+        <text class="simple-title">分组标题</text>
+        <text class="simple-desc">
+          通过 CellGroup 的 title 属性可以指定分组标题。
+        </text>
+
+        <a-cell-group title="分组1">
+          <a-cell title="单元格" value="内容"/>
+        </a-cell-group>
+        <a-cell-group title="分组2">
+          <a-cell title="单元格" value="内容"/>
+        </a-cell-group>
+      </view>
+
+
     </scroll-view>
   </view>
 </template>

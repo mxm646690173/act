@@ -1,6 +1,6 @@
 <script>
 
-import {mixedClass, superNode} from "./index";
+import {extendsClassStyle, mixedClass, superNode} from "./index";
 
 export default {
   name: "a-cell-group",
@@ -16,13 +16,18 @@ export default {
         }
       }
 
-      return superNode({
-        nodeName: 'view',
-        attributes: {
-          class: mixedClass('a-cell-group')
-        },
-        children: props.children
-      }, props)
+      const {h} = apivm;
+      const renderGroup = h(
+          'view',
+          {class: mixedClass('a-cell-group')},
+          props.children
+      );
+      if (props.title) {
+        // TODO 暂不支持空节点编译
+        return h('view', false, h('text', {class: 'a-cell-group__title'}, props.title), renderGroup);
+      }
+      return renderGroup;
+
     }
   }
 }
@@ -32,4 +37,12 @@ export default {
 .a-cell-group {
   background-color: #FFF;
 }
+
+.a-cell-group__title {
+  padding: 16px 16px 8px;
+  color: #969799;
+  font-size: 14px;
+  line-height: 16px;
+}
+
 </style>
