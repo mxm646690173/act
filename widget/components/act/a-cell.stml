@@ -1,0 +1,82 @@
+<script>
+import {mixedClass} from "./index";
+
+export default {
+  name: "a-cell",
+  install() {
+    this.render = props => {
+      const {h} = apivm;
+
+      const isLarge = props.size === 'large' || props.large;
+
+      return h('view', {
+            class: mixedClass('a-cell a-cell__root', {
+              'a-cell__-last': props.__last,
+              'a-cell--large': isLarge
+            })
+          },
+          h('view', {class: mixedClass('a-cell__title')},
+              h('text', {
+                class: mixedClass('a-cell__title-text', {
+                  'a-cell__title-text--large': isLarge
+                })
+              }, props.title),
+              props.label && h('text', {
+                class: mixedClass('a-cell__label', {
+                  'a-cell__label--large': isLarge
+                })
+              }, props.label)
+          )
+          ,
+          h('text', {class: mixedClass('a-cell__value')}, props.value)
+      );
+    }
+  }
+}
+</script>
+
+<style scoped>
+.a-cell, .a-cell__root {
+  flex-direction: row;
+  padding: 10px 16px;
+  line-height: 24px;
+}
+
+.a-cell--large {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.a-cell__-last {
+  border-top: 1px solid #f5f4f4;
+}
+
+.a-cell__title {
+  flex: 1;
+  color: #323233;
+}
+
+.a-cell__title-text {
+  font-size: 14px;
+}
+
+.a-cell__title-text--large {
+  font-size: 16px;
+}
+
+.a-cell__label {
+  margin-top: 4px;
+  color: #969799;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.a-cell__label--large {
+  font-size: 14px;
+}
+
+.a-cell__value {
+  font-size: 14px;
+  color: #969799;
+}
+</style>

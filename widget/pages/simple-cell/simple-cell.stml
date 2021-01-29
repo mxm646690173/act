@@ -1,0 +1,53 @@
+<template name="simple-cell">
+  <view class="page">
+    <a-nav-bar title="simple-cell" left-arrow/>
+    <scroll-view style="flex: 1;">
+
+      <view class="simple">
+        <text style="margin:16px;">基础用法</text>
+        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+          Cell 可以单独使用，也可以与 CellGroup 搭配使用，CellGroup 可以为 Cell 提供上下外边框。
+        </text>
+
+        <a-cell-group>
+          <a-cell title="单元格" value="内容"/>
+          <a-cell title="单元格" value="内容" label="描述信息"/>
+        </a-cell-group>
+
+      </view>
+
+
+      <view class="simple">
+        <text style="margin:16px;">单元格大小 </text>
+        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+          通过 size 属性可以控制单元格的大小。
+        </text>
+
+        <a-cell-group>
+          <a-cell title="单元格" value="内容" size="large"/>
+          <a-cell title="单元格" value="内容" size="large" label="描述信息"/>
+        </a-cell-group>
+
+      </view>
+
+    </scroll-view>
+  </view>
+</template>
+
+<script>
+import ANavBar from "../../components/act/a-nav-bar.stml";
+import ACellGroup from "../../components/act/a-cell-group.stml";
+import ACell from "../../components/act/a-cell.stml";
+
+export default {
+  name: "simple-cell",
+  components: {ACell, ACellGroup, ANavBar}
+}
+</script>
+
+<style scoped>
+.page {
+  height: 100%;
+  background-color: #F8F8F8;
+}
+</style>

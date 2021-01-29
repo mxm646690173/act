@@ -1,0 +1,35 @@
+<script>
+
+import {mixedClass, superNode} from "./index";
+
+export default {
+  name: "a-cell-group",
+  install() {
+    this.render = props => {
+      // 最后一个cell 标记为last 方便实现last伪元素
+      if (props.children.length) {
+        let last = props.children[props.children.length - 1];
+        if (last.attributes) {
+          last.attributes.__last = true;
+        } else {
+          last.attributes = {__last: true};
+        }
+      }
+
+      return superNode({
+        nodeName: 'view',
+        attributes: {
+          class: mixedClass('a-cell-group')
+        },
+        children: props.children
+      }, props)
+    }
+  }
+}
+</script>
+
+<style scoped>
+.a-cell-group {
+  background-color: #FFF;
+}
+</style>
