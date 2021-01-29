@@ -14,8 +14,8 @@ export default {
       return {
         nodeName: 'img',
         attributes: {
-          class: `a-icon a-icon__${props.name} ${props.class}`,
-          style: `width:${props.size}px;height:${props.size}px;`, src
+          class: `a-icon a-icon__${props.name} ${props.class || ''}`,
+          style: `width:${props.size}px;height:${props.size}px;${props.style || ''}`, src
         }
       }
     }
@@ -24,4 +24,7 @@ export default {
 </script>
 
 <style scoped>
+.a-icon {
+  align-self: center;
+}
 </style>
