@@ -65,6 +65,17 @@
         </a-cell-group>
       </view>
 
+      <view class="simple">
+        <text class="simple-title">页面导航</text>
+        <text class="simple-desc">
+          可以通过 url 属性进行 URL 跳转，或通过 to 属性进行路由跳转。
+        </text>
+
+        <a-cell-group>
+          <a-cell title="URL 跳转" is-link url="../simple-button/simple-button.stml"/>
+          <a-cell title="路由跳转" is-link to="simple-button"/>
+        </a-cell-group>
+      </view>
     </scroll-view>
   </view>
 </template>
@@ -87,7 +98,7 @@ export default {
 }
 
 .simple {
-  margin-bottom: 28px;
+  padding-bottom: 28px;
 }
 
 .simple-title {

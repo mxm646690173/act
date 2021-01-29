@@ -1,9 +1,10 @@
 <script>
-import {mixedClass} from "./index";
+import {linkTo, mixedClass} from "./index";
 import AIcon from "./a-icon.stml";
 
 export default {
   name: "a-cell",
+
   install() {
     this.render = props => {
       const {h} = apivm;
@@ -13,7 +14,8 @@ export default {
       return h('view', {
             class: mixedClass(`a-cell a-cell__root ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
               'a-cell--large': isLarge
-            })
+            }),
+            onClick: this.cellClick
           },
           props.icon && h(AIcon, {name: props.icon, class: 'a-cell__left-icon'}),
           props.title && h('view', {class: mixedClass('a-cell__title')},
@@ -39,7 +41,16 @@ export default {
           }),
       );
     }
-  }
+  },
+  cellClick(e) {
+    if (this.props.url) {
+      linkTo(this.props.url, this.props.title);
+    } else if (this.props.to) {
+      linkTo(this.props.to, this.props.title);
+    } else {
+      this.props.onClick && this.props.onClick(e);
+    }
+  },
 }
 </script>
 
@@ -99,10 +110,14 @@ export default {
 /*写后面的表达式是为了兼容web和小程序*/
 .a-cell__value--alone, .a-cell__value.a-cell__value--alone {
   color: #323233;
+  height: 24px;
+  line-height: 24px;
 }
 
 .a-cell__value {
   font-size: 14px;
   color: #969799;
+  height: 24px;
+  line-height: 24px;
 }
 </style>
