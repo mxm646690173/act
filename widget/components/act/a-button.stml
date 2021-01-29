@@ -5,9 +5,6 @@ import AIcon from "./a-icon.stml";
 export default {
   name: "a-button",
   install() {
-
-    console.log(this)
-
     this.render = props => {
       if (!props.type) props.type = 'default';
       if (!props.size) props.size = 'normal';
