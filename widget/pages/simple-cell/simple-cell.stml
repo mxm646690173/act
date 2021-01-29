@@ -1,7 +1,7 @@
 <template name="simple-cell">
   <view class="page">
     <a-nav-bar title="simple-cell" left-arrow/>
-    <scroll-view style="flex: 1;">
+    <scroll-view style="flex: 1;" scroll-y>
 
       <view class="simple">
         <text class="simple-title">基础用法</text>
