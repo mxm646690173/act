@@ -93,6 +93,41 @@
       </view>
 
 
+      <view class="simple">
+        <text class="simple-title">使用插槽</text>
+        <text class="simple-desc">
+          如以上用法不能满足你的需求，可以使用插槽来自定义内容。
+        </text>
+
+        <a-cell-group>
+          <a-cell value="内容" is-link>
+            <!-- 使用 title 插槽来自定义标题 -->
+            <template _slot="title">
+              <text class="custom-title">自定义标题</text>
+              <!--  a-tag 暂未实现-->
+              <a-tag type="danger">标签</a-tag>
+            </template>
+          </a-cell>
+
+          <a-cell title="相机扫码" icon="camera">
+            <!-- 使用 right-icon 插槽来自定义右侧图标 -->
+            <template _slot="right-icon">
+              <a-icon name="scanning" class="search-icon"/>
+            </template>
+          </a-cell>
+        </a-cell-group>
+      </view>
+
+
+      <view class="simple">
+        <text class="simple-title">垂直居中</text>
+        <text class="simple-desc">
+          通过 center 属性可以让 Cell 的左右内容都垂直居中。
+        </text>
+
+        <a-cell center title="单元格" value="内容" label="描述信息"/>
+      </view>
+
     </scroll-view>
   </view>
 </template>
@@ -128,5 +163,11 @@ export default {
   color: #999;
   font-size: 14px;
   margin: 0 16px 16px;
+}
+
+
+.custom-title {
+  font-size: 14px;
+  color: #fa8919;
 }
 </style>

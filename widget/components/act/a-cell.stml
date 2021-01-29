@@ -1,5 +1,5 @@
 <script>
-import {linkTo, mixedClass} from "./index";
+import {linkTo, mixedClass, slotSupport} from "./index";
 import AIcon from "./a-icon.stml";
 
 export default {
@@ -11,35 +11,42 @@ export default {
 
       const isLarge = props.size === 'large' || props.large;
 
-      return h('view', {
+      return slotSupport(h('view', {
             class: mixedClass(`a-cell a-cell__root ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
-              'a-cell--large': isLarge
+              'a-cell--large': isLarge,
+              'a-cell--center': props.center
             }),
             onClick: this.cellClick
           },
           props.icon && h(AIcon, {name: props.icon, class: 'a-cell__left-icon'}),
-          props.title && h('view', {class: mixedClass('a-cell__title')},
-          h('text', {
-            class: mixedClass('a-cell__title-text', {
-              'a-cell__title-text--large': isLarge
-            })
-          }, props.title),
-          props.label && h('text', {
-            class: mixedClass('a-cell__label', {
-              'a-cell__label--large': isLarge
-            })
-          }, props.label)),
+          props.title
+              ? h('view', {class: mixedClass('a-cell__title')}, h('text', {
+                class: mixedClass('a-cell__title-text', {
+                  'a-cell__title-text--large': isLarge
+                }),
+                _slot: "title"
+              }, props.title),
+              props.label && h('text', {
+                class: mixedClass('a-cell__label', {
+                  'a-cell__label--large': isLarge
+                })
+              }, props.label))
+              :
+              h('view', {class: 'a-cell__title', style: 'flex-flow:row;', _slot: 'title'}),
           h('text', {
             class: mixedClass('a-cell__value', {
               'a-cell__value--alone': !props.title
             })
           }, props.value),
 
-          props['is-link'] && h(AIcon, {
-            name: props['arrow-direction'] ? `arrow-${props['arrow-direction']}` : 'arrow-right',
-            class: 'a-cell__right-icon'
-          }),
-      );
+          props['is-link'] ? h(AIcon, {
+                name: props['arrow-direction'] ? `arrow-${props['arrow-direction']}` : 'arrow-right',
+                class: 'a-cell__right-icon',
+                _slot: 'right-icon'
+              }) :
+              h('view', {class: 'a-cell__value', style: 'justify-content: center;', _slot: 'right-icon'})
+          ,
+      ), props.children);
     }
   },
   cellClick(e) {
@@ -66,6 +73,10 @@ export default {
 .a-cell--large {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+.a-cell--center {
+  align-items: center;
 }
 
 .a-cell__left-icon {

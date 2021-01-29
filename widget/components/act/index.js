@@ -29,6 +29,12 @@ export function slotSupport(VNode, children) {
             slots.default.push(item);
         }
     })
+
+    if (Object.keys(slots).length === 1 && slots.default.length === 0) {
+        // 没有 slot 项目 直接返回 不要再去查找组件
+        return VNode;
+    }
+
     const dfs = (node) => {
         if (node.attributes && node.attributes._slot) {
             if (slots[node.attributes._slot]) {
@@ -40,6 +46,7 @@ export function slotSupport(VNode, children) {
         }
     }
     dfs(VNode);
+    return VNode;
 }
 
 /**
