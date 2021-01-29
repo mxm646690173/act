@@ -4,8 +4,8 @@
     <scroll-view style="flex: 1;">
 
       <view class="simple">
-        <text style="margin:16px;">基础用法</text>
-        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+        <text class="simple-title">基础用法</text>
+        <text class="simple-desc">
           Cell 可以单独使用，也可以与 CellGroup 搭配使用，CellGroup 可以为 Cell 提供上下外边框。
         </text>
 
@@ -18,8 +18,8 @@
 
 
       <view class="simple">
-        <text style="margin:16px;">单元格大小</text>
-        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+        <text class="simple-title">单元格大小</text>
+        <text class="simple-desc">
           通过 size 属性可以控制单元格的大小。
         </text>
 
@@ -32,8 +32,8 @@
 
 
       <view class="simple">
-        <text style="margin:16px;">展示图标</text>
-        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+        <text class="simple-title">展示图标</text>
+        <text class="simple-desc">
           通过 icon 属性在标题左侧展示图标。
         </text>
 
@@ -43,8 +43,8 @@
       </view>
 
       <view class="simple">
-        <text style="margin:16px;">只设置 value</text>
-        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+        <text class="simple-title">只设置 value</text>
+        <text class="simple-desc">
           只设置 value 时，内容会靠左对齐。
         </text>
 
@@ -53,8 +53,8 @@
 
 
       <view class="simple">
-        <text style="margin:16px;">展示箭头</text>
-        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+        <text class="simple-title">展示箭头</text>
+        <text class="simple-desc">
           设置 is-link 属性后会在单元格右侧显示箭头，并且可以通过 arrow-direction 属性控制箭头方向。
         </text>
 
@@ -65,8 +65,6 @@
         </a-cell-group>
       </view>
 
-
-      <view style="height: 200px;"></view>
     </scroll-view>
   </view>
 </template>
@@ -86,5 +84,21 @@ export default {
 .page {
   flex: 1;
   background: #F8F8F8;
+}
+
+.simple {
+  margin-bottom: 28px;
+}
+
+.simple-title {
+  margin: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.simple-desc {
+  color: #999;
+  font-size: 14px;
+  margin: 0 16px 16px;
 }
 </style>

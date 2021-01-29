@@ -4,7 +4,7 @@
     <scroll-view style="flex: 1;">
 
       <view class="simple">
-        <text style="padding: 16px;">基础用法</text>
+        <text  class="simple-title">基础用法</text>
         <a-nav-bar
             title="标题"
             left-text="返回"
@@ -16,7 +16,7 @@
       </view>
 
       <view class="simple">
-        <text style="padding: 16px;">使用插槽</text>
+        <text  class="simple-title">使用插槽</text>
         <a-nav-bar title="标题" left-text="返回" left-arrow>
           <template _slot="right">
             <a-icon name="search" size="18"/>
@@ -50,7 +50,23 @@ export default {
 
 <style scoped>
 .page {
-  height: 100%;
+  flex: 1;
   background-color: #F8F8F8;
+}
+
+.simple {
+  margin-bottom: 28px;
+}
+
+.simple-title {
+  margin: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.simple-desc {
+  color: #999;
+  font-size: 14px;
+  margin: 0 16px 16px;
 }
 </style>

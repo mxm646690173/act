@@ -3,8 +3,8 @@
     <a-nav-bar title="button" left-arrow/>
     <scroll-view style="flex: 1;" scroll-y>
       <view class="simple">
-        <text style="margin:16px;" @click="test">按钮类型</text>
-        <text style="margin:0 16px;color: #999;font-size:14px; ">按钮支持 default、primary、success、warning、danger 五种类型，默认为
+        <text class="simple-title" @click="test">按钮类型</text>
+        <text class="simple-desc">按钮支持 default、primary、success、warning、danger 五种类型，默认为
           default。
         </text>
 
@@ -22,8 +22,8 @@
 
 
       <view class="simple">
-        <text style="margin:16px;" @click="test">朴素按钮</text>
-        <text style="margin:0 16px;color: #999;font-size:14px; ">
+        <text class="simple-title" @click="test">朴素按钮</text>
+        <text class="simple-desc">
           通过 plain 属性将按钮设置为朴素按钮，朴素按钮的文字为按钮颜色，背景为白色。
         </text>
 
@@ -40,8 +40,8 @@
 
 
       <view class="simple">
-        <text style="margin:16px;" @click="test">细边框</text>
-        <text style="margin:0 16px;color: #999;font-size:14px; ">
+        <text class="simple-title" @click="test">细边框</text>
+        <text class="simple-desc">
           设置 hairline 属性可以展示 0.5px 的细边框。
         </text>
 
@@ -53,8 +53,8 @@
 
 
       <view class="simple">
-        <text style="margin:16px;" @click="test">禁用状态</text>
-        <text style="margin:0 16px;color: #999;font-size:14px; ">
+        <text class="simple-title" @click="test">禁用状态</text>
+        <text class="simple-desc">
           通过 disabled 属性来禁用按钮，禁用状态下按钮不可点击。
         </text>
 
@@ -65,8 +65,8 @@
       </view>
 
       <view class="simple">
-        <text style="margin:16px;" @click="test">按钮形状</text>
-        <text style="margin:0 16px;color: #999;font-size:14px; ">
+        <text class="simple-title" @click="test">按钮形状</text>
+        <text class="simple-desc">
           通过 square 设置方形按钮，通过 round 设置圆形按钮。
         </text>
 
@@ -76,8 +76,8 @@
         </view>
       </view>
       <view class="simple">
-        <text style="margin:16px;" @click="test">按钮图标</text>
-        <text style="margin:0 16px;color: #999;font-size:14px; ">
+        <text class="simple-title" @click="test">按钮图标</text>
+        <text class="simple-desc">
           通过 icon 属性设置按钮图标，支持 Icon 组件里的所有图标，也可以传入图标 URL。
         </text>
 
@@ -89,8 +89,8 @@
       </view>
 
       <view class="simple">
-        <text style="margin:16px;" @click="test">按钮尺寸</text>
-        <text style="margin:0 16px;color: #999;font-size:14px; ">
+        <text class="simple-title" @click="test">按钮尺寸</text>
+        <text class="simple-desc">
           支持 large、normal、small、mini 四种尺寸，默认为 normal。
         </text>
 
@@ -131,7 +131,7 @@ export default {
 
 <style scoped>
 .page {
-  height: 100%;
+  flex: 1;
   background-color: #F8F8F8;
 }
 
@@ -144,5 +144,22 @@ export default {
   margin-left: 0;
   margin-right: 16px;
   margin-bottom: 16px;
+}
+
+
+.simple {
+  margin-bottom: 28px;
+}
+
+.simple-title {
+  margin: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.simple-desc {
+  color: #999;
+  font-size: 14px;
+  margin: 0 16px 16px;
 }
 </style>
