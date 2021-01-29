@@ -76,7 +76,7 @@ export function superNode(VNode, props) {
     slotSupport(VNode, props.children)
     extendsClassStyle(VNode, props);
     // extendsEvent(VNode, props);
-    console.log(VNode)
+    console.log('superNode', VNode)
     return VNode;
 }
 
@@ -110,7 +110,11 @@ export function linkTo(to) {
  * @returns {string}
  */
 export function mixedClass(cls, extra) {
-    let classList = [cls];
-    extra && Object.entries(extra).forEach(([key, val]) => val && classList.push(key));
-    return classList.join(' ');
+    if (!extra) {
+        return cls;
+    } else {
+        let classList = [cls];
+        Object.entries(extra).forEach(([key, val]) => val && classList.push(key));
+        return classList.join(' ');
+    }
 }
