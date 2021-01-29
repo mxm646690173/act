@@ -1,5 +1,6 @@
 <script>
 import {mixedClass} from "./index";
+import AIcon from "./a-icon.stml";
 
 export default {
   name: "a-cell",
@@ -10,25 +11,27 @@ export default {
       const isLarge = props.size === 'large' || props.large;
 
       return h('view', {
-            class: mixedClass('a-cell a-cell__root', {
-              'a-cell__-last': props.__last,
+            class: mixedClass(`a-cell a-cell__root ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
               'a-cell--large': isLarge
             })
           },
-          h('view', {class: mixedClass('a-cell__title')},
-              h('text', {
-                class: mixedClass('a-cell__title-text', {
-                  'a-cell__title-text--large': isLarge
-                })
-              }, props.title),
-              props.label && h('text', {
-                class: mixedClass('a-cell__label', {
-                  'a-cell__label--large': isLarge
-                })
-              }, props.label)
-          )
-          ,
-          h('text', {class: mixedClass('a-cell__value')}, props.value)
+          props.icon && h(AIcon, {name: props.icon, class: 'a-cell__left-icon'}),
+          props.title && h('view', {class: mixedClass('a-cell__title')},
+          h('text', {
+            class: mixedClass('a-cell__title-text', {
+              'a-cell__title-text--large': isLarge
+            })
+          }, props.title),
+          props.label && h('text', {
+            class: mixedClass('a-cell__label', {
+              'a-cell__label--large': isLarge
+            })
+          }, props.label)),
+          h('text', {
+            class: mixedClass('a-cell__value', {
+              'a-cell__value--alone': !props.title
+            })
+          }, props.value)
       );
     }
   }
@@ -36,7 +39,9 @@ export default {
 </script>
 
 <style scoped>
+/*写 .a-cell__root 是为了兼容安卓 */
 .a-cell, .a-cell__root {
+  background: #FFF;
   flex-direction: row;
   padding: 10px 16px;
   line-height: 24px;
@@ -47,8 +52,12 @@ export default {
   padding-bottom: 12px;
 }
 
-.a-cell__-last {
-  border-top: 1px solid #f5f4f4;
+.a-cell__left-icon {
+  margin-right: 4px;
+}
+
+.a-cell__-not-last {
+  border-bottom: 1px solid #f5f4f4;
 }
 
 .a-cell__title {
@@ -56,8 +65,11 @@ export default {
   color: #323233;
 }
 
+/*注意文本不会继承行高 所以不会自动撑起高度*/
 .a-cell__title-text {
   font-size: 14px;
+  height: 24px;
+  line-height: 24px;
 }
 
 .a-cell__title-text--large {
@@ -73,6 +85,11 @@ export default {
 
 .a-cell__label--large {
   font-size: 14px;
+}
+
+/*写后面的表达式是为了兼容web和小程序*/
+.a-cell__value--alone, .a-cell__value.a-cell__value--alone {
+  color: #323233;
 }
 
 .a-cell__value {

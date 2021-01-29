@@ -18,7 +18,7 @@
 
 
       <view class="simple">
-        <text style="margin:16px;">单元格大小 </text>
+        <text style="margin:16px;">单元格大小</text>
         <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
           通过 size 属性可以控制单元格的大小。
         </text>
@@ -30,6 +30,43 @@
 
       </view>
 
+
+      <view class="simple">
+        <text style="margin:16px;">展示图标</text>
+        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+          通过 icon 属性在标题左侧展示图标。
+        </text>
+
+        <a-cell-group>
+          <a-cell title="单元格" icon="map"/>
+        </a-cell-group>
+      </view>
+
+      <view class="simple">
+        <text style="margin:16px;">只设置 value</text>
+        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+          只设置 value 时，内容会靠左对齐。
+        </text>
+
+        <a-cell value="内容"/>
+      </view>
+
+
+      <view class="simple">
+        <text style="margin:16px;">展示箭头</text>
+        <text style="color: #999;font-size:14px; margin: 0 16px 16px;">
+          设置 is-link 属性后会在单元格右侧显示箭头，并且可以通过 arrow-direction 属性控制箭头方向。
+        </text>
+
+        <a-cell-group>
+          <a-cell title="单元格" is-link/>
+          <a-cell title="单元格" is-link value="内容"/>
+          <a-cell title="单元格" is-link arrow-direction="down" value="内容"/>
+        </a-cell-group>
+      </view>
+
+
+      <view style="height: 200px;"></view>
     </scroll-view>
   </view>
 </template>
@@ -47,7 +84,7 @@ export default {
 
 <style scoped>
 .page {
-  height: 100%;
-  background-color: #F8F8F8;
+  flex: 1;
+  background: #F8F8F8;
 }
 </style>
