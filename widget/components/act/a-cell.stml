@@ -31,7 +31,12 @@ export default {
             class: mixedClass('a-cell__value', {
               'a-cell__value--alone': !props.title
             })
-          }, props.value)
+          }, props.value),
+
+          props['is-link'] && h(AIcon, {
+            name: props['arrow-direction'] ? `arrow-${props['arrow-direction']}` : 'arrow-right',
+            class: 'a-cell__right-icon'
+          }),
       );
     }
   }
@@ -54,6 +59,10 @@ export default {
 
 .a-cell__left-icon {
   margin-right: 4px;
+}
+
+.a-cell__right-icon {
+  margin-left: 4px;
 }
 
 .a-cell__-not-last {
