@@ -83,16 +83,17 @@ export function superNode(VNode, props) {
 /**
  * 通用api.openWin打开页面
  * @param to
+ * @param title 标题
  * @returns {*}
  */
-export function linkTo(to) {
+export function linkTo(to, title) {
     let options = {};
     if (typeof to === 'string') {
         if (to.endsWith('.stml')) {
-            options.name = to.split('/').pop().replace('.stml', '');
+            options.name = title || to.split('/').pop().replace('.stml', '');
             options.url = to;
         } else {
-            options.name = to;
+            options.name = title || to;
             options.url = `../${to}/${to}.stml`;
         }
     } else {
