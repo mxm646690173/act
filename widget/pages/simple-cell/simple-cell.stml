@@ -42,6 +42,7 @@
         </a-cell-group>
       </view>
 
+
       <view class="simple">
         <text class="simple-title">只设置 value</text>
         <text class="simple-desc">
@@ -92,6 +93,17 @@
         </a-cell-group>
       </view>
 
+
+      <view class="simple">
+        <text class="simple-title">分组圆角</text>
+        <text class="simple-desc">
+          通过 round 属性让一个cell组变成圆角。
+        </text>
+
+        <a-cell-group round>
+          <a-cell title="单元格"/>
+        </a-cell-group>
+      </view>
 
       <view class="simple">
         <text class="simple-title">使用插槽</text>
