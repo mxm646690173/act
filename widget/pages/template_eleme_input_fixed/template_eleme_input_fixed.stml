@@ -1,0 +1,113 @@
+<!-- https://community.apicloud.com/bbs/thread-170620-1-1.html -->
+
+<template name="ele-me-input-fixed">
+  <view class="page">
+    <scroll-view style="flex: 1;" scroll-y @scroll="handleScroll" bounces="false">
+      <safe-area class="header">
+        <text class="address"> 📍 选择地址</text>
+      </safe-area>
+      <view class="my-input real">
+        <text class="input-text"> 🔍 搜索吃了么商家</text>
+      </view>
+
+      <view>
+        <text v-for="_ in Array.from({length:100})" style="height: 44px;line-height: 44px;">
+          我是页面内容
+        </text>
+      </view>
+    </scroll-view>
+    {
+    api.systemType==='ios'?
+    (this.data.showFix&&
+    <view class="my-input fixed">
+      <view :style="`height: ${fixedStyle.top}px;`"></view>
+      <text class="input-text"> 🔍 搜索吃了么商家 fixed ios</text>
+    </view>
+    )
+    :
+    <view class="my-input fixed" :style="showFix?'display:flex;':'display:none;'">
+      <view :style="`height: ${fixedStyle.top}px;`"></view>
+      <text class="input-text"> 🔍 搜索吃了么商家 fixed 安卓</text>
+    </view>
+    }
+
+    <safe-area>
+      <text>我是底部 1</text>
+    </safe-area>
+
+  </view>
+</template>
+
+<script>
+import ANavBar from "../../components/act/a-nav-bar.stml";
+
+export default {
+  name: "ele-me-input-fixed",
+  components: {ANavBar},
+  installed() {
+    api.setStatusBarStyle && api.setStatusBarStyle({
+      style: 'light',
+      color: '-'
+    });
+
+  },
+  data() {
+    return {
+      showFix: false,
+      fixedStyle: {
+        top: (api.safeArea ? api.safeArea.top : 0)
+      }
+    }
+  },
+  methods: {
+    handleScroll({detail: {scrollTop}}) {
+      const showFix = scrollTop > 44;
+      if (showFix !== this.data.showFix) {
+        console.log(`this.data.showFix = ${showFix}`)
+        this.data.showFix = showFix;
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.page {
+  flex: 1;
+  background-color: #F8F8F8;
+  position: relative;
+}
+
+.header {
+  background: #1989fa;
+}
+
+.address {
+  color: #fff;
+  height: 44px;
+  line-height: 44px;
+  margin: 0 16px;
+}
+
+.my-input {
+
+  background: #1989fa;
+  width: 100%;
+}
+
+.input-text {
+  color: #666;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  background: #ddd;
+  margin: 16px;
+  border-radius: 3px;
+}
+
+.fixed {
+  position: absolute;
+  margin: 0 auto;
+}
+
+</style>
