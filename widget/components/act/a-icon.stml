@@ -10,14 +10,33 @@ export default {
         props.color = '#666';
       }
       props.color = props.color.replace('#', '_');
-      const src = `http://icon.yangyongan.com/?name=${props.name}&color=${props.color}&size=${props.size}&scale=${props.scale}`;
-      return {
-        nodeName: 'img',
-        attributes: {
-          class: `a-icon a-icon__${props.name} ${props.class || ''}`,
-          style: `width:${props.size}px;height:${props.size}px;${props.style || ''}`, src
-        }
+
+
+      const isImage = props.name.includes('/');
+
+      const src = isImage ? props.name : `http://icon.yangyongan.com/?name=${props.name}&color=${props.color}&size=${props.size}&scale=${props.scale}`;
+
+      const {h} = apivm;
+
+      const renderIcon = h('img', {
+        class: `a-icon a-icon__${isImage ? 'image' : props.name} ${props.class || ''}`,
+        style: `width:${props.size}px;height:${props.size}px;${props.style || ''}`, src
+      });
+
+      if (props.dot) {
+
+        return h('view', {
+          class: 'a-icon__wrapper a-icon__dot',
+        }, renderIcon, h('view', {class: 'a-icon__dot'}))
+
+      } else if (props.badge) {
+        return h('view', {
+          class: 'a-icon__wrapper a-icon__badge',
+        }, renderIcon)
+      } else {
+        return renderIcon;
       }
+
     }
   }
 }
@@ -26,5 +45,13 @@ export default {
 <style scoped>
 .a-icon {
   align-self: center;
+}
+
+.a-icon__dot {
+  width: 8px;
+  min-width: 0;
+  height: 8px;
+  background-color: #ee0a24;
+  border-radius: 100%;
 }
 </style>
