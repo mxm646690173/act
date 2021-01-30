@@ -42,6 +42,14 @@
         </a-cell-group>
       </view>
 
+      <view class="simple">
+        <text class="simple-title">快捷标题</text>
+        <text class="simple-desc">
+          子节点是纯文本的时候被理解成title
+        </text>
+        <a-cell>单元格</a-cell>
+      </view>
+
 
       <view class="simple">
         <text class="simple-title">只设置 value</text>

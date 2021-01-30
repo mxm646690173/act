@@ -10,6 +10,7 @@ export default {
       const {h} = apivm;
 
       const isLarge = props.size === 'large' || props.large;
+      (Array.isArray(props.children) && props.children.length === 1 && typeof props.children[0] === 'string') && (props.title = props.children);
 
       return slotSupport(h('view', {
             class: mixedClass(`a-cell a-cell__root ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
