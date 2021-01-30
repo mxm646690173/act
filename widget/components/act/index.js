@@ -107,6 +107,9 @@ export function linkTo(to, title) {
     } else {
         options = to;
     }
+
+    if (!options.bgColor) options.bgColor = '#FFF';
+
     console.log(['a-link:to', JSON.stringify(options)]);
     return api.openWin(options);
 }
