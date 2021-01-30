@@ -46,6 +46,12 @@ import ALink from "../../components/act/a-link.stml";
 export default {
   name: "main",
   components: {ALink, AIcon, ANavBar},
+  installed() {
+    api.setStatusBarStyle && api.setStatusBarStyle({
+      style: 'dark',
+      color: '-'
+    });
+  },
   methods: {}
 }
 </script>
