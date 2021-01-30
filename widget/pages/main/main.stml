@@ -9,12 +9,14 @@
       <view>
         <text class="title">基础组件</text>
 
+
         <a-link to="simple-button">
           <view class="link">
             <text class="com-name">Button 按钮</text>
             <a-icon name="arrow-right"/>
           </view>
         </a-link>
+
 
         <a-link to="simple-cell">
           <view class="link">
@@ -30,9 +32,19 @@
             <a-icon name="arrow-right"/>
           </view>
         </a-link>
+
+
+        <view class="link" onClick={_=>api.toast({msg:"该组件请暂时使用引擎提供的基础组件代替"})}>
+          <text class="com-name">Image 图片</text>
+        </view>
       </view>
 
-
+      <a-link to="simple-layout">
+        <view class="link">
+          <text class="com-name">Layout 布局</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
     </scroll-view>
   </view>
 </template>
