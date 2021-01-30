@@ -10,22 +10,10 @@ export default {
       if (!props.size) props.size = 'normal';
 
       if (props.icon) {
-        if (props.icon.includes('/')) {
-          props.children.unshift({
-            "nodeName": 'img',
-            "attributes": {
-              "src": props.icon, style: {
-                width: 20, height: 20
-              }
-            }
-          })
-        } else {
-          props.children.unshift({
-            "nodeName": AIcon,
-            "attributes": {"name": props.icon, "color": "#FFF", size: 20}
-          })
-        }
-
+        props.children.unshift({
+          "nodeName": AIcon,
+          "attributes": {"name": props.icon, "color": "#FFF", size: 20}
+        })
       }
 
       return superNode({
