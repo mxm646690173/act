@@ -21,4 +21,7 @@ export default {
 </script>
 
 <style scoped>
+.a-col {
+  box-sizing: border-box;
+}
 </style>
