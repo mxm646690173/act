@@ -121,3 +121,24 @@ export function mixedClass(cls, extra) {
         return classList.join(' ');
     }
 }
+
+/**
+ * v-model 双向绑定模拟
+ * @returns {{}}
+ */
+export function syncModel() {
+    const $ = {};
+    const {_host, props} = this;
+    Object.entries(props).forEach(([k, v]) => {
+        if (k.startsWith('$')) {
+            const path = v.replace(/]/g, '').split(/[\.\[]/);
+            const lastKey = path.pop();
+            let data = _host.data;
+            path.forEach(p => data = data[p]);
+            $[path] = value => {
+                return value === undefined ? data[lastKey] : data[lastKey] = value;
+            };
+        }
+    });
+    return $;
+}
