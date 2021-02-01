@@ -1,0 +1,132 @@
+<script>
+import AIcon from "./a-icon.stml";
+
+export default {
+  name: "a-popup",
+  install() {
+    const $ = {};
+    const {_host, props} = this;
+
+
+    Object.entries(props).forEach(([k, v]) => {
+      if (k.startsWith('$')) {
+        const path = v.replace(/]/g, '').split(/[\.\[]/);
+        const lastKey = path.pop();
+        let data = _host.data;
+        path.forEach(p => data = data[p]);
+        $[path] = value => {
+          return value === undefined ? data[lastKey] : data[lastKey] = value;
+        };
+      }
+    });
+
+
+    this.render = props => {
+      const {h, extractClass} = apivm;
+      return $.show() && h('view', {
+            ...extractClass(props, `a-popup__overlay`),
+            onClick: _ => {
+              $.show(false);
+              this.fire('close');
+            }
+          },
+          h('view', {
+            ...extractClass(props, `a-popup  a-popup--position-${props.position || 'center'}`),
+            style: `${props.style}||''`,
+          }, props.children, props.closeable && h(AIcon, {
+            name: props['close-icon'] || 'close',
+            size: 22,
+            color: props['close-icon-color'] || '#c8c9cc',
+            class: `a-popup__close a-popup__close--${props['close-icon-position'] || 'top-right'}`
+          }))
+      );
+
+    }
+
+
+  }
+}
+</script>
+
+<style scoped>
+.a-popup__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: background-color 0.3s;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.a-popup--state-0 {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.a-popup--state-1 {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.a-popup {
+  position: absolute;
+  max-height: 100%;
+  overflow-y: auto;
+  background-color: #fff;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-overflow-scrolling: touch;
+}
+
+.a-popup--position-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.a-popup--position-top {
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.a-popup--position-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.a-popup--position-left {
+  left: 0;
+}
+
+.a-popup--position-right {
+  right: 0;
+}
+
+
+.a-popup__close {
+  position: absolute;
+}
+
+.a-popup__close--top-left {
+  top: 16px;
+  left: 16px;
+}
+
+.a-popup__close--top-right {
+  top: 16px;
+  right: 16px;
+}
+
+.a-popup__close--bottom-left {
+  bottom: 16px;
+  left: 16px;
+}
+
+.a-popup__close--bottom-right {
+  bottom: 16px;
+  right: 16px;
+}
+
+
+</style>
