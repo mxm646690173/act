@@ -1,16 +1,7 @@
-/**
- * 快捷 toast
- * @param msg
- * @param location
- * @param duration
- * @returns {*}
- * @constructor
- */
-export function Toast(msg, location = 'middle', duration = 1500) {
-    return api.toast({
-        msg, location, duration
-    })
-}
+import Toast from "./Toast";
+
+
+export {Toast};
 
 /**
  * 插槽支持

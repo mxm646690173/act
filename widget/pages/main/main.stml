@@ -53,6 +53,12 @@
         </view>
       </a-link>
 
+      <a-link to="simple-toast">
+        <view class="link">
+          <text class="com-name">Toast 轻提示</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
 
     </scroll-view>
   </view>
