@@ -48,6 +48,19 @@
         </a-cell-group>
       </view>
 
+
+      <view class="simple">
+        <text class="simple-title">
+          圆角弹窗
+        </text>
+        <text class="simple-desc">
+          设置round属性后，弹窗会根据弹出位置添加不同的圆角样式
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="showPopup(7)">圆角弹窗</a-cell>
+        </a-cell-group>
+      </view>
+
     </scroll-view>
 
 
@@ -95,6 +108,15 @@
     <a-popup $show="show[6]"
              closeable
              close-icon-color="red"
+             position="bottom"
+             style="height: 30%;">
+      <text class="demo-content">内容</text>
+    </a-popup>
+
+
+    <a-popup $show="show[7]"
+             closeable
+             round
              position="bottom"
              style="height: 30%;">
       <text class="demo-content">内容</text>

@@ -31,7 +31,9 @@ export default {
             }
           },
           h('view', {
-            ...extractClass(props, `a-popup  a-popup--position-${props.position || 'center'}`),
+            ...extractClass(props, `a-popup  a-popup--position-${props.position || 'center'}`, {
+              [`a-popup--round-${props.position || 'center'}`]: props.round
+            }),
             style: `${props.style}||''`,
           }, props.children, props.closeable && h(AIcon, {
             name: props['close-icon'] || 'close',
@@ -126,6 +128,26 @@ export default {
 .a-popup__close--bottom-right {
   bottom: 16px;
   right: 16px;
+}
+
+.a-popup--round-center {
+  border-radius: 16px;
+}
+
+.a-popup--round-top {
+  border-radius: 0 0 16px 16px;
+}
+
+.a-popup--round-bottom {
+  border-radius: 16px 16px 0 0;
+}
+
+.a-popup--round-left {
+  border-radius: 0 16px 16px 0;
+}
+
+.a-popup--round-right {
+  border-radius: 16px 0 0 16px;
 }
 
 
