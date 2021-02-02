@@ -135,7 +135,7 @@ export function syncModel() {
             const lastKey = path.pop();
             let data = _host.data;
             path.forEach(p => data = data[p]);
-            $[path] = value => {
+            $[k.substr(1)] = value => {
                 return value === undefined ? data[lastKey] : data[lastKey] = value;
             };
         }
