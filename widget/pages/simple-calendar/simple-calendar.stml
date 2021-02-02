@@ -16,19 +16,20 @@
         </a-cell-group>
 
 
-        <a-calendar class="demo-calendar"
-                    $default-date="value[0]"
-                    title="日历"
-                    :poppable="false"
-                    :show-confirm="false"
-                    style="height:500px;"/>
-
-
       </view>
+
 
     </scroll-view>
 
 
+    <a-calendar style="height: 500px;"
+                $show="show[0]"
+                $default-date="value[0]"
+                title="日历"
+                :min-date="new Date(2010,1,1)"
+                :poppable="false"
+                :show-confirm="false"
+                height="500"/>
   </view>
 </template>
 
@@ -37,14 +38,16 @@ import ANavBar from "../../components/act/a-nav-bar.stml";
 import ACellGroup from "../../components/act/a-cell-group.stml";
 import ACell from "../../components/act/a-cell.stml";
 import ACalendar from "../../components/act/a-calendar.stml";
+import APopup from "../../components/act/a-popup.stml";
 
 export default {
   name: "simple-calendar",
-  components: {ACalendar, ACell, ACellGroup, ANavBar},
+  components: {APopup, ACalendar, ACell, ACellGroup, ANavBar},
   data() {
     return {
       value: Array.from({length: 10}).fill(''),
       show: Array.from({length: 10}).fill(false),
+      show1: true
     }
   },
   methods: {

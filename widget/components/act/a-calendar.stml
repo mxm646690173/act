@@ -2,6 +2,7 @@
 
 
 import {dateFormat, syncModel} from "./index";
+import APopup from './a-popup.stml';
 
 export default {
   name: "a-calendar",
@@ -12,7 +13,7 @@ export default {
   },
   install() {
 
-    this.$ = syncModel.call(this);
+    syncModel.call(this);
 
     this.render = props => {
       const {h} = apivm;
@@ -34,7 +35,10 @@ export default {
 
 
       const dayNames = ['日', '一', '二', '三', '四', '五', '六'];
-      const renderHeader = h('view', {class: 'a-calendar__header'},
+      const renderHeader = h('view', {
+            class: 'a-calendar__header',
+            onClick: _ => _.cancelBubble = true
+          },
           props.title && h('text', {class: 'a-calendar__title'}, props.title),
           h('text', {class: 'a-calendar__subtitle'}, this.currentMonth),
           h('view', {class: 'a-calendar__weekdays'},
@@ -42,17 +46,21 @@ export default {
           )
       )
 
-      const renderFooter = h('view', {
-        class: 'a-calendar__footer',
+      const renderFooter = h('safe-area', {
+        class: 'a-calendar__footer safe-area',
         onClick: _ => {
-          this.$['default-date'](this.data.selectDay)
+          _.cancelBubble = true;
+          this.$model['default-date'](this.data.selectDay);
+          this.$model['show'](false);
         }
       }, h('text', {class: 'a-calendar__btn'}, '确认'))
 
-      return h('view', {
-        class: `a-calendar ${props.class}`,
-        style: `${props.style}||''`,
-      }, renderHeader, this.renderBody(), renderFooter);
+      return h(APopup, {
+            class: `a-calendar ${props.class || ''}`,
+            style: `${props.style}`, position: 'bottom',
+            closeable: true
+          }, renderHeader, this.renderBody(), renderFooter
+      );
 
     }
   },
@@ -87,7 +95,7 @@ export default {
               return h('view', {
                     class: `a-calendar__day  ${selected ? 'a-calendar__selected-day' : 'a-calendar__selectable-day'}`,
                     style: index ? '' : `margin-left:${dayOffset * 14.285}%;`,
-                    onClick: _ => this.handleDateCellClick(currentDateFormat)
+                    onClick: _ => this.handleDateCellClick(currentDateFormat, _)
                   },
                   false && h('text', {class: 'a-calendar__top-info'}, '顶部'),
                   h('text', {class: `a-calendar__day-num   ${selected ? 'a-calendar__selected-day' : 'a-calendar__selectable-day'}`}, currentDate),
@@ -97,7 +105,10 @@ export default {
         )
     );
   },
-  handleDateCellClick(currentDateFormat) {
+  handleDateCellClick(currentDateFormat, ev) {
+
+    ev.cancelBubble = true;
+
     if (this.props.type === 'single') {
       this.data.selectDay = [currentDateFormat];
     } else {
@@ -191,7 +202,7 @@ export default {
   background-color: #ee0a24;
   border: 1px solid #ee0a24;
   height: 36px;
-  margin: 7px 0;
+  margin: 8px;
   border-radius: 18px;
   line-height: 36px;
   text-align: center;

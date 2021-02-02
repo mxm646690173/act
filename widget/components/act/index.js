@@ -127,7 +127,7 @@ export function mixedClass(cls, extra) {
  * @returns {{}}
  */
 export function syncModel() {
-    const $ = {};
+    const $model = {};
     const {_host, props} = this;
     Object.entries(props).forEach(([k, v]) => {
         if (k.startsWith('$')) {
@@ -135,12 +135,12 @@ export function syncModel() {
             const lastKey = path.pop();
             let data = _host.data;
             path.forEach(p => data = data[p]);
-            $[k.substr(1)] = value => {
+            $model[k.substr(1)] = value => {
                 return value === undefined ? data[lastKey] : data[lastKey] = value;
             };
         }
     });
-    return $;
+    this.$model = Object.assign($model, this._host.$model);
 }
 
 export function dateFormat(fmt, date) {
