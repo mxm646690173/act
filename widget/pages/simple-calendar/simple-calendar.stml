@@ -1,0 +1,87 @@
+<template name="simple-calendar">
+  <view class="page">
+    <a-nav-bar title="simple-calendar" left-arrow/>
+    <scroll-view style="flex: 1;" scroll-y>
+
+
+      <view class="simple">
+        <text class="simple-title">
+          选择单个日期
+        </text>
+        <text class="simple-desc">
+          下面演示了结合单元格来使用日历组件的用法，日期选择完成后会触发 confirm 事件。
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="choose(0)" title="选择单个日期" :value="value[0]"/>
+        </a-cell-group>
+
+
+        <a-calendar class="demo-calendar"
+                    title="日历"
+                    :poppable="false"
+                    :show-confirm="false"
+                    style="height:500px;"/>
+
+
+      </view>
+
+    </scroll-view>
+
+
+  </view>
+</template>
+
+<script>
+import ANavBar from "../../components/act/a-nav-bar.stml";
+import ACellGroup from "../../components/act/a-cell-group.stml";
+import ACell from "../../components/act/a-cell.stml";
+import ACalendar from "../../components/act/a-calendar.stml";
+
+export default {
+  name: "simple-calendar",
+  components: {ACalendar, ACell, ACellGroup, ANavBar},
+  data() {
+    return {
+      value: Array.from({length: 10}).fill(''),
+      show: Array.from({length: 10}).fill(false),
+    }
+  },
+  methods: {
+    choose(index) {
+      this.data.show[index] = true;
+    }
+  }
+}
+</script>
+
+<style scoped>
+.page {
+  flex: 1;
+  background-color: #F8F8F8;
+}
+
+
+.simple {
+  padding-bottom: 28px;
+}
+
+.simple-title {
+  margin: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.simple-desc {
+  color: #999;
+  font-size: 14px;
+  margin: 0 16px 16px;
+}
+
+.demo-calendar {
+  margin: 12px 12px 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+
+</style>

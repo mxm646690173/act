@@ -1,0 +1,193 @@
+<script>
+
+
+import {dateFormat} from "./index";
+
+export default {
+  name: "a-calendar",
+  data() {
+    return {
+      selectDay: []
+    }
+  },
+  install() {
+
+    this.render = props => {
+
+
+      const {h, extractClass} = apivm;
+
+      const now = new Date();
+
+      if (!props['min-date']) {
+        props['min-date'] = new Date(now.setMonth(now.getMonth()));
+      }
+      if (!props['max-date']) {
+        props['max-date'] = new Date(new Date(props['min-date']).setMonth(props['min-date'].getMonth() + 3));
+      }
+
+      this.monthDiff = (props['max-date'].getFullYear() - props['min-date'].getFullYear()) * 12 + (props['max-date'].getMonth() - props['min-date'].getMonth());
+
+      this.currentMonth = dateFormat('Y-mm', props['min-date']);
+
+
+      const renderBody = h('scroll-view', {
+        class: 'a-calendar__body',
+        scroll: 'y'
+      }, ...Array.from({length: this.monthDiff + 1}).map((_, index) => h('view', {class: 'a-calendar__month'}, this.renderDays(index))))
+
+
+      const dayNames = ['日', '一', '二', '三', '四', '五', '六'];
+
+      const renderHeader = h('view', {
+            class: 'a-calendar__header'
+          },
+          props.title && h('text', {class: 'a-calendar__title'}, props.title),
+          h('text', {class: 'a-calendar__subtitle'}, this.currentMonth),
+          h('view', {class: 'a-calendar__weekdays'},
+              Array.from({length: 7}).map((_, index) => h('text', {class: 'a-calendar__weekday'}, dayNames[index]))
+          )
+      )
+
+      const renderFooter = h('view', {class: 'a-calendar__footer'}, h('text', {class: 'a-calendar__btn'}, '确认'))
+
+
+      return h('view', {
+        class: `a-calendar ${props.class}`,
+        style: `${props.style}||''`,
+      }, renderHeader, renderBody, renderFooter);
+
+    }
+  },
+
+  renderDays(index) {
+
+    const {props} = this;
+    const {h} = apivm;
+
+
+    const baseTime = props['min-date'].getTime();
+
+    const monthList = Array.from({length: this.monthDiff + 1}).map((_, index) => new Date(new Date(baseTime).setMonth(props['min-date'].getMonth() + index)));
+
+    const _month = monthList[index];
+
+    const dayOffset = new Date(_month.getFullYear(), _month.getMonth(), 1).getDay();
+    const dayNumber = new Date(_month.getFullYear(), _month.getMonth() + 1, 0).getDate();
+
+
+    return h('view', {class: 'a-calendar__days'},
+        ...Array.from({length: dayNumber}).map(
+            (_, index) => {
+
+              const currentDate = index + 1;
+
+              return h('view', {
+                    class: `a-calendar__day  ${this.data.selectDay.includes(currentDate) ? 'a-calendar__selected-day' : ''}`,
+                    style: index ? '' : `margin-left:${dayOffset * 14.285}%;`,
+                    onClick: _ => {
+                      this.data.selectDay.push(currentDate);
+                    }
+                  },
+                  h('text', {class: 'a-calendar__top-info'}, '顶部'),
+                  h('text', {class: `a-calendar__day-num`}, currentDate),
+                  h('text', {class: 'a-calendar__bottom-info'}, '顶部')
+              )
+            }
+        )
+    );
+  }
+}
+</script>
+
+<style scoped>
+.a-calendar {
+  background-color: #FFF;
+}
+
+.a-calendar__header {
+  border-bottom: 2px solid #eee;
+  flex-shrink: 0;
+}
+
+
+.a-calendar__title {
+  font-size: 16px;
+  height: 44px;
+  font-weight: 500;
+  line-height: 44px;
+  text-align: center;
+}
+
+
+.a-calendar__subtitle {
+  font-size: 14px;
+  height: 44px;
+  font-weight: 500;
+  line-height: 44px;
+  text-align: center;
+}
+
+.a-calendar__weekdays {
+  flex-flow: row nowrap;
+}
+
+
+.a-calendar__weekday {
+  flex: 1;
+  font-size: 12px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.a-calendar__body {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.a-calendar__days {
+  flex-flow: row wrap;
+}
+
+.a-calendar__day {
+  width: 14.285%;
+  height: 64px;
+  font-size: 16px;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.a-calendar__footer {
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  padding: 0 16px;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.a-calendar__btn {
+  color: #fff;
+  background-color: #ee0a24;
+  border: 1px solid #ee0a24;
+  height: 36px;
+  margin: 7px 0;
+  border-radius: 18px;
+  line-height: 36px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.a-calendar__top-info, .a-calendar__bottom-info {
+  font-size: 10px;
+  line-height: 14px;
+}
+
+.a-calendar__selected-day {
+  color: #fff;
+  background-color: #ee0a24;
+  border-radius: 4px;
+}
+
+</style>

@@ -60,6 +60,15 @@
         </view>
       </a-link>
 
+
+      <text class="title">表单组件</text>
+
+      <a-link to="simple-calendar">
+        <view class="link">
+          <text class="com-name">Calendar 日历</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
     </scroll-view>
   </view>
 </template>
