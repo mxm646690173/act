@@ -13,10 +13,7 @@ export default {
       const {h, extractClass} = apivm;
       return this.$model.show() && h('view', {
             ...extractClass(props, `a-popup__overlay`),
-            onClick: _ => {
-              this.$model.show(false);
-              this.fire('close');
-            }
+            onClick: _ => this.handleClose(_, 'overlay')
           },
           h('view', {
             ...extractClass(props, `a-popup  a-popup--position-${props.position || 'center'}`, {
@@ -27,13 +24,16 @@ export default {
             name: props['close-icon'] || 'close',
             size: 22,
             color: props['close-icon-color'] || '#c8c9cc',
-            class: `a-popup__close a-popup__close--${props['close-icon-position'] || 'top-right'}`
+            class: `a-popup__close a-popup__close--${props['close-icon-position'] || 'top-right'}`,
+            onClick: _ => this.handleClose(_, 'icon')
           }))
       );
-
     }
-
-
+  },
+  handleClose(ev, type) {
+    ev.cancelBubble = true;
+    this.$model.show(false);
+    this.fire('close', {type});
   }
 }
 </script>
