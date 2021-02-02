@@ -1,7 +1,7 @@
 <script>
 
 
-import {dateFormat} from "./index";
+import {dateFormat, syncModel} from "./index";
 
 export default {
   name: "a-calendar",
@@ -12,12 +12,16 @@ export default {
   },
   install() {
 
+    this.$ = syncModel.call(this);
+
     this.render = props => {
-
-
-      const {h, extractClass} = apivm;
-
+      const {h} = apivm;
       const now = new Date();
+
+
+      if (!props.type) {
+        props.type = 'single';
+      }
 
       if (!props['min-date']) {
         props['min-date'] = new Date(now.setMonth(now.getMonth()));
@@ -25,77 +29,80 @@ export default {
       if (!props['max-date']) {
         props['max-date'] = new Date(new Date(props['min-date']).setMonth(props['min-date'].getMonth() + 3));
       }
-
       this.monthDiff = (props['max-date'].getFullYear() - props['min-date'].getFullYear()) * 12 + (props['max-date'].getMonth() - props['min-date'].getMonth());
-
       this.currentMonth = dateFormat('Y-mm', props['min-date']);
 
 
-      const renderBody = h('scroll-view', {
-        class: 'a-calendar__body',
-        scroll: 'y'
-      }, ...Array.from({length: this.monthDiff + 1}).map((_, index) => h('view', {class: 'a-calendar__month'}, this.renderDays(index))))
-
-
       const dayNames = ['日', '一', '二', '三', '四', '五', '六'];
-
-      const renderHeader = h('view', {
-            class: 'a-calendar__header'
-          },
+      const renderHeader = h('view', {class: 'a-calendar__header'},
           props.title && h('text', {class: 'a-calendar__title'}, props.title),
           h('text', {class: 'a-calendar__subtitle'}, this.currentMonth),
           h('view', {class: 'a-calendar__weekdays'},
-              Array.from({length: 7}).map((_, index) => h('text', {class: 'a-calendar__weekday'}, dayNames[index]))
+              dayNames.map(name => h('text', {class: 'a-calendar__weekday'}, name))
           )
       )
 
-      const renderFooter = h('view', {class: 'a-calendar__footer'}, h('text', {class: 'a-calendar__btn'}, '确认'))
-
+      const renderFooter = h('view', {
+        class: 'a-calendar__footer',
+        onClick: _ => {
+          this.$['default-date'](this.data.selectDay)
+        }
+      }, h('text', {class: 'a-calendar__btn'}, '确认'))
 
       return h('view', {
         class: `a-calendar ${props.class}`,
         style: `${props.style}||''`,
-      }, renderHeader, renderBody, renderFooter);
+      }, renderHeader, this.renderBody(), renderFooter);
 
     }
   },
-
-  renderDays(index) {
-
-    const {props} = this;
+  renderBody() {
     const {h} = apivm;
-
+    const {props} = this;
 
     const baseTime = props['min-date'].getTime();
+    this.monthList = Array.from({length: this.monthDiff + 1})
+        .map((_, index) => new Date(new Date(baseTime).setMonth(props['min-date'].getMonth() + index)));
 
-    const monthList = Array.from({length: this.monthDiff + 1}).map((_, index) => new Date(new Date(baseTime).setMonth(props['min-date'].getMonth() + index)));
+    return h('scroll-view', {
+          class: 'a-calendar__body',
+          scroll: 'y'
+        },
+        ...this.monthList.map(_month => h('view', {class: 'a-calendar__month'}, this.renderDays(_month))))
 
-    const _month = monthList[index];
+  },
+  renderDays(_month) {
 
+    const {h} = apivm;
     const dayOffset = new Date(_month.getFullYear(), _month.getMonth(), 1).getDay();
     const dayNumber = new Date(_month.getFullYear(), _month.getMonth() + 1, 0).getDate();
-
-
     return h('view', {class: 'a-calendar__days'},
         ...Array.from({length: dayNumber}).map(
             (_, index) => {
-
               const currentDate = index + 1;
+              const currentDateFormat = dateFormat('Y-mm-dd', new Date(_month.getFullYear(), _month.getMonth(), currentDate));
+
+              const selected = this.data.selectDay.includes(currentDateFormat);
 
               return h('view', {
-                    class: `a-calendar__day  ${this.data.selectDay.includes(currentDate) ? 'a-calendar__selected-day' : ''}`,
+                    class: `a-calendar__day  ${selected ? 'a-calendar__selected-day' : 'a-calendar__selectable-day'}`,
                     style: index ? '' : `margin-left:${dayOffset * 14.285}%;`,
-                    onClick: _ => {
-                      this.data.selectDay.push(currentDate);
-                    }
+                    onClick: _ => this.handleDateCellClick(currentDateFormat)
                   },
-                  h('text', {class: 'a-calendar__top-info'}, '顶部'),
-                  h('text', {class: `a-calendar__day-num`}, currentDate),
-                  h('text', {class: 'a-calendar__bottom-info'}, '顶部')
+                  false && h('text', {class: 'a-calendar__top-info'}, '顶部'),
+                  h('text', {class: `a-calendar__day-num   ${selected ? 'a-calendar__selected-day' : 'a-calendar__selectable-day'}`}, currentDate),
+                  false && h('text', {class: 'a-calendar__bottom-info'}, '顶部')
               )
             }
         )
     );
+  },
+  handleDateCellClick(currentDateFormat) {
+    if (this.props.type === 'single') {
+      this.data.selectDay = [currentDateFormat];
+    } else {
+      this.data.selectDay.push(currentDateFormat);
+    }
   }
 }
 </script>
@@ -159,6 +166,18 @@ export default {
   align-items: center;
 }
 
+.a-calendar__selected-day {
+  color: #fff;
+  background-color: #ee0a24;
+  border-radius: 4px;
+}
+
+.a-calendar__selectable-day {
+  color: #323233;
+  background-color: #FFF;
+  border-radius: 0;
+}
+
 .a-calendar__footer {
   -webkit-flex-shrink: 0;
   flex-shrink: 0;
@@ -182,12 +201,6 @@ export default {
 .a-calendar__top-info, .a-calendar__bottom-info {
   font-size: 10px;
   line-height: 14px;
-}
-
-.a-calendar__selected-day {
-  color: #fff;
-  background-color: #ee0a24;
-  border-radius: 4px;
 }
 
 </style>

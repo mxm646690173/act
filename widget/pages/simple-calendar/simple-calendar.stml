@@ -17,6 +17,7 @@
 
 
         <a-calendar class="demo-calendar"
+                    $default-date="value[0]"
                     title="日历"
                     :poppable="false"
                     :show-confirm="false"
