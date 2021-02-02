@@ -76,7 +76,13 @@ export default {
           class: 'a-calendar__body',
           scroll: 'y'
         },
-        ...this.monthList.map(_month => h('view', {class: 'a-calendar__month'}, this.renderDays(_month))))
+        ...this.monthList.map(_month =>
+            h('view', {class: 'a-calendar__month'},
+                h('text', {class: 'a-calendar__month-mark'}, _month.getMonth() + 1),
+                this.renderDays(_month)
+            )
+        )
+    )
 
   },
   renderDays(_month) {
@@ -164,9 +170,25 @@ export default {
   overflow-y: scroll;
 }
 
+.a-calendar__month {
+  position: relative;
+}
+
+.a-calendar__month-mark {
+  position: absolute;
+  color: rgba(242, 243, 245, 0.8);
+  font-size: 160px;
+  font-weight: bold;
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+  top: 18%;
+}
+
 .a-calendar__days {
   flex-flow: row wrap;
 }
+
 
 .a-calendar__day {
   width: 14.285%;
@@ -185,7 +207,7 @@ export default {
 
 .a-calendar__selectable-day {
   color: #323233;
-  background-color: #FFF;
+  background-color: transparent;
   border-radius: 0;
 }
 
@@ -213,5 +235,6 @@ export default {
   font-size: 10px;
   line-height: 14px;
 }
+
 
 </style>
