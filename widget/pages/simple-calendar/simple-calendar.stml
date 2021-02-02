@@ -14,17 +14,37 @@
         <a-cell-group round>
           <a-cell is-link @click="choose(0)" title="选择单个日期" :value="value[0]"/>
         </a-cell-group>
-
-
       </view>
 
+      <view class="simple">
+        <text class="simple-title">
+          双向绑定
+        </text>
+        <text class="simple-desc">
+          下面演示了使用 $default-date 来做双向绑定，自动接管数据变化绑定。
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="choose(1)" title="选择单个日期" :value="value[1]"/>
+        </a-cell-group>
+      </view>
 
     </scroll-view>
 
 
     <a-calendar style="height: 500px;"
                 $show="show[0]"
-                $default-date="value[0]"
+                :default-date="value[0]"
+                title="日历"
+                :min-date="new Date(2010,1,1)"
+                :poppable="false"
+                :show-confirm="false"
+                @confirm="myConfirm"
+                height="500"/>
+
+
+    <a-calendar style="height: 500px;"
+                $show="show[1]"
+                $default-date="value[1]"
                 title="日历"
                 :min-date="new Date(2010,1,1)"
                 :poppable="false"
@@ -39,6 +59,7 @@ import ACellGroup from "../../components/act/a-cell-group.stml";
 import ACell from "../../components/act/a-cell.stml";
 import ACalendar from "../../components/act/a-calendar.stml";
 import APopup from "../../components/act/a-popup.stml";
+import {Toast} from "../../components/act";
 
 export default {
   name: "simple-calendar",
@@ -54,6 +75,10 @@ export default {
     choose(index) {
       this.data.show[index] = true;
     }
+  },
+  myConfirm({detail}) {
+    this.data.value[0] = detail;
+    Toast(detail)
   }
 }
 </script>

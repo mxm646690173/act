@@ -53,9 +53,15 @@ export default {
       const renderFooter = h('safe-area', {
         class: 'a-calendar__footer safe-area',
         onClick: _ => {
+
+          const result = props.type === 'single' ? this.data.selectDay[0] : this.data.selectDay;
+
           _.cancelBubble = true;
-          this.$model['default-date'](this.data.selectDay);
           this.$model['show'](false);
+          this.fire('confirm', result);
+
+
+          this.$model['default-date'] && this.$model['default-date'](result);
         }
       }, h('text', {class: 'a-calendar__btn'}, '确认'))
 
