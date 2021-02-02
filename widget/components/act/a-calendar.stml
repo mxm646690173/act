@@ -16,6 +16,7 @@ export default {
     syncModel.call(this);
 
     this.render = props => {
+
       const {h} = apivm;
       const now = new Date();
 
@@ -69,38 +70,53 @@ export default {
     const {props} = this;
 
     const baseTime = props['min-date'].getTime();
+
+    let offset = 0;
+
     this.monthList = Array.from({length: this.monthDiff + 1})
-        .map((_, index) => new Date(new Date(baseTime).setMonth(props['min-date'].getMonth() + index)));
+        .map((_, index) => {
+          const month = new Date(new Date(baseTime).setMonth(props['min-date'].getMonth() + index));
+          const dayOffset = new Date(month.getFullYear(), month.getMonth(), 1).getDay();
+          const dayNumber = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+          const height = Math.ceil((dayOffset + dayNumber) / 7) * 64; // 64 是单元格的高度
+          const heightOffset = offset += height;
+          return {month, dayOffset, dayNumber, heightOffset, height};
+        });
+
+    console.log(this.monthList)
 
     return h('scroll-view', {
           class: 'a-calendar__body',
           scroll: 'y'
         },
-        ...this.monthList.map(_month =>
-            h('view', {class: 'a-calendar__month'},
-                h('text', {class: 'a-calendar__month-mark'}, _month.getMonth() + 1),
-                this.renderDays(_month)
-            )
+        ...this.monthList.map(monthInfo => {
+
+              return h('view', {class: 'a-calendar__month'},
+                  h('text', {
+                    class: 'a-calendar__month-mark',
+                    style: `height:${monthInfo.height}px;line-height:${monthInfo.height}px;`
+                  }, monthInfo.month.getMonth() + 1),
+                  this.renderDays(monthInfo)
+              )
+            }
         )
     )
 
   },
-  renderDays(_month) {
+  renderDays(monthInfo) {
 
     const {h} = apivm;
-    const dayOffset = new Date(_month.getFullYear(), _month.getMonth(), 1).getDay();
-    const dayNumber = new Date(_month.getFullYear(), _month.getMonth() + 1, 0).getDate();
     return h('view', {class: 'a-calendar__days'},
-        ...Array.from({length: dayNumber}).map(
+        ...Array.from({length: monthInfo.dayNumber}).map(
             (_, index) => {
               const currentDate = index + 1;
-              const currentDateFormat = dateFormat('Y-mm-dd', new Date(_month.getFullYear(), _month.getMonth(), currentDate));
+              const currentDateFormat = dateFormat('Y-mm-dd', new Date(monthInfo.month.getFullYear(), monthInfo.month.getMonth(), currentDate));
 
               const selected = this.data.selectDay.includes(currentDateFormat);
 
               return h('view', {
                     class: `a-calendar__day  ${selected ? 'a-calendar__selected-day' : 'a-calendar__selectable-day'}`,
-                    style: index ? '' : `margin-left:${dayOffset * 14.285}%;`,
+                    style: index ? '' : `margin-left:${monthInfo.dayOffset * 14.285}%;`,
                     onClick: _ => this.handleDateCellClick(currentDateFormat, _)
                   },
                   false && h('text', {class: 'a-calendar__top-info'}, '顶部'),
@@ -182,7 +198,10 @@ export default {
   pointer-events: none;
   width: 100%;
   text-align: center;
-  top: 18%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-family: monospace;
 }
 
 .a-calendar__days {
