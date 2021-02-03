@@ -100,8 +100,8 @@ export default {
     Toast(`onConfirm: 选择了${detail.length}个日期`)
   },
   myConfirm3({detail}) {
-    this.data.value[3] = `选择了${detail.length}个日期`;
-    Toast(`onConfirm: 选择了${detail.length}个日期`)
+    this.data.value[3] = `${detail[0]} - ${detail[1]}`;
+    Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
   }
 }
 </script>

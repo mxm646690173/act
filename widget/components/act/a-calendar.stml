@@ -135,9 +135,9 @@ export default {
                     style: index ? '' : `margin-left:${monthInfo.dayOffset * 14.285}%;`,
                     onClick: _ => this.handleDateCellClick(day, _)
                   },
-                  day.topInfo && h('text', {class: 'a-calendar__top-info'}, day.topInfo),
+                  day.topInfo && h('text', {class: `a-calendar__top-info a-calendar__top-info--${day.type}`}, day.topInfo),
                   h('text', {class: `a-calendar__day-num  a-calendar__day-num--${day.type}`}, day.date.getDate()),
-                  day.bottomInfo && h('text', {class: 'a-calendar__bottom-info'}, day.bottomInfo)
+                  day.bottomInfo && h('text', {class: `a-calendar__bottom-info a-calendar__bottom-info--${day.type}`}, day.bottomInfo)
               )
             }
         )
@@ -147,7 +147,8 @@ export default {
     ev.cancelBubble = true;
 
     if (day.type === 'disabled') {
-      return console.log('该日期被禁用', day)
+      // console.log('该日期被禁用', day);
+      return false;
     }
 
     if (this.props.type === 'single') {// 单选逻辑
@@ -281,23 +282,31 @@ export default {
 }
 
 .a-calendar--selected, .a-calendar--start, .a-calendar--end {
-  color: #fff;
   background-color: #ee0a24;
   border-radius: 4px;
 }
 
+.a-calendar__day-num--selected, .a-calendar__day-num--start, .a-calendar__day-num--end,
+.a-calendar__bottom-info--selected, .a-calendar__bottom-info--start, .a-calendar__bottom-info--end,
+.a-calendar__top-info--selected, .a-calendar__top-info--start, .a-calendar__top-info--end {
+  color: #FFF;
+}
+
 .a-calendar--middle {
-  background-color: #fde7ea;
+  background-color: rgba(238, 10, 36, 0.1);
 }
 
 .a-calendar__day-num--middle {
   color: #ee0a24;
 }
 
-.a-calendar__selectable-day {
-  color: #323233;
+.a-calendar--normal {
   background-color: transparent;
   border-radius: 0;
+}
+
+.a-calendar__day-num--normal {
+  color: #323233;
 }
 
 .a-calendar__footer {
