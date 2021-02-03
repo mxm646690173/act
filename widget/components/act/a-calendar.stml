@@ -336,7 +336,7 @@ export default {
   border-radius: 0;
 }
 
-.a-calendar__day-num--normal {
+.a-calendar__day-num--normal, .a-calendar__top-info--normal, .a-calendar__bottom-info--normal {
   color: #323233;
 }
 
