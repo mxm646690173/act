@@ -5,7 +5,7 @@
       <text class="logo">ACT</text>
       <text class="desc">AVM Component & Template.</text>
     </safe-area>
-    <scroll-view class="main">
+    <scroll-view class="main" scroll-y>
       <view>
         <text class="title">基础组件</text>
 
@@ -69,6 +69,23 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+
+
+      <text class="title">展示组件</text>
+
+      <a-link to="simple-empty">
+        <view class="link">
+          <text class="com-name">Empty 空状态</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
+
+
+      <view style="height: 36px;">
+
+      </view>
+
+
     </scroll-view>
   </view>
 </template>
