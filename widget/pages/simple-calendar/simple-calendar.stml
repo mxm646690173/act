@@ -66,6 +66,30 @@
           <a-cell is-link @click="choose(5)" title="快捷选择范围" :value="value[5]"/>
         </a-cell-group>
       </view>
+
+
+      <view class="simple todo">
+        <text class="simple-title">
+          自定义颜色
+        </text>
+        <text class="simple-desc">
+          通过 color 属性可以自定义日历的颜色，对选中日期和底部按钮生效。
+        </text>
+
+      </view>
+
+      <view class="simple">
+        <text class="simple-title">
+          自定义日期范围
+        </text>
+        <text class="simple-desc">
+          通过 min-date 和 max-date 定义日历的范围。
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="choose(7)" title="选择日期区间" :value="value[7]"/>
+        </a-cell-group>
+      </view>
+
     </scroll-view>
 
 
@@ -82,6 +106,9 @@
     <a-calendar style="height: 500px;" $show="show[5]" :show-confirm="false" type="range" @confirm="myConfirm5"/>
 
 
+    <a-calendar style="height: 500px;" $show="show[7]" $default-date="value[7]"
+                :min-date="new Date('2009/12/15')"
+                :max-date="new Date('2010/3/9')"/>
   </view>
 </template>
 
@@ -154,6 +181,10 @@ export default {
   margin: 12px 12px 0;
   overflow: hidden;
   border-radius: 8px;
+}
+
+.todo {
+  background: #f1e9d5;
 }
 
 

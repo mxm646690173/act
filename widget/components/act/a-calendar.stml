@@ -29,6 +29,8 @@ export default {
       if (!props['min-date']) {
         props['min-date'] = new Date(now.setMonth(now.getMonth()));
       }
+
+
       if (!props['max-date']) {
         props['max-date'] = new Date(new Date(props['min-date']).setMonth(props['min-date'].getMonth() + 3));
       }
@@ -191,7 +193,7 @@ export default {
     const day = {date, format: dateFormat('Y-mm-dd', date)};
 
     day.type = 'normal';
-    if (date > props['min-date'] && date < props['max-date']) {
+    if (date >= props['min-date'] && date <= props['max-date']) {
       const findIndex = data.selectDay.indexOf(day.format);
       if (props.type === 'range') {
         if (findIndex === 0) {
@@ -294,7 +296,7 @@ export default {
 }
 
 .a-calendar--selected, .a-calendar--start, .a-calendar--end {
-  background-color: #ee0a24;
+  background: #ee0a24;
   border-radius: 4px;
 }
 
@@ -305,7 +307,7 @@ export default {
 }
 
 .a-calendar--middle {
-  background-color: rgba(238, 10, 36, 0.1);
+  background: rgba(238, 10, 36, 0.1);
 }
 
 .a-calendar__day-num--middle {
