@@ -191,14 +191,13 @@ export function compareMonth(date1, date2) {
  * @returns {number}
  */
 export function compareDay(day1, day2) {
-    const compareMonthResult = compareMonth(day1, day2);
-
-    if (compareMonthResult === 0) {
-        const date1 = day1.getDate();
-        const date2 = day2.getDate();
-
-        return date1 === date2 ? 0 : date1 > date2 ? 1 : -1;
-    }
-
-    return compareMonthResult;
+    // const compareMonthResult = compareMonth(day1, day2);
+    //
+    // if (compareMonthResult === 0) {
+    //     const date1 = day1.getDate();
+    //     const date2 = day2.getDate();
+    //
+    //     return date1 === date2 ? 0 : date1 > date2 ? 1 : -1;
+    // }
+    return (day1 - day2) / 86400000;
 }

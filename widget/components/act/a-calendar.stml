@@ -1,7 +1,7 @@
 <script>
 
 
-import {compareDay, dateFormat, syncModel} from "./index";
+import {compareDay, dateFormat, syncModel, Toast} from "./index";
 import APopup from './a-popup.stml';
 
 export default {
@@ -25,8 +25,6 @@ export default {
     syncModel.call(this);
 
     this.render = props => {
-
-      console.log(props)
 
       const {h} = apivm;
       const now = new Date();
@@ -174,11 +172,15 @@ export default {
       if (data.selectDay.length < 2) {
         const later = (compareDay(new Date(day.format), new Date(data.selectDay[0])))
         if (later > 0) {
-          data.selectDay.push(day.format);
-
-          if (this.hideConfirmBtn) {
-            this.onConfirm(ev);
+          if (props['max-range'] && later >= props['max-range']) {
+            Toast(props['range-prompt'] ? props['range-prompt'].replace('$', later) : `选择天数不能超过 ${props['max-range']} 天`);
+          } else {
+            data.selectDay.push(day.format);
+            if (this.hideConfirmBtn) {
+              this.onConfirm(ev);
+            }
           }
+
         } else {
           data.selectDay = [day.format];
         }

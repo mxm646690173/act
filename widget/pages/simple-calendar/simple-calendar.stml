@@ -115,6 +115,19 @@
         </a-cell-group>
       </view>
 
+
+      <view class="simple">
+        <text class="simple-title">
+          日期区间最大范围
+        </text>
+        <text class="simple-desc">
+          选择日期区间时，可以通过 max-range 属性来指定最多可选天数，选择的范围超过最多可选天数时，会弹出相应的提示文案。
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="choose(10)" title="日期区间最大范围" :value="value[10]"/>
+        </a-cell-group>
+      </view>
+
     </scroll-view>
 
 
@@ -145,6 +158,11 @@
                 :min-date="new Date('2021/5/1')"
                 :max-date="new Date('2021/6/25')"
     />
+
+
+    <a-calendar style="height: 500px;" $show="show[10]" @confirm="myConfirm10" type="range"
+                :max-range="5"
+    />
   </view>
 </template>
 
@@ -161,8 +179,8 @@ export default {
   components: {APopup, ACalendar, ACell, ACellGroup, ANavBar},
   data() {
     return {
-      value: Array.from({length: 10}).fill(''),
-      show: Array.from({length: 10}).fill(false),
+      value: Array.from({length: 11}).fill(''),
+      show: Array.from({length: 11}).fill(false),
       show1: true
     }
   },
@@ -190,10 +208,11 @@ export default {
       this.data.value[9] = `${detail[0]} - ${detail[1]}`;
       Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
     },
+    myConfirm10({detail}) {
+      this.data.value[10] = `${detail[0]} - ${detail[1]}`;
+      Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
+    },
     formatter(day) {
-
-      console.log(day)
-
       const month = day.date.getMonth() + 1;
       const date = day.date.getDate();
 
