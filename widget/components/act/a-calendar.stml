@@ -33,6 +33,8 @@ export default {
         props['max-date'] = new Date(new Date(props['min-date']).setMonth(props['min-date'].getMonth() + 3));
       }
 
+      this.hideConfirmBtn = props['show-confirm'] === false;
+
       (!this.data.subTitle) && (this.data.subTitle = dateFormat('Y-mm', props['min-date']));
 
 
@@ -50,20 +52,13 @@ export default {
           )
       )
 
-      const renderFooter = h('safe-area', {
-        class: 'a-calendar__footer safe-area',
-        onClick: _ => {
-
-          const result = props.type === 'single' ? this.data.selectDay[0] : this.data.selectDay;
-
-          _.cancelBubble = true;
-          this.$model['show'](false);
-          this.fire('confirm', result);
-
-
-          this.$model['default-date'] && this.$model['default-date'](result);
-        }
-      }, h('text', {class: 'a-calendar__btn'}, '确认'))
+      const renderFooter = this.hideConfirmBtn
+          ? h('safe-area', {class: 'a-calendar__footer'})
+          : h('safe-area', {
+                class: 'a-calendar__footer safe-area',
+                onClick: _ => this.onConfirm(_)
+              }, h('text', {class: 'a-calendar__btn'}, '确定')
+          )
 
       return h(APopup, {
             class: `a-calendar ${props.class || ''}`,
@@ -76,7 +71,7 @@ export default {
   },
   renderBody() {
     const {h} = apivm;
-    const {props} = this;
+    const {props, data} = this;
 
     const baseTime = props['min-date'].getTime();
 
@@ -103,7 +98,7 @@ export default {
                 currentIndex = i + 1;
               }
             }
-            this.data.subTitle = dateFormat('Y-mm', this.monthList[currentIndex].month);
+            data.subTitle = dateFormat('Y-mm', this.monthList[currentIndex].month);
           }
         },
         ...this.monthList.map(monthInfo => {
@@ -146,41 +141,58 @@ export default {
   handleDateCellClick(day, ev) {
     ev.cancelBubble = true;
 
+    const {props, data} = this;
     if (day.type === 'disabled') {
       // console.log('该日期被禁用', day);
       return false;
     }
 
-    if (this.props.type === 'single') {// 单选逻辑
-      this.data.selectDay = [day.format];
-    } else if (this.props.type === 'range') {//范围逻辑
-      if (this.data.selectDay.length < 2) {
-        const later = (compareDay(new Date(day.format), new Date(this.data.selectDay[0])))
+    if (props.type === 'single') {// 单选逻辑
+      data.selectDay = [day.format];
+
+      if (this.hideConfirmBtn) {
+        this.onConfirm(ev);
+      }
+    } else if (props.type === 'range') {//范围逻辑
+      if (data.selectDay.length < 2) {
+        const later = (compareDay(new Date(day.format), new Date(data.selectDay[0])))
         if (later > 0) {
-          this.data.selectDay.push(day.format);
+          data.selectDay.push(day.format);
+
+          if (this.hideConfirmBtn) {
+            this.onConfirm(ev);
+          }
         } else {
-          this.data.selectDay = [day.format];
+          data.selectDay = [day.format];
         }
       } else {
-        this.data.selectDay = [day.format];
+        data.selectDay = [day.format];
       }
     } else {//其他多选
-      const findIndex = this.data.selectDay.indexOf(day.format);
+      const findIndex = data.selectDay.indexOf(day.format);
       if (findIndex === -1) {
-        this.data.selectDay.push(day.format);
+        data.selectDay.push(day.format);
       } else {
-        this.data.selectDay.splice(findIndex, 1);
+        data.selectDay.splice(findIndex, 1);
       }
     }
 
   },
+  onConfirm(ev) {
+    const {props, fire, $model, data} = this;
+    ev.cancelBubble = true;
+    const result = props.type === 'single' ? data.selectDay[0] : data.selectDay;
+    $model['show'](false);
+    fire('confirm', result);
+    $model['default-date'] && $model['default-date'](result);
+  },
   getDayInfo(date) {
-    const {props} = this;
+    const {props, data} = this;
     const day = {date, format: dateFormat('Y-mm-dd', date)};
 
     day.type = 'normal';
     if (date > props['min-date'] && date < props['max-date']) {
-      const findIndex = this.data.selectDay.indexOf(day.format);
+      const findIndex = data.selectDay.indexOf(day.format);
       if (props.type === 'range') {
         if (findIndex === 0) {
           day.type = 'start';
@@ -188,7 +200,7 @@ export default {
         } else if (findIndex === 1) {
           day.type = 'end';
           day.bottomInfo = '结束';
-        } else if (this.data.selectDay.length === 2 && date > new Date(this.data.selectDay[0]) && date < new Date(this.data.selectDay[1])) {
+        } else if (data.selectDay.length === 2 && date > new Date(data.selectDay[0]) && date < new Date(data.selectDay[1])) {
           day.type = 'middle';
         }
       } else if (findIndex >= 0) {

@@ -53,6 +53,19 @@
         </a-cell-group>
       </view>
 
+
+      <view class="simple">
+        <text class="simple-title">
+          快捷选择
+        </text>
+        <text class="simple-desc">
+          将 show-confirm 设置为 false 可以隐藏确认按钮，这种情况下选择完成后会立即触发 confirm 事件。
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="choose(4)" title="快捷选择" :value="value[4]"/>
+          <a-cell is-link @click="choose(5)" title="快捷选择范围" :value="value[5]"/>
+        </a-cell-group>
+      </view>
     </scroll-view>
 
 
@@ -64,6 +77,10 @@
     <a-calendar style="height: 500px;" $show="show[2]" @confirm="myConfirm2" type="multiple"/>
 
     <a-calendar style="height: 500px;" $show="show[3]" @confirm="myConfirm3" type="range"/>
+
+    <a-calendar style="height: 500px;" $show="show[4]" :show-confirm="false" $default-date="value[4]"/>
+    <a-calendar style="height: 500px;" $show="show[5]" :show-confirm="false" type="range" @confirm="myConfirm5"/>
+
 
   </view>
 </template>
@@ -101,6 +118,10 @@ export default {
   },
   myConfirm3({detail}) {
     this.data.value[3] = `${detail[0]} - ${detail[1]}`;
+    Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
+  },
+  myConfirm5({detail}) {
+    this.data.value[5] = `${detail[0]} - ${detail[1]}`;
     Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
   }
 }
