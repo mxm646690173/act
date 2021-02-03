@@ -43,7 +43,7 @@ export default {
             class: 'a-calendar__header',
             onClick: _ => _.cancelBubble = true
           },
-          props.title && h('text', {class: 'a-calendar__title'}, props.title),
+          props.title !== false && h('text', {class: 'a-calendar__title'}, props.title || '日期选择'),
           h('text', {class: 'a-calendar__subtitle'}, this.data.subTitle),
           h('view', {class: 'a-calendar__weekdays'},
               dayNames.map(name => h('text', {class: 'a-calendar__weekday'}, name))
