@@ -103,6 +103,18 @@
         </a-cell-group>
       </view>
 
+      <view class="simple">
+        <text class="simple-title">
+          自定义日期文案
+        </text>
+        <text class="simple-desc">
+          通过传入 formatter 函数来对日历上每一格的内容进行格式化。
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="choose(9)" title="自定义日期文案" :value="value[9]"/>
+        </a-cell-group>
+      </view>
+
     </scroll-view>
 
 
@@ -126,6 +138,13 @@
 
     <a-calendar style="height: 500px;" $show="show[8]" type="range" $default-date="value[8]" confirm-text="完成"
                 confirm-disabled-text="请选择结束时间"/>
+
+
+    <a-calendar style="height: 500px;" $show="show[9]" :formatter="this.formatter"
+                type="range" @confirm="myConfirm9"
+                :min-date="new Date('2021/5/1')"
+                :max-date="new Date('2021/6/25')"
+    />
   </view>
 </template>
 
@@ -150,24 +169,55 @@ export default {
   methods: {
     choose(index) {
       this.data.show[index] = true;
+    },
+    myConfirm({detail}) {
+      this.data.value[0] = detail;
+      Toast(`onConfirm: ${detail}`)
+    },
+    myConfirm2({detail}) {
+      this.data.value[2] = `选择了${detail.length}个日期`;
+      Toast(`onConfirm: 选择了${detail.length}个日期`)
+    },
+    myConfirm3({detail}) {
+      this.data.value[3] = `${detail[0]} - ${detail[1]}`;
+      Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
+    },
+    myConfirm5({detail}) {
+      this.data.value[5] = `${detail[0]} - ${detail[1]}`;
+      Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
+    },
+    myConfirm9({detail}) {
+      this.data.value[9] = `${detail[0]} - ${detail[1]}`;
+      Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
+    },
+    formatter(day) {
+
+      console.log(day)
+
+      const month = day.date.getMonth() + 1;
+      const date = day.date.getDate();
+
+      if (month === 5) {
+        if (date === 1) {
+          day.topInfo = '劳动节';
+        } else if (date === 4) {
+          day.topInfo = '青年节';
+        } else if (date === 11) {
+          day.text = '今天';
+        }
+      }
+
+
+      if (day.type === 'start') {
+        day.bottomInfo = '入住';
+      } else if (day.type === 'end') {
+        day.bottomInfo = '离店';
+      }
+
+      return day;
     }
-  },
-  myConfirm({detail}) {
-    this.data.value[0] = detail;
-    Toast(`onConfirm: ${detail}`)
-  },
-  myConfirm2({detail}) {
-    this.data.value[2] = `选择了${detail.length}个日期`;
-    Toast(`onConfirm: 选择了${detail.length}个日期`)
-  },
-  myConfirm3({detail}) {
-    this.data.value[3] = `${detail[0]} - ${detail[1]}`;
-    Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
-  },
-  myConfirm5({detail}) {
-    this.data.value[5] = `${detail[0]} - ${detail[1]}`;
-    Toast(`onConfirm: ${detail[0]} - ${detail[1]}`)
   }
+
 }
 </script>
 

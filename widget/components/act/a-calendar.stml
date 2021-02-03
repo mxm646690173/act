@@ -26,6 +26,8 @@ export default {
 
     this.render = props => {
 
+      console.log(props)
+
       const {h} = apivm;
       const now = new Date();
 
@@ -146,7 +148,7 @@ export default {
                     onClick: _ => this.handleDateCellClick(day, _)
                   },
                   day.topInfo && h('text', {class: `a-calendar__top-info a-calendar__top-info--${day.type}`}, day.topInfo),
-                  h('text', {class: `a-calendar__day-num  a-calendar__day-num--${day.type}`}, day.date.getDate()),
+                  h('text', {class: `a-calendar__day-num  a-calendar__day-num--${day.type}`}, day.text || day.date.getDate()),
                   day.bottomInfo && h('text', {class: `a-calendar__bottom-info a-calendar__bottom-info--${day.type}`}, day.bottomInfo)
               )
             }
