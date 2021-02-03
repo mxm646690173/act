@@ -31,7 +31,7 @@ export default {
     }
   },
   handleClose(ev, type) {
-    ev.cancelBubble = true;
+    ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
     this.$model.show(false);
     this.fire('close', {type});
   }

@@ -53,7 +53,7 @@ export default {
       const dayNames = ['日', '一', '二', '三', '四', '五', '六'];
       const renderHeader = h('view', {
             class: 'a-calendar__header',
-            onClick: _ => _.cancelBubble = true
+            onClick: ev => ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true
           },
           props.title !== false && h('text', {class: 'a-calendar__title'}, props.title || '日期选择'),
           h('text', {class: 'a-calendar__subtitle'}, this.data.subTitle),
@@ -71,7 +71,7 @@ export default {
               }, h('text', {class: `a-calendar__btn a-calendar__btn--able`}, props['confirm-text'] || '确定')
           ) : h('safe-area', {
                 class: 'a-calendar__footer safe-area',
-                onClick: _ => _.cancelBubble = true
+                onClick: ev => ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true
               }, h('text', {class: `a-calendar__btn  a-calendar__btn--disabled `}, props['confirm-disabled-text'] || '确定')
           )
 
@@ -106,6 +106,8 @@ export default {
     return h('scroll-view', {
           class: 'a-calendar__body',
           scroll: 'y',
+          scrollY: true,
+          'scroll-y': true,
           onScroll: ({detail: {scrollTop = 0}}) => {
             let currentIndex = 0;
             for (let i = 0; i < this.monthList.length; i++) {
@@ -154,7 +156,7 @@ export default {
     );
   },
   handleDateCellClick(day, ev) {
-    ev.cancelBubble = true;
+    ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
 
     const {props, data} = this;
     if (day.type === 'disabled') {
@@ -198,7 +200,7 @@ export default {
 
   },
   onConfirm(ev) {
-    ev.cancelBubble = true;
+    ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
     const {props, fire, $model, data} = this;
     const result = props.type === 'single' ? data.selectDay[0] : data.selectDay;
     $model['show'](false);
@@ -236,7 +238,6 @@ export default {
 
 <style scoped>
 .a-calendar {
-  background-color: #FFF;
 }
 
 .a-calendar__header {
