@@ -3,9 +3,9 @@
 
     <safe-area class="header">
       <text class="logo">ACT</text>
-      <text class="desc">AVM Component & Template.</text>
     </safe-area>
     <scroll-view class="main" scroll-y>
+      <text class="desc">AVM Component & Template.</text>
       <view>
         <text class="title">基础组件</text>
 
@@ -80,6 +80,14 @@
         </view>
       </a-link>
 
+      <text class="title">导航组件</text>
+
+      <a-link to="simple-nav-bar">
+        <view class="link">
+          <text class="com-name">NavBar 导航栏</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
 
       <view style="height: 36px;">
 

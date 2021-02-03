@@ -3,6 +3,10 @@
     <a-nav-bar title="业务模板"/>
     <scroll-view style="flex: 1;">
 
+      <a-cell-group round>
+        <a-cell is-link to="template_eleme_input_fixed" title="仿饿了么头部固定"/>
+      </a-cell-group>
+
     </scroll-view>
   </view>
 </template>
@@ -10,11 +14,19 @@
 <script>
 
 import ANavBar from "../../components/act/a-nav-bar.stml";
+import ACellGroup from "../../components/act/a-cell-group.stml";
+import ACell from "../../components/act/a-cell.stml";
 
 export default {
   name: "template",
-  components: {ANavBar},
-  methods: {}
+  components: {ACell, ACellGroup, ANavBar},
+  methods: {},
+  onshow() {
+    api.setStatusBarStyle && api.setStatusBarStyle({
+      style: 'dark',
+      color: '-'
+    });
+  }
 }
 </script>
 

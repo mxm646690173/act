@@ -3,6 +3,9 @@
     <a-nav-bar title="组合拓展"/>
     <scroll-view style="flex: 1;">
 
+      <a-empty image="https://icon.yangyongan.com/?name=code&size=64&scale=2&color=_ddd"
+               description="正在开发中"/>
+
     </scroll-view>
   </view>
 </template>
@@ -10,10 +13,11 @@
 <script>
 
 import ANavBar from "../../components/act/a-nav-bar.stml";
+import AEmpty from "../../components/act/a-empty.stml";
 
 export default {
   name: "extend",
-  components: {ANavBar},
+  components: {AEmpty, ANavBar},
   methods: {}
 }
 </script>
