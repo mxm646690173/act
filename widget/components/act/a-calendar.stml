@@ -12,6 +12,14 @@ export default {
       subTitle: ''
     }
   },
+  compute: {
+    confirmBtnAble() {
+      if (this.props.type === 'range') {
+        return this.selectDay.length === 2;
+      }
+      return this.selectDay.length > 0;
+    }
+  },
   install() {
 
     syncModel.call(this);
@@ -56,10 +64,15 @@ export default {
 
       const renderFooter = this.hideConfirmBtn
           ? h('safe-area', {class: 'a-calendar__footer'})
-          : h('safe-area', {
+          :
+          this.confirmBtnAble() ? h('safe-area', {
                 class: 'a-calendar__footer safe-area',
                 onClick: _ => this.onConfirm(_)
-              }, h('text', {class: 'a-calendar__btn'}, '确定')
+              }, h('text', {class: `a-calendar__btn a-calendar__btn--able`}, props['confirm-text'] || '确定')
+          ) : h('safe-area', {
+                class: 'a-calendar__footer safe-area',
+                onClick: _ => _.cancelBubble = true
+              }, h('text', {class: `a-calendar__btn  a-calendar__btn--disabled `}, props['confirm-disabled-text'] || '确定')
           )
 
       return h(APopup, {
@@ -181,8 +194,8 @@ export default {
 
   },
   onConfirm(ev) {
-    const {props, fire, $model, data} = this;
     ev.cancelBubble = true;
+    const {props, fire, $model, data} = this;
     const result = props.type === 'single' ? data.selectDay[0] : data.selectDay;
     $model['show'](false);
     fire('confirm', result);
@@ -341,6 +354,15 @@ export default {
   line-height: 36px;
   text-align: center;
   box-sizing: border-box;
+  font-size: 14px;
+}
+
+.a-calendar__btn--able {
+  opacity: 1;
+}
+
+.a-calendar__btn--disabled {
+  opacity: 0.5;
 }
 
 .a-calendar__top-info, .a-calendar__bottom-info {

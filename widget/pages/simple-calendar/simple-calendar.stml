@@ -86,7 +86,20 @@
           通过 min-date 和 max-date 定义日历的范围。
         </text>
         <a-cell-group round>
-          <a-cell is-link @click="choose(7)" title="选择日期区间" :value="value[7]"/>
+          <a-cell is-link @click="choose(7)" title="自定义日期范围" :value="value[7]"/>
+        </a-cell-group>
+      </view>
+
+
+      <view class="simple">
+        <text class="simple-title">
+          自定义按钮文字
+        </text>
+        <text class="simple-desc">
+          通过 confirm-text 设置按钮文字，通过 confirm-disabled-text 设置按钮禁用时的文字。
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="choose(8)" title="自定义按钮文字" :value="value[8]"/>
         </a-cell-group>
       </view>
 
@@ -109,6 +122,10 @@
     <a-calendar style="height: 500px;" $show="show[7]" $default-date="value[7]"
                 :min-date="new Date('2009/12/15')"
                 :max-date="new Date('2010/3/9')"/>
+
+
+    <a-calendar style="height: 500px;" $show="show[8]" type="range" $default-date="value[8]" confirm-text="完成"
+                confirm-disabled-text="请选择结束时间"/>
   </view>
 </template>
 
