@@ -128,9 +128,7 @@ export default {
             (_, index) => {
               const currentDate = index + 1;
               const currentDateFormat = dateFormat('Y-mm-dd', new Date(monthInfo.month.getFullYear(), monthInfo.month.getMonth(), currentDate));
-
               const selected = this.data.selectDay.includes(currentDateFormat);
-
               return h('view', {
                     class: `a-calendar__day  ${selected ? 'a-calendar__selected-day' : 'a-calendar__selectable-day'}`,
                     style: index ? '' : `margin-left:${monthInfo.dayOffset * 14.285}%;`,
@@ -145,14 +143,18 @@ export default {
     );
   },
   handleDateCellClick(currentDateFormat, ev) {
-
     ev.cancelBubble = true;
-
     if (this.props.type === 'single') {
       this.data.selectDay = [currentDateFormat];
     } else {
-      this.data.selectDay.push(currentDateFormat);
+      const findIndex = this.data.selectDay.indexOf(currentDateFormat);
+      if (findIndex === -1) {
+        this.data.selectDay.push(currentDateFormat);
+      } else {
+        this.data.selectDay.splice(findIndex, 1);
+      }
     }
+
   }
 }
 </script>
