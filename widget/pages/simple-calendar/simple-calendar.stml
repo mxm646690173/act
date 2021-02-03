@@ -41,6 +41,17 @@
         </a-cell-group>
       </view>
 
+      <view class="simple">
+        <text class="simple-title">
+          选择日期区间
+        </text>
+        <text class="simple-desc">
+          设置 type 为 range 后可以选择日期区间，此时 confirm 事件返回的 date 为数组结构，数组第一项为开始时间，第二项为结束时间。
+        </text>
+        <a-cell-group round>
+          <a-cell is-link @click="choose(3)" title="选择日期区间" :value="value[3]"/>
+        </a-cell-group>
+      </view>
 
     </scroll-view>
 
@@ -52,6 +63,7 @@
 
     <a-calendar style="height: 500px;" $show="show[2]" @confirm="myConfirm2" type="multiple"/>
 
+    <a-calendar style="height: 500px;" $show="show[3]" @confirm="myConfirm3" type="range"/>
 
   </view>
 </template>
@@ -85,6 +97,10 @@ export default {
   },
   myConfirm2({detail}) {
     this.data.value[2] = `选择了${detail.length}个日期`;
+    Toast(`onConfirm: 选择了${detail.length}个日期`)
+  },
+  myConfirm3({detail}) {
+    this.data.value[3] = `选择了${detail.length}个日期`;
     Toast(`onConfirm: 选择了${detail.length}个日期`)
   }
 }

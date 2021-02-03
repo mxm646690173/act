@@ -1,7 +1,7 @@
 <script>
 
 
-import {dateFormat, syncModel} from "./index";
+import {compareDay, dateFormat, syncModel} from "./index";
 import APopup from './a-popup.stml';
 
 export default {
@@ -126,35 +126,78 @@ export default {
     return h('view', {class: 'a-calendar__days'},
         ...Array.from({length: monthInfo.dayNumber}).map(
             (_, index) => {
-              const currentDate = index + 1;
-              const currentDateFormat = dateFormat('Y-mm-dd', new Date(monthInfo.month.getFullYear(), monthInfo.month.getMonth(), currentDate));
-              const selected = this.data.selectDay.includes(currentDateFormat);
+              const date = new Date(monthInfo.month.getFullYear(), monthInfo.month.getMonth(), index + 1);
+
+              const day = this.getDayInfo(date);
+
               return h('view', {
-                    class: `a-calendar__day  ${selected ? 'a-calendar__selected-day' : 'a-calendar__selectable-day'}`,
+                    class: `a-calendar__day  a-calendar--${day.type}`,
                     style: index ? '' : `margin-left:${monthInfo.dayOffset * 14.285}%;`,
-                    onClick: _ => this.handleDateCellClick(currentDateFormat, _)
+                    onClick: _ => this.handleDateCellClick(day, _)
                   },
-                  false && h('text', {class: 'a-calendar__top-info'}, '顶部'),
-                  h('text', {class: `a-calendar__day-num   ${selected ? 'a-calendar__selected-day' : 'a-calendar__selectable-day'}`}, currentDate),
-                  false && h('text', {class: 'a-calendar__bottom-info'}, '顶部')
+                  day.topInfo && h('text', {class: 'a-calendar__top-info'}, day.topInfo),
+                  h('text', {class: `a-calendar__day-num  a-calendar__day-num--${day.type}`}, day.date.getDate()),
+                  day.bottomInfo && h('text', {class: 'a-calendar__bottom-info'}, day.bottomInfo)
               )
             }
         )
     );
   },
-  handleDateCellClick(currentDateFormat, ev) {
+  handleDateCellClick(day, ev) {
     ev.cancelBubble = true;
-    if (this.props.type === 'single') {
-      this.data.selectDay = [currentDateFormat];
-    } else {
-      const findIndex = this.data.selectDay.indexOf(currentDateFormat);
+
+    if (day.type === 'disabled') {
+      return console.log('该日期被禁用', day)
+    }
+
+    if (this.props.type === 'single') {// 单选逻辑
+      this.data.selectDay = [day.format];
+    } else if (this.props.type === 'range') {//范围逻辑
+      if (this.data.selectDay.length < 2) {
+        const later = (compareDay(new Date(day.format), new Date(this.data.selectDay[0])))
+        if (later > 0) {
+          this.data.selectDay.push(day.format);
+        } else {
+          this.data.selectDay = [day.format];
+        }
+      } else {
+        this.data.selectDay = [day.format];
+      }
+    } else {//其他多选
+      const findIndex = this.data.selectDay.indexOf(day.format);
       if (findIndex === -1) {
-        this.data.selectDay.push(currentDateFormat);
+        this.data.selectDay.push(day.format);
       } else {
         this.data.selectDay.splice(findIndex, 1);
       }
     }
 
+  },
+  getDayInfo(date) {
+    const {props} = this;
+    const day = {date, format: dateFormat('Y-mm-dd', date)};
+
+    day.type = 'normal';
+    if (date > props['min-date'] && date < props['max-date']) {
+      const findIndex = this.data.selectDay.indexOf(day.format);
+      if (props.type === 'range') {
+        if (findIndex === 0) {
+          day.type = 'start';
+          day.bottomInfo = '开始';
+        } else if (findIndex === 1) {
+          day.type = 'end';
+          day.bottomInfo = '结束';
+        } else if (this.data.selectDay.length === 2 && date > new Date(this.data.selectDay[0]) && date < new Date(this.data.selectDay[1])) {
+          day.type = 'middle';
+        }
+      } else if (findIndex >= 0) {
+        day.type = 'selected';
+      }
+    } else {
+      day.type = 'disabled';
+    }
+
+    return typeof props.formatter === 'function' ? props.formatter(day) : day;
   }
 }
 </script>
@@ -237,10 +280,18 @@ export default {
   align-items: center;
 }
 
-.a-calendar__selected-day {
+.a-calendar--selected, .a-calendar--start, .a-calendar--end {
   color: #fff;
   background-color: #ee0a24;
   border-radius: 4px;
+}
+
+.a-calendar--middle {
+  background-color: #fde7ea;
+}
+
+.a-calendar__day-num--middle {
+  color: #ee0a24;
 }
 
 .a-calendar__selectable-day {
@@ -274,5 +325,7 @@ export default {
   line-height: 14px;
 }
 
-
+.a-calendar--disabled {
+  opacity: 0.2;
+}
 </style>

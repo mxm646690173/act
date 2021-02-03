@@ -164,3 +164,41 @@ export function dateFormat(fmt, date) {
     ;
     return fmt;
 }
+
+/**
+ * 月份比较
+ * @param date1
+ * @param date2
+ * @returns {number}
+ */
+export function compareMonth(date1, date2) {
+    const year1 = date1.getFullYear();
+    const year2 = date2.getFullYear();
+    const month1 = date1.getMonth();
+    const month2 = date2.getMonth();
+
+    if (year1 === year2) {
+        return month1 === month2 ? 0 : month1 > month2 ? 1 : -1;
+    }
+
+    return year1 > year2 ? 1 : -1;
+}
+
+/**
+ * 日期比较
+ * @param day1
+ * @param day2
+ * @returns {number}
+ */
+export function compareDay(day1, day2) {
+    const compareMonthResult = compareMonth(day1, day2);
+
+    if (compareMonthResult === 0) {
+        const date1 = day1.getDate();
+        const date2 = day2.getDate();
+
+        return date1 === date2 ? 0 : date1 > date2 ? 1 : -1;
+    }
+
+    return compareMonthResult;
+}
