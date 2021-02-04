@@ -13,15 +13,16 @@ export default {
       (Array.isArray(props.children) && props.children.length === 1 && typeof props.children[0] === 'string') && (props.title = props.children);
 
       return slotSupport(h('view', {
-            class: mixedClass(`a-cell a-cell__root ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
+            class: mixedClass(`a-cell a-cell__root ${props.class} ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
               'a-cell--large': isLarge,
               'a-cell--center': props.center
             }),
+            style: props.style,
             onClick: this.cellClick
           },
           props.icon && h(AIcon, {name: props.icon, class: 'a-cell__left-icon'}),
           props.title
-              ? h('view', {class: mixedClass('a-cell__title')}, h('text', {
+              ? h('view', {class: props.class && props.class.includes('a-field') ? 'a-field__title' : 'a-cell__title'}, h('text', {
                 class: mixedClass('a-cell__title-text', {
                   'a-cell__title-text--large': isLarge
                 }),
@@ -39,6 +40,10 @@ export default {
               'a-cell__value--alone': !props.title
             })
           }, props.value),
+
+          h('view', {
+            _slot: "value"
+          }),
 
           props['is-link'] ? h(AIcon, {
                 name: props['arrow-direction'] ? `arrow-${props['arrow-direction']}` : 'arrow-right',
