@@ -31,6 +31,7 @@ export function slotSupport(VNode, children) {
         if (node.attributes && node.attributes._slot) {
             if (slots[node.attributes._slot]) {
                 node.children = slots[node.attributes._slot].children;
+                node.attributes = slots[node.attributes._slot].attributes;
             }
             delete node.attributes._slot;
         } else if (Array.isArray(node.children) && node.children.length) {
