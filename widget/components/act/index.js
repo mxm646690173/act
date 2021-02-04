@@ -135,7 +135,7 @@ export function syncModel() {
         if (k.startsWith('$')) {
             const path = v.replace(/]/g, '').split(/[\.\[]/);
             let data = _host.data;
-            while (!data[path[0]]) data = _host._host.data;
+            while (typeof data[path[0]] === 'undefined') data = _host._host.data;
             const lastKey = path.pop();
             path.forEach(p => data = data[p]);
             $model[k.substr(1)] = value => {
