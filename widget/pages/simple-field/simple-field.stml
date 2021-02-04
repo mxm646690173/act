@@ -5,7 +5,7 @@
       <view class="simple">
         <text class="simple-title">基础用法</text>
         <text class="simple-desc">
-          可以通过 v-model 双向绑定输入框的值，通过 placeholder 设置占位提示文字。
+          可以通过 $model 双向绑定输入框的值，通过 placeholder 设置占位提示文字。
         </text>
         <text class="simple-desc">
           双向绑定测试: {value}{value2}
@@ -15,9 +15,50 @@
           <a-field $model="value" label="姓氏" placeholder="请输入用户名"/>
           <a-field $model="value2" label="名字" placeholder="请输入用户名"/>
         </a-cell-group>
-
-
       </view>
+
+
+      <view class="simple">
+        <text class="simple-title">自定义类型</text>
+        <text class="simple-desc">
+          根据 type 属性定义不同类型的输入框，默认值为 text。
+        </text>
+
+
+        <a-cell-group>
+          <!-- 输入任意文本 -->
+          <a-field $model="state.default" label="文本" placeholder="输入文本"/>
+          <!-- 输入整数 -->
+          <a-field $model="state.number" keyboard-type="number" label="输入整数" placeholder="输入整数"/>
+          <!-- 带小数的数字 -->
+          <a-field $model="state.decimal" keyboard-type="decimal" label="带小数的数字" placeholder="带小数的数字"/>
+          <!-- 输入电话 -->
+          <a-field $model="state.tel" keyboard-type="tel" label="输入电话" placeholder="输入电话"/>
+          <!-- 输入email -->
+          <a-field $model="state.email" keyboard-type="email" label="输入email" placeholder="输入email"/>
+          <!-- 输入网站url -->
+          <a-field $model="state.url" keyboard-type="url" label="输入网站url" placeholder="输入网站url"/>
+          <!-- 输入密码 -->
+          <a-field $model="state.password" type="password" label="输入密码" placeholder="输入密码"/>
+        </a-cell-group>
+      </view>
+
+      <view class="simple">
+        <text class="simple-title">自定义按钮</text>
+        <text class="simple-desc">
+          根据 confirm-type 属性定义键盘右下角的按钮文案,默认是完成(done)。
+        </text>
+
+
+        <a-cell-group>
+          <a-field $model="state.default" label="完成" placeholder="done"/>
+          <a-field $model="state.default" label="发送" confirm-type="send" placeholder="send"/>
+          <a-field $model="state.default" label="搜索" confirm-type="search" placeholder="search"/>
+          <a-field $model="state.default" label="下一个" confirm-type="next" placeholder="next"/>
+          <a-field $model="state.default" label="前往" confirm-type="go" placeholder="go"/>
+        </a-cell-group>
+      </view>
+      <view style="height: 200px"></view>
 
     </scroll-view>
   </view>
@@ -34,7 +75,8 @@ export default {
   data() {
     return {
       value: '',
-      value2: '阿萨德'
+      value2: '阿萨德',
+      state: {}
     }
   }
 }

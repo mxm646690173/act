@@ -8,16 +8,27 @@ export default {
     this.render = props => {
       syncModel.call(this);
       const {h} = apivm;
+
+      const attr = {
+        value: this.$model.model(),
+        class: 'a-field__control',
+        onInput: this.handleOnInput,
+        placeholder: props.placeholder,
+        type: props.type || 'text',
+        'keyboard-type': props['keyboard-type'] || 'default',
+        'confirm-type': props['confirm-type'] || 'done'
+      }
+
+      if (props.type === 'password') { //安卓端支持
+        delete attr['keyboard-type']
+      }
+
+
       return h(ACell, {
             title: props.label, class: `a-field ${props.class || ''}`, style: `${props.style || ''} `
           },
           h('template', {class: 'a-field__body', _slot: 'value'},
-              h('input', {
-                value: this.$model.model(),
-                class: 'a-field__control',
-                onInput: this.handleOnInput,
-                placeholder: props.placeholder
-              })
+              h('input', attr)
           )
       );
     }
