@@ -9,7 +9,7 @@ export default {
 
       let totalSpan = 0;
       props.children.forEach((child, index) => {
-        totalSpan += Number(child.attributes.span);
+        totalSpan += child.attributes ? Number(child.attributes.span) : 0;
 
         if (totalSpan > 24) {
           groups.push([index]);
