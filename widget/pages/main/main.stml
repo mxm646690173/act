@@ -69,7 +69,12 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
-
+      <a-link to="simple-field">
+        <view class="link">
+          <text class="com-name">Field 输入框</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
 
       <text class="title">展示组件</text>
       <a-link to="simple-badge">

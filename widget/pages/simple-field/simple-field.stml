@@ -1,0 +1,70 @@
+<template name="simple-field">
+  <view class="page">
+    <a-nav-bar title="simple-field" left-arrow/>
+    <scroll-view style="flex: 1;" scroll-y>
+      <view class="simple">
+        <text class="simple-title">基础用法</text>
+        <text class="simple-desc">
+          可以通过 v-model 双向绑定输入框的值，通过 placeholder 设置占位提示文字。
+        </text>
+        <text class="simple-desc">
+          双向绑定测试: {value}{value2}
+        </text>
+        <!-- Field 是基于 Cell 实现的，可以使用 CellGroup 作为容器来提供外边框。 -->
+        <a-cell-group>
+          <a-field $model="value" label="姓氏" placeholder="请输入用户名"/>
+          <a-field $model="value2" label="名字" placeholder="请输入用户名"/>
+        </a-cell-group>
+
+
+      </view>
+
+    </scroll-view>
+  </view>
+</template>
+
+<script>
+import ANavBar from "../../components/act/a-nav-bar.stml";
+import ACellGroup from "../../components/act/a-cell-group.stml";
+import AField from "../../components/act/a-field.stml";
+
+export default {
+  name: "simple-field",
+  components: {AField, ACellGroup, ANavBar},
+  data() {
+    return {
+      value: '',
+      value2: '阿萨德'
+    }
+  }
+}
+</script>
+
+<style scoped>
+.page {
+  flex: 1;
+  background-color: #F8F8F8;
+}
+
+.simple {
+  padding-bottom: 28px;
+}
+
+.simple-title {
+  margin: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.simple-desc {
+  color: #999;
+  font-size: 14px;
+  margin: 0 16px 16px;
+}
+
+
+.todo {
+  background: #f1e9d5;
+}
+
+</style>

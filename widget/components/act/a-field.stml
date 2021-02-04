@@ -1,0 +1,52 @@
+<script>
+import ACell from './a-cell.stml';
+import {syncModel} from "./index";
+
+export default {
+  name: "a-field",
+  install() {
+    this.render = props => {
+      syncModel.call(this);
+      const {h} = apivm;
+      return h(ACell, {
+            title: props.label, class: `a-field ${props.class || ''}`, style: `${props.style || ''} `
+          },
+          h('template', {class: 'a-field__body', _slot: 'value'},
+              h('input', {
+                value: this.$model.model(),
+                class: 'a-field__control',
+                onInput: this.handleOnInput,
+                placeholder: props.placeholder
+              })
+          )
+      );
+    }
+  },
+  handleOnInput({detail: {value}}) {
+    this.fire('input');
+    this.$model.model(value)
+  }
+}
+</script>
+
+<style scoped>
+.a-field__title {
+  width: 88px;
+}
+
+.a-field__body {
+  flex: 1;
+}
+
+.a-field__control {
+  display: block;
+  box-sizing: border-box;
+  color: #323233;
+  border: none;
+  font-size: 14px;
+  height: 24px;
+  line-height: 24px;
+  flex: 1;
+  width: 100%;
+}
+</style>
