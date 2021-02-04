@@ -72,7 +72,12 @@
 
 
       <text class="title">展示组件</text>
-
+      <a-link to="simple-badge">
+        <view class="link">
+          <text class="com-name">Badge 徽标</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-empty">
         <view class="link">
           <text class="com-name">Empty 空状态</text>
