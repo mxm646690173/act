@@ -78,6 +78,7 @@ export default {
       return h(APopup, {
             class: `a-calendar ${props.class || ''}`,
             style: `${props.style}`, position: 'bottom',
+            ['$show']: props.$show,
             closeable: true,
           }, renderHeader, this.renderBody(), renderFooter
       );

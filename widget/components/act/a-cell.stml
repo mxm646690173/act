@@ -35,7 +35,7 @@ export default {
               }, props.label))
               :
               h('view', {class: 'a-cell__title', style: ' flex-direction: row;', _slot: 'title'}),
-          props.value && h('text', {
+          h('text', {
             class: mixedClass('a-cell__value', {
               'a-cell__value--alone': !props.title
             })
