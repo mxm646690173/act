@@ -134,15 +134,16 @@ export function syncModel() {
     Object.entries(props).forEach(([k, v]) => {
         if (k.startsWith('$')) {
             const path = v.replace(/]/g, '').split(/[\.\[]/);
-            const lastKey = path.pop();
             let data = _host.data;
+            while (!data[path[0]]) data = _host._host.data;
+            const lastKey = path.pop();
             path.forEach(p => data = data[p]);
             $model[k.substr(1)] = value => {
                 return value === undefined ? data[lastKey] : data[lastKey] = value;
             };
         }
     });
-    this.$model = Object.assign($model, this._host.$model);
+    this.$model = $model;
 }
 
 export function dateFormat(fmt, date) {
