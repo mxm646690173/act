@@ -53,6 +53,11 @@ export default {
               }) :
               h('view', {class: 'a-cell__value', style: 'justify-content: center;', _slot: 'right-icon'})
           ,
+
+          h('view', {
+            class: 'a-field__button',
+            _slot: "button"
+          }),
       ), props.children);
     }
   },
@@ -142,5 +147,13 @@ export default {
 .a-field__required {
   color: red;
   align-self: flex-start;
+}
+
+.a-field__title {
+  width: 88px;
+}
+
+.a-field__button {
+  margin-left: 6px;
 }
 </style>

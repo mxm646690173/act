@@ -116,6 +116,29 @@
           />
         </a-cell-group>
       </view>
+
+
+      <view class="simple">
+        <text class="simple-title">插入按钮</text>
+        <text class="simple-desc">
+          通过 button 插槽可以在输入框尾部插入按钮。
+        </text>
+        <a-cell-group>
+          <a-field
+              $value="sms"
+              center
+              clearable
+              label="短信验证码"
+              placeholder="请输入短信验证码"
+          >
+            <template _slot="button" class="demo-button">
+              <a-button size="small" type="primary">发送验证码</a-button>
+            </template>
+          </a-field>
+        </a-cell-group>
+      </view>
+
+
       <view style="height: 200px"></view>
 
     </scroll-view>
@@ -126,17 +149,19 @@
 import ANavBar from "../../components/act/a-nav-bar.stml";
 import ACellGroup from "../../components/act/a-cell-group.stml";
 import AField from "../../components/act/a-field.stml";
+import AButton from "../../components/act/a-button.stml";
 
 export default {
   name: "simple-field",
-  components: {AField, ACellGroup, ANavBar},
+  components: {AButton, AField, ACellGroup, ANavBar},
   data() {
     return {
       value: '',
       value2: '阿萨德',
       state: {value2: 123},
       username: '错误的用户名',
-      phone: ''
+      phone: '',
+      sms: ''
     }
   }
 }
@@ -167,6 +192,10 @@ export default {
 
 .todo {
   background: #f1e9d5;
+}
+
+.demo-button {
+  margin-left: 5px;
 }
 
 </style>

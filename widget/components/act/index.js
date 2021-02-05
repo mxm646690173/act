@@ -24,10 +24,10 @@ export function slotSupport(VNode, children) {
         }
     })
 
-    // if (Object.keys(slots).length === 1 && slots.default.length === 0) {
-    //     // 没有 slot 项目 直接返回 不要再去查找组件
-    //     return VNode;
-    // }
+    if (Object.keys(slots).length === 1 && slots.default.length === 0) {
+        // 没有 slot 项目 直接返回 不要再去查找组件
+        return VNode;
+    }
 
     const dfs = (node) => {
         if (node.attributes && node.attributes._slot) {
@@ -35,7 +35,7 @@ export function slotSupport(VNode, children) {
                 node.children = slots[node.attributes._slot].children;
                 node.attributes = slots[node.attributes._slot].attributes;
             }
-            delete node.attributes._slot;
+            // delete node.attributes._slot;
         } else if (Array.isArray(node.children) && node.children.length) {
             node.children.forEach(dfs);
         }
