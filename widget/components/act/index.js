@@ -132,12 +132,19 @@ export function mixedClass(cls, extra) {
  */
 export function syncModel() {
     const $model = {};
-    const {_host, props} = this;
+    const {props} = this;
+    let {_host} = this;
     Object.entries(props).forEach(([k, v]) => {
         if (k.startsWith('$')) {
             const path = v.replace(/]/g, '').split(/[\.\[]/);
+            while (typeof _host.data[path[0]] === 'undefined') {
+                if (_host._host) {
+                    _host = _host._host;
+                } else {
+                    break;
+                }
+            }
             let data = _host.data;
-            while (typeof data[path[0]] === 'undefined') data = _host._host.data;
             const lastKey = path.pop();
             path.forEach(p => data = data[p]);
             $model[k.substr(1)] = value => {
