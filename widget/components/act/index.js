@@ -15,10 +15,12 @@ export function slotSupport(VNode, children) {
     };
 
     children.forEach(item => {
-        if (item.nodeName === 'template' && item.attributes && item.attributes._slot) {
-            slots[item.attributes._slot] = item;
-        } else {
-            slots.default.push(item);
+        if (item) {
+            if (item.nodeName === 'template' && item.attributes && item.attributes._slot) {
+                slots[item.attributes._slot] = item;
+            } else {
+                slots.default.push(item);
+            }
         }
     })
 

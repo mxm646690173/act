@@ -66,10 +66,34 @@
           通过 readonly 将输入框设置为只读状态，通过 disabled 将输入框设置为禁用状态。
         </text>
         <a-cell-group>
-          <a-field label="文本" value="输入框只读" readonly />
-          <a-field label="文本" value="输入框已禁用" disabled />
+          <a-field label="文本" value="输入框只读" readonly/>
+          <a-field label="文本" value="输入框已禁用" disabled/>
         </a-cell-group>
       </view>
+
+      <view class="simple">
+        <text class="simple-title">显示图标</text>
+        <text class="simple-desc">
+          通过 left-icon 和 right-icon 配置输入框两侧的图标，通过设置 clearable 在输入过程中展示清除图标。
+        </text>
+        <a-cell-group>
+          <a-field
+              $value="state.value1"
+              label="文本"
+              left-icon="link"
+              right-icon="prompt"
+              placeholder="显示图标"
+          />
+          <a-field
+              $value="state.value2"
+              clearable
+              label="文本"
+              left-icon="map"
+              placeholder="显示清除图标"
+          />
+        </a-cell-group>
+      </view>
+
 
       <view style="height: 200px"></view>
 
@@ -89,7 +113,7 @@ export default {
     return {
       value: '',
       value2: '阿萨德',
-      state: {}
+      state: {value2: 123}
     }
   }
 }

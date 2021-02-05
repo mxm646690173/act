@@ -1,23 +1,36 @@
 <script>
 import ACell from './a-cell.stml';
+import AIcon from './a-icon.stml';
 import {mixedClass, syncModel} from "./index";
 
 export default {
   name: "a-field",
+  data() {
+    return {
+      value: this.props.value,
+      isFocus: false
+    }
+  },
   install() {
     this.render = props => {
       syncModel.call(this);
       const {h} = apivm;
 
-      this.value = props.value || this.$model.value();
+
+      if (this.$model.value && this.$model.value()) {
+        this.data.value = this.$model.value();
+      }
+
       const attr = {
-        value: this.value,
+        value: this.data.value,
         class: 'a-field__control',
         onInput: this.handleOnInput,
         placeholder: props.placeholder,
         type: props.type || 'text',
         'keyboard-type': props['keyboard-type'] || 'default',
-        'confirm-type': props['confirm-type'] || 'done'
+        'confirm-type': props['confirm-type'] || 'done',
+        onfocus: _ => this.data.isFocus = true,
+        onblur: _ => this.data.isFocus = false
       }
 
       if (props.type === 'password') { //安卓端支持
@@ -40,21 +53,36 @@ export default {
             class: mixedClass(`a-field ${props.class || ''} `, {
               'a-field--disabled': props.disabled
             }),
+            icon: props['left-icon'],
             style: `${props.style || ''} `
           },
           h('template', {class: 'a-field__body', _slot: 'value'},
               h('input', attr)
-          )
+          ),
+          (props['clearable'] && this.data.value && this.data.isFocus && h('template', {
+            _slot: 'right-icon',
+            onClick: _ => this.onClean(_)
+          }, h(AIcon, {
+            name: 'delete-filling', color: '#c8c9cc'
+          }))) || (props['right-icon'] && h('template', {_slot: 'right-icon'}, h(AIcon, {
+            name: props['right-icon']
+          })))
       );
     }
   },
   handleOnInput({detail: {value}}) {
-    const {props, fire, value: _val, $model} = this;
-    if (props.readonly) {
-      value = _val;
+    if (!this.props.readonly) {
+      this.setValue(value, 'input');
     }
-    fire('input', {value});
+  },
+  onClean(_) {
+    this.setValue('', 'clean');
+  },
+  setValue(value, type) {
+    const {fire, $model, data} = this;
     $model.value && $model.value(value);
+    fire(type, {value});
+    data.value = value;
   }
 }
 </script>
