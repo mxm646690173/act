@@ -3,24 +3,24 @@
   <safe-area class="a-nav-bar">
     <view class="a-nav-bar__content">
 
-      <view class="van-nav-bar__click-warp van-nav-bar__left" _slot="left" @click="leftClick">
+      <view class="a-nav-bar__click-warp a-nav-bar__left" _slot="left" @click="leftClick">
         {
         this.props['left-arrow'] &&
-        <a-icon name="arrow-left" class="van-nav-bar__icon" color="#333"/>
+        <a-icon name="arrow-left" class="a-nav-bar__icon" color="#333"/>
         }
         {
         this.props['left-text'] &&
-        <text class="van-nav-bar__text">{this.props['left-text']}</text>
+        <text class="a-nav-bar__text">{this.props['left-text']}</text>
         }
       </view>
 
-      <text class="van-nav-bar__title">
+      <text class="a-nav-bar__title">
         {this.props['title']}
       </text>
 
 
-      <view class="van-nav-bar__click-warp van-nav-bar__right" _slot="right" @click="rightClick">
-        <text class="van-nav-bar__text">{this.props['right-text']}</text>
+      <view class="a-nav-bar__click-warp a-nav-bar__right" _slot="right" @click="rightClick">
+        <text class="a-nav-bar__text">{this.props['right-text']}</text>
       </view>
 
 
@@ -71,23 +71,23 @@ export default {
 }
 
 
-.van-nav-bar__click-warp {
+.a-nav-bar__click-warp {
   flex-flow: row nowrap;
   align-items: center;
   padding: 0 16px;
 }
 
-.van-nav-bar__text {
+.a-nav-bar__text {
   color: #333;
   font-size: 14px;
 }
 
-.van-nav-bar__icon {
+.a-nav-bar__icon {
   height: 16px;
   width: 16px;
 }
 
-.van-nav-bar__title {
+.a-nav-bar__title {
   flex: 1;
   align-self: center;
   text-align: center;
