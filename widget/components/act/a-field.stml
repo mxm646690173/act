@@ -23,7 +23,7 @@ export default {
 
       const attr = {
         value: this.data.value,
-        class: 'a-field__control',
+        class: mixedClass('a-field__control', {'a-field__control--error': props.error}),
         onInput: this.handleOnInput,
         placeholder: props.placeholder,
         type: props.type || 'text',
@@ -54,10 +54,12 @@ export default {
               'a-field--disabled': props.disabled
             }),
             icon: props['left-icon'],
-            style: `${props.style || ''} `
+            style: `${props.style || ''} `,
+            required: props.required
           },
           h('template', {class: 'a-field__body', _slot: 'value'},
-              h('input', attr)
+              h('input', attr),
+              props['error-message'] && h('text', {class: `a-field__error-msg`}, props['error-message'])
           ),
           (props['clearable'] && this.data.value && this.data.isFocus && h('template', {
             _slot: 'right-icon',
@@ -104,12 +106,21 @@ export default {
   font-size: 14px;
   height: 24px;
   line-height: 24px;
-  flex: 1;
   width: 100%;
+  flex-shrink: 0;
 }
 
 .a-field--disabled {
   cursor: not-allowed;
   opacity: 0.3;
+}
+
+.a-field__control--error {
+  color: #ee0a24;
+}
+
+.a-field__error-msg {
+  color: #ee0a24;
+  font-size: 12px;
 }
 </style>
