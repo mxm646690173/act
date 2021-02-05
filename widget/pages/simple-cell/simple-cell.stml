@@ -124,7 +124,6 @@
             <!-- 使用 title 插槽来自定义标题 -->
             <template _slot="title">
               <text class="custom-title">自定义标题</text>
-              <!--  a-tag 暂未实现-->
               <a-tag type="danger">标签</a-tag>
             </template>
           </a-cell>
@@ -156,10 +155,11 @@
 import ANavBar from "../../components/act/a-nav-bar.stml";
 import ACellGroup from "../../components/act/a-cell-group.stml";
 import ACell from "../../components/act/a-cell.stml";
+import ATag from "../../components/act/a-tag.stml";
 
 export default {
   name: "simple-cell",
-  components: {ACell, ACellGroup, ANavBar}
+  components: {ATag, ACell, ACellGroup, ANavBar}
 }
 </script>
 

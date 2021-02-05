@@ -89,6 +89,14 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+      <a-link to="simple-tag">
+        <view class="link">
+          <text class="com-name">Tag 标签</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
+
+
 
       <text class="title">导航组件</text>
 
