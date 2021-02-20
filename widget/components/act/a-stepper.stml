@@ -1,0 +1,96 @@
+<script>
+import AIcon from './a-icon.stml';
+import {syncModel} from "./index";
+
+export default {
+  name: "a-stepper",
+  data() {
+    return {
+      value: this.props.value
+    }
+  },
+  install() {
+    this.render = props => {
+      const {h} = apivm;
+
+      syncModel.call(this);
+      if (this.$model.value && this.$model.value()) {
+        this.data.value = this.$model.value();
+      }
+
+
+      return h('view', {
+            class: `a-stepper ${props.class || ''}`,
+            style: `${props.style || ''}`
+          },
+          h('view', {
+                class: 'a-stepper__btn a-stepper__minus',
+                onClick: _ => this.handleClick(-1, _)
+              },
+              h(AIcon, {name: 'minus', size: 24})),
+          h('input',
+              {class: 'a-stepper__input', value: this.data.value}
+          ),
+          h('view', {
+                class: 'a-stepper__btn a-stepper__plus',
+                onClick: _ => this.handleClick(1, _)
+              },
+              h(AIcon, {name: 'add', size: 24}))
+      );
+    }
+  },
+  handleClick(change, _) {
+    const {fire, $model, data} = this;
+
+    const value = data.value + change;
+    $model.value && $model.value(value);
+    fire('change', {value, change});
+    data.value = value;
+  }
+}
+</script>
+
+<style scoped>
+.a-stepper {
+  flex-flow: row nowrap;
+}
+
+
+.a-stepper__btn {
+  margin: 0;
+  padding: 2px;
+  color: #323233;
+  vertical-align: middle;
+  background-color: #f2f3f5;
+  border: 0;
+  cursor: pointer;
+  text-align: center;
+  line-height: 28px;
+  font-size: 28px;
+}
+
+.a-stepper__minus {
+  border-radius: 4px 0 0 4px;
+}
+
+.a-stepper__plus {
+  border-radius: 0 4px 4px 0;
+}
+
+.a-stepper__input {
+  box-sizing: border-box;
+  width: 32px;
+  height: 28px;
+  margin: 0 2px;
+  padding: 0;
+  color: #323233;
+  font-size: 14px;
+  line-height: normal;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #f2f3f5;
+  border: 0;
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+</style>

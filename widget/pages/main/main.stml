@@ -75,7 +75,12 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
-
+      <a-link to="simple-stepper">
+        <view class="link">
+          <text class="com-name">Stepper 步进器</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <text class="title">展示组件</text>
       <a-link to="simple-badge">
         <view class="link">
@@ -95,7 +100,6 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
-
 
 
       <text class="title">导航组件</text>

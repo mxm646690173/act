@@ -1,0 +1,75 @@
+<template name="simple-stepper">
+  <view class="page">
+    <a-nav-bar title="simple-stepper" left-arrow/>
+    <scroll-view style="flex: 1;" scroll-y>
+
+      <text class="simple-title">基础用法</text>
+      <text class="simple-desc">
+        通过 $value 绑定输入值，可以通过 change 事件监听到输入值的变化。
+      </text>
+
+
+      <view class="simple-box">
+        <a-stepper $value="value[0]" onChange="onChange1"/>
+        <text class="simple-title">{{ value[0] }}</text>
+      </view>
+
+    </scroll-view>
+  </view>
+</template>
+
+<script>
+import ANavBar from "../../components/act/a-nav-bar.stml";
+import AStepper from "../../components/act/a-stepper.stml";
+
+export default {
+  name: "simple-stepper",
+  components: {AStepper, ANavBar},
+  data() {
+    return {
+      value: Array.from({length: 5}).fill(2)
+    }
+  },
+  methods: {
+    onChange1(e) {
+      console.log(e)
+    }
+  }
+}
+</script>
+
+<style scoped>
+.page {
+  flex: 1;
+  background-color: #F8F8F8;
+}
+
+
+.simple {
+  padding-bottom: 28px;
+}
+
+.simple-title {
+  margin: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.simple-desc {
+  color: #999;
+  font-size: 14px;
+  margin: 0 16px 16px;
+}
+
+
+.todo {
+  background: #f1e9d5;
+}
+
+.simple-box {
+  justify-content: center;
+  align-items: center;
+  flex-flow: row;
+}
+
+</style>
