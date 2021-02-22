@@ -3,15 +3,40 @@
     <a-nav-bar title="simple-stepper" left-arrow/>
     <scroll-view style="flex: 1;" scroll-y>
 
-      <text class="simple-title">基础用法</text>
-      <text class="simple-desc">
-        通过 $value 绑定输入值，可以通过 change 事件监听到输入值的变化。
-      </text>
+      <view class="simple">
+        <text class="simple-title">基础用法</text>
+        <text class="simple-desc">
+          通过 $value 绑定输入值，可以通过 change 事件监听到输入值的变化。
+        </text>
+
+        <view class="simple-box">
+          <a-stepper $value="value[0]" onChange="onChange1"/>
+          <text class="simple-title">{{ value[0] }}</text>
+        </view>
+      </view>
 
 
-      <view class="simple-box">
-        <a-stepper $value="value[0]" onChange="onChange1"/>
-        <text class="simple-title">{{ value[0] }}</text>
+      <view class="simple">
+        <text class="simple-title" @click="setStep">设置步长</text>
+        <text class="simple-desc">
+          通过 step 属性设置每次点击增加或减少按钮时变化的值，默认为 1。
+        </text>
+
+        <view class="simple-box">
+          <a-stepper $value="value[1]" :step="step"/>
+        </view>
+      </view>
+
+
+      <view class="simple">
+        <text class="simple-title">输入范围</text>
+        <text class="simple-desc">
+          通过 min 和 max 属性限制输入值的范围。
+        </text>
+
+        <view class="simple-box">
+          <a-stepper $value="value[2]" min="5" max="8"/>
+        </view>
       </view>
 
     </scroll-view>
@@ -27,12 +52,16 @@ export default {
   components: {AStepper, ANavBar},
   data() {
     return {
-      value: Array.from({length: 5}).fill(2)
+      value: Array.from({length: 5}).fill(2),
+      step: 2
     }
   },
   methods: {
     onChange1(e) {
       console.log(e)
+    },
+    setStep() {
+      this.data.step = 7;
     }
   }
 }

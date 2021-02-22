@@ -10,9 +10,9 @@ export default {
     }
   },
   install() {
+
     this.render = props => {
       const {h} = apivm;
-
       syncModel.call(this);
       if (this.$model.value && this.$model.value()) {
         this.data.value = this.$model.value();
@@ -40,7 +40,10 @@ export default {
     }
   },
   handleClick(change, _) {
-    const {fire, $model, data} = this;
+
+    const {fire, $model, data, props} = this;
+
+    change *= typeof props.step === 'undefined' ? 1 : props.step;
 
     const value = data.value + change;
     $model.value && $model.value(value);
