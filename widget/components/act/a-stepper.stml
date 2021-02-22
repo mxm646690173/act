@@ -4,6 +4,7 @@ import {mixedClass, syncModel} from "./index";
 
 export default {
   name: "a-stepper",
+
   data() {
     return {
       value: this.props.value
@@ -32,7 +33,11 @@ export default {
               },
               h(AIcon, {name: 'minus', size: 24, color: isMin ? '#c8c9cc' : '#323233'})),
           h('input',
-              {class: 'a-stepper__input', value: this.data.value}
+              {
+                class: 'a-stepper__input', value: this.data.value,
+                onblur: this.handleBlur,
+                'keyboard-type': 'number'
+              }
           ),
           h('view', {
                 class: mixedClass('a-stepper__btn a-stepper__plus', {
@@ -45,25 +50,42 @@ export default {
     }
   },
   handleClick(change, _) {
-
-    const {fire, $model, data, props} = this;
-
+    const {data, props} = this;
     change *= typeof props.step === 'undefined' ? 1 : props.step;
-
     const value = data.value + change;
-    $model.value && $model.value(value);
-    fire('change', {value, change});
-    data.value = value;
+    this.handleValue(value, 'click');
   },
   computed: {
     range() {
-      const props = this.props;
-      const data = this.data;
-      if (!props || typeof props.min === 'undefined') this.props.min = 1;
-      if (!props || typeof props.max === 'undefined') this.props.max = Infinity;
-
-      return [data.value <= props.min, data.value >= props.max];
+      return this.getRange(this.data.value);
     }
+  },
+  handleValue(value, type) {
+    value = Number(value);
+    const {fire, $model, data} = this;
+    $model.value && $model.value(value);
+    fire('change', {value, type});
+    data.value = value;
+  },
+  handleBlur({detail: {value}}) {
+    this.handleValue(this.reviseValue(value), 'blur');
+  },
+  reviseValue(value) {
+    const [isMin, isMax] = this.getRange(value);
+    console.log([isMin, isMax])
+    if (isMin) {
+      return this.props.min;
+    } else if (isMax) {
+      return this.props.max;
+    }
+    return value;
+  },
+  getRange(value) {
+    value = Number(value);
+    const props = this.props;
+    if (!props || typeof props.min === 'undefined') this.props.min = 1;
+    if (!props || typeof props.max === 'undefined') this.props.max = Infinity;
+    return [value <= Number(props.min), value >= Number(props.max)];
   }
 }
 </script>
