@@ -36,7 +36,7 @@ export default {
               {
                 class: 'a-stepper__input', value: this.data.value,
                 onblur: this.handleBlur,
-                'keyboard-type': 'number'
+                'keyboard-type': props.integer ? 'number' : 'decimal'
               }
           ),
           h('view', {
@@ -71,12 +71,18 @@ export default {
     this.handleValue(this.reviseValue(value), 'blur');
   },
   reviseValue(value) {
+    const {props} = this;
     const [isMin, isMax] = this.getRange(value);
     if (isMin) {
-      value = this.props.min;
+      value = props.min;
     } else if (isMax) {
-      value = this.props.max;
+      value = props.max;
     }
+
+    if (props.integer) {
+      value = Math.trunc(value);
+    }
+
     return Number(value);
   },
   getRange(value) {

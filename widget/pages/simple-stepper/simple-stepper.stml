@@ -39,6 +39,17 @@
         </view>
       </view>
 
+
+      <view class="simple">
+        <text class="simple-title">限制输入整数</text>
+        <text class="simple-desc">
+          设置 integer 属性后，输入框将限制只能输入整数。
+        </text>
+
+        <view class="simple-box">
+          <a-stepper $value="value[3]" integer/>
+        </view>
+      </view>
     </scroll-view>
   </view>
 </template>
