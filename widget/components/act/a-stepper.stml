@@ -7,7 +7,7 @@ export default {
 
   data() {
     return {
-      value: this.props.value
+      value: this.reviseValue(this.props.value)
     }
   },
   install() {
@@ -16,7 +16,7 @@ export default {
       const {h} = apivm;
       syncModel.call(this);
       if (this.$model.value && this.$model.value()) {
-        this.data.value = this.$model.value();
+        this.data.value = this.reviseValue(this.$model.value());
       }
 
       const [isMin, isMax] = this.range;
@@ -72,13 +72,12 @@ export default {
   },
   reviseValue(value) {
     const [isMin, isMax] = this.getRange(value);
-    console.log([isMin, isMax])
     if (isMin) {
-      return this.props.min;
+      value = this.props.min;
     } else if (isMax) {
-      return this.props.max;
+      value = this.props.max;
     }
-    return value;
+    return Number(value);
   },
   getRange(value) {
     value = Number(value);
@@ -129,7 +128,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   background-color: #f2f3f5;
-  border: 0;
+  border: 0 #fff;
   border-radius: 0;
   -webkit-appearance: none;
 }
