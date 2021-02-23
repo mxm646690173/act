@@ -61,14 +61,14 @@ export default {
     }
   },
   handleValue(value, type) {
-    value = Number(value);
+    value = this.reviseValue(Number(value));
     const {fire, $model, data} = this;
     $model.value && $model.value(value);
     fire('change', {value, type});
     data.value = value;
   },
   handleBlur({detail: {value}}) {
-    this.handleValue(this.reviseValue(value), 'blur');
+    this.handleValue(value, 'blur');
   },
   reviseValue(value) {
     const {props} = this;
