@@ -40,7 +40,7 @@ export default {
                 value: this.data.value,
                 onblur: this.handleBlur,
                 'keyboard-type': props.integer ? 'number' : 'decimal',
-                disabled: props.disabled
+                disabled: props.disabled || props['disable-input']
               }
           ),
           h('view', {

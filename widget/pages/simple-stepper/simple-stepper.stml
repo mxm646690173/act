@@ -64,6 +64,17 @@
       </view>
 
 
+      <view class="simple">
+        <text class="simple-title">禁用输入框</text>
+        <text class="simple-desc">
+          通过设置 disable-input 属性来禁用输入框，此时按钮仍然可以点击。
+        </text>
+
+        <view class="simple-box">
+          <a-stepper $value="value[5]" disable-input/>
+        </view>
+      </view>
+
     </scroll-view>
   </view>
 </template>
