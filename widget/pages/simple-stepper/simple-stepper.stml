@@ -110,6 +110,19 @@
           <a-stepper $value="value[7]" theme="round" button-size="22" disable-input/>
         </view>
       </view>
+
+      <view class="simple">
+        <text class="simple-title">异步变更</text>
+        <text class="simple-desc">
+          通过 before-change 属性可以接管变更过程和结果状态。
+        </text>
+
+        <view class="simple-box">
+          <a-stepper $value="value[8]" :before-change="this.beforeChange"/>
+        </view>
+      </view>
+
+
       <safe-area></safe-area>
 
     </scroll-view>
@@ -136,6 +149,18 @@ export default {
     },
     setStep() {
       this.data.step = 7;
+    },
+    beforeChange(value) {
+      Toast.loading({forbidClick: true, message: `正在提交value: ${value}`});
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          Toast.clear();
+          // 在 resolve 函数中返回 true 或 false
+          const result = Math.random() > 0.5;
+          resolve(result);
+          Toast(result ? '成功' : '失败')
+        }, 1000);
+      });
     }
   }
 }
