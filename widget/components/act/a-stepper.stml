@@ -31,7 +31,12 @@ export default {
                 }),
                 onClick: _ => isMin || props.disabled ? {} : this.handleClick(-1, _)
               },
-              h(AIcon, {name: 'minus', size: 24, color: isMin || props.disabled ? '#c8c9cc' : '#323233'})),
+              h(AIcon, {
+                class: 'a-stepper__icon',
+                name: 'minus',
+                size: (props['input-width'] || 28) - 6,
+                color: isMin || props.disabled ? '#c8c9cc' : '#323233'
+              })),
           h('input',
               {
                 class: mixedClass('a-stepper__input', {
@@ -40,7 +45,8 @@ export default {
                 value: props['decimal-length'] ? this.data.value.toFixed(Number(props['decimal-length'])) : this.data.value,
                 onblur: this.handleBlur,
                 'keyboard-type': props.integer ? 'number' : 'decimal',
-                disabled: !!(props.disabled || props['disable-input'])
+                disabled: !!(props.disabled || props['disable-input']),
+                style: `width:${props['input-width'] || 32}px;height:${props['input-width'] || 28}px;`
               }
           ),
           h('view', {
@@ -49,7 +55,12 @@ export default {
                 }),
                 onClick: _ => isMax || props.disabled ? {} : this.handleClick(1, _)
               },
-              h(AIcon, {name: 'add', size: 24, color: isMax || props.disabled ? '#c8c9cc' : '#323233'}))
+              h(AIcon, {
+                class: 'a-stepper__icon',
+                name: 'add',
+                size: (props['input-width'] || 28) - 6,
+                color: isMax || props.disabled ? '#c8c9cc' : '#323233'
+              }))
       );
     }
   },
@@ -107,15 +118,12 @@ export default {
 
 .a-stepper__btn {
   margin: 0;
-  padding: 2px;
   color: #323233;
   vertical-align: middle;
   background-color: #f2f3f5;
   border: 0 #FFF;
   cursor: pointer;
   text-align: center;
-  line-height: 28px;
-  font-size: 28px;
 }
 
 .a-stepper__minus {
@@ -128,8 +136,6 @@ export default {
 
 .a-stepper__input {
   box-sizing: border-box;
-  width: 32px;
-  height: 28px;
   margin: 0 2px;
   padding: 0;
   color: #323233;
@@ -151,5 +157,9 @@ export default {
   color: #c8c9cc;
   background-color: #f7f8fa;
   cursor: not-allowed;
+}
+
+.a-stepper__icon {
+  margin: 3px;
 }
 </style>
