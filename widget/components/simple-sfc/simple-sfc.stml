@@ -1,0 +1,16 @@
+<template>
+  <text>Hello SFC</text>
+</template>
+
+<script>
+
+export default {
+  name: "simple-sfc"
+}
+</script>
+
+<style scoped>
+.sfc {
+
+}
+</style>
