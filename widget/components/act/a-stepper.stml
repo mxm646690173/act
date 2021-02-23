@@ -27,25 +27,29 @@ export default {
           },
           h('view', {
                 class: mixedClass('a-stepper__btn a-stepper__minus', {
-                  'a-stepper__btn--disabled': isMin
+                  'a-stepper__btn--disabled': isMin || props.disabled
                 }),
-                onClick: _ => isMin ? {} : this.handleClick(-1, _)
+                onClick: _ => isMin || props.disabled ? {} : this.handleClick(-1, _)
               },
-              h(AIcon, {name: 'minus', size: 24, color: isMin ? '#c8c9cc' : '#323233'})),
+              h(AIcon, {name: 'minus', size: 24, color: isMin || props.disabled ? '#c8c9cc' : '#323233'})),
           h('input',
               {
-                class: 'a-stepper__input', value: this.data.value,
+                class: mixedClass('a-stepper__input', {
+                  'a-stepper__input--disabled': props.disabled
+                }),
+                value: this.data.value,
                 onblur: this.handleBlur,
-                'keyboard-type': props.integer ? 'number' : 'decimal'
+                'keyboard-type': props.integer ? 'number' : 'decimal',
+                disabled: props.disabled
               }
           ),
           h('view', {
                 class: mixedClass('a-stepper__btn a-stepper__plus', {
-                  'a-stepper__btn--disabled': isMax
+                  'a-stepper__btn--disabled': isMax || props.disabled
                 }),
-                onClick: _ => isMax ? {} : this.handleClick(1, _)
+                onClick: _ => isMax || props.disabled ? {} : this.handleClick(1, _)
               },
-              h(AIcon, {name: 'add', size: 24, color: isMax ? '#c8c9cc' : '#323233'}))
+              h(AIcon, {name: 'add', size: 24, color: isMax || props.disabled ? '#c8c9cc' : '#323233'}))
       );
     }
   },
@@ -107,7 +111,7 @@ export default {
   color: #323233;
   vertical-align: middle;
   background-color: #f2f3f5;
-  border: 0;
+  border: 0 #FFF;
   cursor: pointer;
   text-align: center;
   line-height: 28px;
@@ -137,6 +141,10 @@ export default {
   border: 0 #fff;
   border-radius: 0;
   -webkit-appearance: none;
+}
+
+.a-stepper__input--disabled {
+  opacity: 0.5;
 }
 
 .a-stepper__btn--disabled {

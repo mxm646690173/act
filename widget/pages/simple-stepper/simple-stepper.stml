@@ -50,6 +50,20 @@
           <a-stepper $value="value[3]" integer/>
         </view>
       </view>
+
+
+      <view class="simple">
+        <text class="simple-title">禁用状态</text>
+        <text class="simple-desc">
+          通过设置 disabled 属性来禁用步进器，禁用状态下无法点击按钮或修改输入框。
+        </text>
+
+        <view class="simple-box">
+          <a-stepper $value="value[4]" disabled/>
+        </view>
+      </view>
+
+
     </scroll-view>
   </view>
 </template>
@@ -63,7 +77,7 @@ export default {
   components: {AStepper, ANavBar},
   data() {
     return {
-      value: Array.from({length: 5}).fill(2),
+      value: Array.from({length: 10}).fill(2),
       step: 2
     }
   },
