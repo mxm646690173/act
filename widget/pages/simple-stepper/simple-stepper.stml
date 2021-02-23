@@ -107,7 +107,7 @@
         </text>
 
         <view class="simple-box">
-          <a-stepper $value="value[7]" theme="round" button-size="22" disable-input />
+          <a-stepper $value="value[7]" theme="round" button-size="22" disable-input/>
         </view>
       </view>
       <safe-area></safe-area>
@@ -119,6 +119,7 @@
 <script>
 import ANavBar from "../../components/act/a-nav-bar.stml";
 import AStepper from "../../components/act/a-stepper.stml";
+import {Toast} from "../../components/act";
 
 export default {
   name: "simple-stepper",
@@ -131,7 +132,7 @@ export default {
   },
   methods: {
     onChange1(e) {
-      console.log(e)
+      Toast(`onChange:\n${JSON.stringify(e)}`)
     },
     setStep() {
       this.data.step = 7;
