@@ -37,7 +37,7 @@ export default {
                 class: mixedClass('a-stepper__input', {
                   'a-stepper__input--disabled': props.disabled
                 }),
-                value: this.data.value,
+                value: props['decimal-length'] ? this.data.value.toFixed(Number(props['decimal-length'])) : this.data.value,
                 onblur: this.handleBlur,
                 'keyboard-type': props.integer ? 'number' : 'decimal',
                 disabled: props.disabled || props['disable-input']
