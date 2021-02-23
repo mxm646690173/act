@@ -32,7 +32,7 @@ export default {
               h(AIcon, {
                 class: 'a-stepper__icon',
                 name: 'minus',
-                size: (props['input-width'] || 28) - 6,
+                size: (props['button-size'] || 28) - 6,
                 color: props.theme ? '#FFF' : (isMin || props.disabled ? '#c8c9cc' : '#323233')
               })),
           h('input',
@@ -44,7 +44,7 @@ export default {
                 onblur: this.handleBlur,
                 'keyboard-type': props.integer ? 'number' : 'decimal',
                 disabled: !!(props.disabled || props['disable-input']),
-                style: `width:${props['input-width'] || 32}px;height:${props['input-width'] || 28}px;`
+                style: `width:${props['input-width'] || 32}px;height:${props['button-size'] || 28}px;`
               }
           ),
           h('view', {
@@ -54,7 +54,7 @@ export default {
               h(AIcon, {
                 class: 'a-stepper__icon',
                 name: 'add',
-                size: (props['input-width'] || 28) - 6,
+                size: (props['button-size'] || 28) - 6,
                 color: props.theme ? '#FFF' : (isMax || props.disabled ? '#c8c9cc' : '#323233')
               }))
       );
