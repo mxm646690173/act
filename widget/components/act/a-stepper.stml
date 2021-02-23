@@ -26,21 +26,19 @@ export default {
             style: `${props.style || ''}`
           },
           h('view', {
-                class: mixedClass('a-stepper__btn a-stepper__minus', {
-                  'a-stepper__btn--disabled': isMin || props.disabled
-                }),
+                class: `a-stepper__btn  a-stepper__minus${props.theme ? '--' + props.theme : ''}${isMin || props.disabled ? '--disabled' : ''}`,
                 onClick: _ => isMin || props.disabled ? {} : this.handleClick(-1, _)
               },
               h(AIcon, {
                 class: 'a-stepper__icon',
                 name: 'minus',
                 size: (props['input-width'] || 28) - 6,
-                color: isMin || props.disabled ? '#c8c9cc' : '#323233'
+                color: props.theme ? '#FFF' : (isMin || props.disabled ? '#c8c9cc' : '#323233')
               })),
           h('input',
               {
-                class: mixedClass('a-stepper__input', {
-                  'a-stepper__input--disabled': props.disabled
+                class: mixedClass(`a-stepper__input a-stepper__input--${props.theme ? props.theme : 'normal'}`, {
+                  'a-stepper__input--disabled': props.disabled,
                 }),
                 value: props['decimal-length'] ? this.data.value.toFixed(Number(props['decimal-length'])) : this.data.value,
                 onblur: this.handleBlur,
@@ -50,16 +48,14 @@ export default {
               }
           ),
           h('view', {
-                class: mixedClass('a-stepper__btn a-stepper__plus', {
-                  'a-stepper__btn--disabled': isMax || props.disabled
-                }),
+                class: `a-stepper__btn a-stepper__plus${props.theme ? '--' + props.theme : ''}${isMax || props.disabled ? '--disabled' : ''}`,
                 onClick: _ => isMax || props.disabled ? {} : this.handleClick(1, _)
               },
               h(AIcon, {
                 class: 'a-stepper__icon',
                 name: 'add',
                 size: (props['input-width'] || 28) - 6,
-                color: isMax || props.disabled ? '#c8c9cc' : '#323233'
+                color: props.theme ? '#FFF' : (isMax || props.disabled ? '#c8c9cc' : '#323233')
               }))
       );
     }
@@ -126,6 +122,11 @@ export default {
   text-align: center;
 }
 
+.a-stepper__plus--round, .a-stepper__minus--round {
+  border-radius: 50%;
+  background-color: #ee0a24;
+}
+
 .a-stepper__minus {
   border-radius: 4px 0 0 4px;
 }
@@ -143,21 +144,34 @@ export default {
   line-height: normal;
   text-align: center;
   vertical-align: middle;
-  background-color: #f2f3f5;
   border: 0 #fff;
   border-radius: 0;
   -webkit-appearance: none;
+}
+
+.a-stepper__input--normal {
+  background-color: #f2f3f5;
+}
+
+.a-stepper__input--round {
+  background-color: transparent;
 }
 
 .a-stepper__input--disabled {
   opacity: 0.5;
 }
 
-.a-stepper__btn--disabled {
-  color: #c8c9cc;
+.a-stepper__minus--disabled, .a-stepper__plus--disabled {
   background-color: #f7f8fa;
   cursor: not-allowed;
 }
+
+.a-stepper__minus--round--disabled, .a-stepper__plus--round--disabled {
+  background-color: #fbd6d9;
+  cursor: not-allowed;
+  border-radius: 50%;
+}
+
 
 .a-stepper__icon {
   margin: 3px;

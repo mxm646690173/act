@@ -100,6 +100,16 @@
       </view>
 
 
+      <view class="simple">
+        <text class="simple-title">圆角风格</text>
+        <text class="simple-desc">
+          将 theme 设置为 round 来展示圆角风格的步进器。
+        </text>
+
+        <view class="simple-box">
+          <a-stepper $value="value[7]" theme="round" button-size="22" disable-input />
+        </view>
+      </view>
       <safe-area></safe-area>
 
     </scroll-view>
