@@ -151,7 +151,7 @@ export default {
       this.data.step = 7;
     },
     beforeChange(value) {
-      Toast.loading({forbidClick: true, message: `正在提交value: ${value}`});
+      Toast.loading({forbidClick: true, message: `正在提交 : ${value}`});
       return new Promise((resolve) => {
         setTimeout(() => {
           Toast.clear();
