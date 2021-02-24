@@ -62,6 +62,7 @@ export default {
     }
   },
   cellClick(e) {
+    this.fire('click', e);
     if (this.props.url) {
       linkTo(this.props.url, this.props.title);
     } else if (this.props.to) {
