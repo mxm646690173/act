@@ -5,6 +5,9 @@
 
       <view class="simple">
         <text class="simple-title">基础用法</text>
+        <text class="simple-desc">
+          设置 content 属性后，Badge 会在子元素的右上角显示对应的徽标，也可以通过 dot 来显示小红点。
+        </text>
         <a-row justify="space-around">
           <a-badge :content="5">
             <div class="child"/>
@@ -23,7 +26,7 @@
 
 
       <view class="simple">
-        <text class="simple-title">基础用法</text>
+        <text class="simple-title">最大值</text>
         <text class="simple-desc">
           设置 max 属性后，当 content 的数值超过最大值时，会自动显示为 max+。
         </text>
