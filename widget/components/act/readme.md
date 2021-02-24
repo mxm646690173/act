@@ -375,7 +375,9 @@ export default {
     }
 }
 ```
+
 ![](https://i.loli.net/2021/02/24/k53j2dzBsXfmDSq.png)
+
 ### 快捷选择
 
 将 `show-confirm` 设置为 `false` 可以隐藏确认按钮，这种情况下选择完成后会立即触发 `confirm` 事件。
@@ -383,7 +385,6 @@ export default {
 ```html
 <a-calendar style="height: 500px;" $show="show" :show-confirm="false" $default-date="value"/>
 ```
-
 
 ### 自定义日期范围
 
@@ -394,7 +395,6 @@ export default {
     :min-date="new Date('2009/12/15')"
     :max-date="new Date('2010/3/9')"/>
 ```
-
 
 ### 自定义按钮文字
 
@@ -409,7 +409,9 @@ export default {
     confirm-disabled-text="请选择结束时间"
 />
 ```
+
 ![](https://i.loli.net/2021/02/24/QyNDXabxgjSLkHc.png)
+
 ### 自定义日期文案
 
 通过传入 `formatter` 函数来对日历上每一格的内容进行格式化。
@@ -422,7 +424,6 @@ export default {
                 :max-date="new Date('2021/6/25')"
     />
 ```
-
 
 ```js
 export default {
@@ -467,8 +468,8 @@ export default {
     }
 }
 ```
-![](https://i.loli.net/2021/02/24/MjV7rTNJan3ybZF.png)
 
+![](https://i.loli.net/2021/02/24/MjV7rTNJan3ybZF.png)
 
 ### 日期区间最大范围
 
@@ -478,8 +479,8 @@ export default {
 <a-calendar style="height: 500px;" $show="show" @confirm="myConfirm10" type="range"
                 :max-range="5"
 ```
-![](https://i.loli.net/2021/02/24/prFHoimf67vQe4G.png)
 
+![](https://i.loli.net/2021/02/24/prFHoimf67vQe4G.png)
 
 ## API
 
@@ -496,7 +497,6 @@ export default {
 | show-confirm | 是否展示确认按钮 | _boolean_ | `true` |
 | confirm-text | 确认按钮的文字 | _string_ | `确定` |
 | confirm-disabled-text | 确认按钮处于禁用状态时的文字 | _string_ | `确定` |
-
 
 ### Range Props
 
