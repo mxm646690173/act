@@ -35,7 +35,7 @@ export default {
       }
 
       if (!props['min-date']) {
-        props['min-date'] = new Date(now.setMonth(now.getMonth()));
+        props['min-date'] = new Date(dateFormat('Y/mm/dd 00:00:00',new Date(now.setMonth(now.getMonth()))));
       }
 
 
@@ -211,7 +211,6 @@ export default {
   getDayInfo(date) {
     const {props, data} = this;
     const day = {date, format: dateFormat('Y-mm-dd', date)};
-
     day.type = 'normal';
     if (date >= props['min-date'] && date <= props['max-date']) {
       const findIndex = data.selectDay.indexOf(day.format);
