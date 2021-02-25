@@ -42,6 +42,7 @@
         </text>
         <a-empty class="custom-image"
                  image="https://icon.yangyongan.com/?name=warning&size=64&scale=2&color=_ddd"
+                 image-size="88"
                  description="描述文字"/>
       </view>
 
@@ -51,7 +52,6 @@
           底部插槽
         </text>
         <a-empty description="描述文字">
-
           <a-button round type="danger" class="bottom-button">按钮测试</a-button>
         </a-empty>
 
