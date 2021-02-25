@@ -10,6 +10,9 @@ export default {
       const {h} = apivm;
 
       const isLarge = props.size === 'large' || props.large;
+      const isField = props.class && props.class.includes('a-field');
+      console.log(props['label-width']);
+
       (Array.isArray(props.children) && props.children.length === 1 && typeof props.children[0] === 'string') && (props.title = props.children);
 
       return slotSupport(h('view', {
@@ -23,11 +26,14 @@ export default {
           props.required && h('text', {class: 'a-field__required'}, '*'),
           props.icon && h(AIcon, {name: props.icon, class: 'a-cell__left-icon'}),
           props.title
-              ? h('view', {class: props.class && props.class.includes('a-field') ? 'a-field__title' : 'a-cell__title'}, h('text', {
+              ? h('view', {
+                class: 'a-cell__title',
+                style: `${isField ? ('width:' + (props['label-width'] || 88) + 'px;') : 'flex:1;'}`,
+              }, h('text', {
                 class: mixedClass('a-cell__title-text', {
                   'a-cell__title-text--large': isLarge
                 }),
-                _slot: "title"
+                _slot: "title",
               }, props.title),
               props.label && h('text', {
                 class: mixedClass('a-cell__label', {
@@ -105,7 +111,6 @@ export default {
 }
 
 .a-cell__title {
-  flex: 1;
   color: #323233;
 }
 
@@ -150,9 +155,6 @@ export default {
   align-self: flex-start;
 }
 
-.a-field__title {
-  width: 88px;
-}
 
 .a-field__button {
   margin-left: 6px;

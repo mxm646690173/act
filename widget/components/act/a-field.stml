@@ -26,11 +26,13 @@ export default {
         class: mixedClass('a-field__control', {'a-field__control--error': props.error}),
         onInput: this.handleOnInput,
         placeholder: props.placeholder,
-        type: props.type || 'text',
-        'keyboard-type': props['keyboard-type'] || 'default',
+        type: props.type === 'password' ? 'password' : 'text',
+        'keyboard-type': props.type || 'default',
         'confirm-type': props['confirm-type'] || 'done',
         onfocus: _ => this.data.isFocus = true,
-        onblur: _ => this.data.isFocus = false
+        onblur: _ => this.data.isFocus = false,
+        maxlength: props.maxlength,
+        autofocus: props.autofocus,
       }
 
       if (props.type === 'password') { //安卓端支持
@@ -47,6 +49,9 @@ export default {
       if (props.disabled) {
         attr.disabled = true;
       }
+      if (props.colon) {
+        props.label += ' :';
+      }
 
       return h(ACell, {
             title: props.label,
@@ -56,7 +61,9 @@ export default {
             icon: props['left-icon'],
             style: `${props.style || ''} `,
             required: props.required,
-            center: props.center
+            center: props.center,
+            size: props.size,
+            'label-width': props['label-width'] || 88
           },
           h('template', {class: 'a-field__body', _slot: 'value'},
               h('input', attr),

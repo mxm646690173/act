@@ -21,23 +21,22 @@
       <view class="simple">
         <text class="simple-title">自定义类型</text>
         <text class="simple-desc">
-          根据 type 属性定义不同类型的输入框，默认值为 text。
+          根据 keyboard-type 属性定义不同类型的输入框，默认值为 text。
         </text>
-
 
         <a-cell-group>
           <!-- 输入任意文本 -->
           <a-field $value="state.default" label="文本" placeholder="输入文本"/>
           <!-- 输入整数 -->
-          <a-field $value="state.number" keyboard-type="number" label="输入整数" placeholder="输入整数"/>
+          <a-field $value="state.number" type="number" label="输入整数" placeholder="输入整数"/>
           <!-- 带小数的数字 -->
-          <a-field $value="state.decimal" keyboard-type="decimal" label="带小数的数字" placeholder="带小数的数字"/>
+          <a-field $value="state.decimal" type="decimal" label="带小数的数字" placeholder="带小数的数字"/>
           <!-- 输入电话 -->
-          <a-field $value="state.tel" keyboard-type="tel" label="输入电话" placeholder="输入电话"/>
+          <a-field $value="state.tel" type="tel" label="输入电话" placeholder="输入电话"/>
           <!-- 输入email -->
-          <a-field $value="state.email" keyboard-type="email" label="输入email" placeholder="输入email"/>
+          <a-field $value="state.email" type="email" label="输入email" placeholder="输入email"/>
           <!-- 输入网站url -->
-          <a-field $value="state.url" keyboard-type="url" label="输入网站url" placeholder="输入网站url"/>
+          <a-field $value="state.url" type="url" label="输入网站url" placeholder="输入网站url"/>
           <!-- 输入密码 -->
           <a-field $value="state.password" type="password" label="输入密码" placeholder="输入密码"/>
         </a-cell-group>
