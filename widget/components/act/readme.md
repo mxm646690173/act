@@ -693,7 +693,7 @@ import ACell from "../../components/act/a-cell.stml";
 <a-cell center title="单元格" value="内容" label="描述信息"/>
 ```
 
-![image.png](https://i.loli.net/2021/02/25/SW6MDLlUAyRebHX.png)
+![](https://i.loli.net/2021/02/25/SW6MDLlUAyRebHX.png)
 
 ## API
 
@@ -1054,7 +1054,7 @@ export default {
 </a-cell-group>
 ```
 
-![image.png](https://i.loli.net/2021/02/25/DOHeiX1KCjG5hLx.png)
+![](https://i.loli.net/2021/02/25/DOHeiX1KCjG5hLx.png)
 
 ### 错误提示
 
@@ -1079,7 +1079,7 @@ export default {
 </a-cell-group>
 ```
 
-![image.png](https://i.loli.net/2021/02/25/aUGoYgEcQnKVJtw.png)
+![](https://i.loli.net/2021/02/25/aUGoYgEcQnKVJtw.png)
 
 ### 插入按钮
 
@@ -1093,7 +1093,7 @@ export default {
   </a-field>
 ```
 
-![image.png](https://i.loli.net/2021/02/25/RB9uVFaIjwdc2Wq.png)
+![](https://i.loli.net/2021/02/25/RB9uVFaIjwdc2Wq.png)
 
 ## API
 
@@ -1130,11 +1130,74 @@ export default {
 | blur               | 输入框失去焦点时触发 | _event: Event_                 |
 | clear              | 点击清除按钮时触发   | _event: MouseEvent_            |
 
-
-
-
 ### Slots
 
 | 名称       | 说明                                                       |
 | ---------- | ---------------------------------------------------------- |
 | button     | 自定义输入框尾部按钮                                       |
+
+# Icon 图标
+
+### 介绍
+
+基于字体的图标集，可以通过 Icon 组件使用，也可以在其他组件中通过 `icon` 属性引用。
+
+> 目前暂不支持自定义字体，故无法引入iconfont字体图标。
+>
+> 目前暂不支持svg渲染，故无法引入svg图片。
+>
+> 临时性的使用服务端渲染替代实现icon组件。
+>
+> 待底层更新后，该组件可以同步更新渲染模式，业务逻辑层不发生变化。
+
+### 引入
+
+```js
+import AIcon from "../../components/act/a-icon.stml";
+```
+
+## 代码演示
+
+### 基础用法
+
+`Icon` 的 `name` 属性支持传入图标名称或图片链接，所有可用的图标名称见右侧示例。
+
+```html
+     <a-icon name="good"/>
+     <a-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png"/>
+```
+
+![](https://i.loli.net/2021/02/25/SDwHWG6AQnRPZFf.png)
+
+### 图标大小
+
+`Icon` 的 `size` 属性用来设置图标的尺寸大小，默认单位为 `px`。
+
+```html
+<a-icon name="good" size="32"/>
+<a-icon name="user" size="66"/>
+```
+
+![](https://i.loli.net/2021/02/25/OhfCklMesoWE1Db.png)
+
+### 图标颜色
+
+`Icon` 的 `color` 属性用来设置图标的颜色。
+
+```html
+<a-icon name="good" size="32" color="red"/>
+<a-icon name="user" size="32" color="#3af"/>
+<a-icon name="map" size="32" color="rgb(123,213,21)"/>
+```
+
+![](https://i.loli.net/2021/02/25/yhTNxWiMR8Ds927.png)
+
+## 所有图标
+
+目前所支持的图标列表请点击这里：https://icon.yangyongan.com/
+
+支持的图标列表API接口：https://icon.yangyongan.com/api/
+
+并且持续收集中。
+
+![](https://i.loli.net/2021/02/25/PfxHkhGXue8IMA7.png)
