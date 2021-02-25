@@ -52,16 +52,6 @@
 
 
       <view class="simple">
-        <text class="simple-title">只设置 value</text>
-        <text class="simple-desc">
-          只设置 value 时，内容会靠左对齐。
-        </text>
-
-        <a-cell value="内容"/>
-      </view>
-
-
-      <view class="simple">
         <text class="simple-title">展示箭头</text>
         <text class="simple-desc">
           设置 is-link 属性后会在单元格右侧显示箭头，并且可以通过 arrow-direction 属性控制箭头方向。
@@ -105,7 +95,7 @@
       <view class="simple">
         <text class="simple-title">分组圆角</text>
         <text class="simple-desc">
-          通过 round 属性让一个cell组变成圆角。
+          通过 round 属性让一个 cell-group 组变成圆角。
         </text>
 
         <a-cell-group round>
