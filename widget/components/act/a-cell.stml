@@ -28,7 +28,7 @@ export default {
           props.title
               ? h('view', {
                 class: 'a-cell__title',
-                style: `${isField ? ('width:' + (props['label-width'] || 88) + 'px;') : 'flex:1;'}`,
+                style: `${isField ? ('width:' + (props['label-width'] || 88) + 'px;text-align:' + props['label-align']) : 'flex:1;'}`,
               }, h('text', {
                 class: mixedClass('a-cell__title-text', {
                   'a-cell__title-text--large': isLarge

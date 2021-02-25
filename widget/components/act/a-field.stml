@@ -29,8 +29,8 @@ export default {
         type: props.type === 'password' ? 'password' : 'text',
         'keyboard-type': props.type || 'default',
         'confirm-type': props['confirm-type'] || 'done',
-        onfocus: _ => this.data.isFocus = true,
-        onblur: _ => this.data.isFocus = false,
+        onfocus: this.handleOnFocus,
+        onblur: this.handleOnBlur,
         maxlength: props.maxlength,
         autofocus: props.autofocus,
       }
@@ -63,7 +63,8 @@ export default {
             required: props.required,
             center: props.center,
             size: props.size,
-            'label-width': props['label-width'] || 88
+            'label-width': props['label-width'] || 88,
+            'label-align': props['label-align'] || 'left'
           },
           h('template', {class: 'a-field__body', _slot: 'value'},
               h('input', attr),
@@ -88,6 +89,14 @@ export default {
   },
   onClean(_) {
     this.setValue('', 'clean');
+  },
+  handleOnFocus(_) {
+    this.data.isFocus = true;
+    this.fire('focus', _);
+  },
+  handleOnBlur(_) {
+    this.data.isFocus = false;
+    this.fire('blur', _);
   },
   setValue(value, type) {
     const {fire, $model, data} = this;
