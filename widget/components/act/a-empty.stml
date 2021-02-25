@@ -17,8 +17,17 @@ export default {
         props.image = asset(`empty-image-${props.image || ''}.png`);
       }
 
+
+      const imgAttr = {class: 'a-empty__image', src: props.image};
+
+      if (props['image-size']) {
+        imgAttr.style = `width:${props['image-size']}px;height:${props['image-size']}px;`
+      } else {
+        imgAttr.class += ' a-empty__image--default-size';
+      }
+
       return h('view', {class: `a-empty ${props.class || ''}`, style: `${props.style}||''`,},
-          h('img', {class: 'a-empty__image', src: props.image}),
+          h('img', imgAttr),
           h('text', {class: 'a-empty__description'}, props.description),
           h('view', {class: 'a-empty__bottom'}, props.children)
       );
@@ -46,6 +55,9 @@ export default {
 }
 
 .a-empty__image {
+}
+
+.a-empty__image--default-size {
   width: 160px;
   height: 160px;
 }
