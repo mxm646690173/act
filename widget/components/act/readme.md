@@ -1723,3 +1723,67 @@ export default {
 | ------ | -------------- | ------------------- |
 | close  | 关闭标签时触发 | -                   |
 
+# Toast 轻提示
+
+### 介绍
+
+在页面中间弹出黑色半透明提示，用于消息通知、加载提示、操作结果提示等场景。
+
+### 引入
+
+```js
+import {Toast} from "../../components/act";
+```
+
+## 代码演示
+
+### 文字提示
+
+```js
+Toast('提示内容');
+```
+
+### 加载提示
+
+使用 `Toast.loading` 方法展示加载提示，通过 `forbidClick` 属性可以禁用背景点击。
+
+```js
+Toast.loading({
+  message: '自动加载中...',
+  forbidClick: true,
+});
+```
+
+### 自定义位置
+
+Toast 默认渲染在屏幕正中位置，通过 `position` 属性可以控制 Toast 展示的位置。
+
+```js
+Toast('提示内容', 'top');
+
+Toast({
+  message: '底部展示',
+  position: 'bottom',
+});
+```
+
+## API
+
+### 方法
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| Toast | 展示提示 | `options / message` | toast 实例 |
+| Toast.loading | 展示加载提示 | `options / message` | toast 实例 |
+| Toast.clear | 关闭提示 | `clearAll: boolean` | `void` |
+
+### Options
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| position | 位置，可选值为 `top` `bottom` | _string_ | `middle` |
+| message | 文本内容，支持通过`\n`换行 | _string_ | `''` | - |
+| forbidClick | 是否禁止背景点击 | _boolean_ | `false` |
+| duration | 展示时长(ms) | _number_ | `1500` |
+
+
