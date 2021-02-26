@@ -7,7 +7,7 @@ export default {
     this.render = props => {
       const VNode = props.children[0];
       VNode.attributes.onClick = _ => {
-        return linkTo(props.to);
+        return linkTo(props.to,props.title);
       }
       return props.children[0];
     }

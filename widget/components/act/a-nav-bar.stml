@@ -45,13 +45,15 @@ export default {
   methods: {
     leftClick(e) {
       if (this.props['onClick-left']) {
-        this.props['onClick-left'](e)
+        // this.props['onClick-left'](e)
+        this.fire('click-left', e);
       } else {
         api.closeWin();
       }
     },
     rightClick(e) {
-      typeof this.props['onClick-right'] === "function" && this.props['onClick-right'](e)
+      // typeof this.props['onClick-right'] === "function" && this.props['onClick-right'](e)
+      this.fire('click-right', e);
     }
   }
 }

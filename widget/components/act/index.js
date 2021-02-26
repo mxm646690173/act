@@ -79,7 +79,7 @@ export function superNode(VNode, props) {
     slotSupport(VNode, props.children)
     extendsClassStyle(VNode, props);
     // extendsEvent(VNode, props);
-    console.log('superNode', VNode)
+    // console.log('superNode', VNode)
     return VNode;
 }
 

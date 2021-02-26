@@ -1,12 +1,12 @@
 # ACT组件文档
 
-# a-button 按钮
+# Button 按钮
 
-## 介绍
+### 介绍
 
 按钮用于触发一个操作，如提交表单。
 
-## 引入
+### 引入
 
 ~~~js
 import AButton from "../../components/act/a-button.stml";
@@ -127,13 +127,13 @@ hairline    |是否使用 0.5px 边框    |boolean    |false
 
 ---
 
-# a-badge 徽标
+# Badge 徽标
 
-## 介绍
+### 介绍
 
 在右上角展示徽标数字或小红点。
 
-## 引入
+### 引入
 
 ~~~js
 import AButton from "../../components/act/a-badge.stml";
@@ -228,13 +228,13 @@ import AButton from "../../components/act/a-badge.stml";
 | dot | 是否展示为小红点 | _boolean_ | `false` |
 | max | 最大值，超过最大值会显示 `{max}+`，仅当  ` content `  为数字时有效 | _number / string_ | - |
 
-# a-calendar 日历
+# Calendar 日历
 
-## 介绍
+### 介绍
 
 日历组件用于选择日期或日期区间。
 
-## 引入
+### 引入
 
 ```js
 import ACalendar from "../../components/act/a-calendar.stml";
@@ -538,11 +538,11 @@ export default {
 
 # Cell 单元格
 
-## 介绍
+### 介绍
 
 单元格为列表中的单个展示项。
 
-### 引入
+#### 引入
 
 ~~~js
 import ACellGroup from "../../components/act/a-cell-group.stml";
@@ -734,11 +734,11 @@ import ACell from "../../components/act/a-cell.stml";
 
 # Layout 布局
 
-### 介绍
+#### 介绍
 
 Layout 提供了 `a-row` 和 `a-col` 两个组件来进行行列布局。
 
-### 引入
+#### 引入
 
 ```js
 import ARow from "../../components/act/a-row.stml";
@@ -869,11 +869,11 @@ Layout 组件提供了 `24列栅格`，通过在 `Col` 上添加 `span` 属性�
 
 # Empty 空状态
 
-### 介绍
+#### 介绍
 
 空状态时的占位提示。
 
-### 引入
+#### 引入
 
 ```js
 import AEmpty from "../../components/act/a-empty.stml";
@@ -940,11 +940,11 @@ Empty 组件内置了多种占位图片类型，可以在不同业务场景下�
 
 # Field 输入框
 
-### 介绍
+#### 介绍
 
 表单中的输入框组件。
 
-### 引入
+#### 引入
 
 ```js
 import AField from "../../components/act/a-field.stml";
@@ -1138,7 +1138,7 @@ export default {
 
 # Icon 图标
 
-### 介绍
+#### 介绍
 
 基于字体的图标集，可以通过 Icon 组件使用，也可以在其他组件中通过 `icon` 属性引用。
 
@@ -1150,7 +1150,7 @@ export default {
 >
 > 待底层更新后，该组件可以同步更新渲染模式，业务逻辑层不发生变化。
 
-### 引入
+#### 引入
 
 ```js
 import AIcon from "../../components/act/a-icon.stml";
@@ -1201,3 +1201,124 @@ import AIcon from "../../components/act/a-icon.stml";
 并且持续收集中。
 
 ![](https://i.loli.net/2021/02/25/PfxHkhGXue8IMA7.png)
+
+# Link
+
+### 介绍
+
+这是一个抽象组件，为组件提供统一的跳转路由功能。
+
+### 引入
+
+~~~js
+import ALink from "../../components/act/a-link.stml";
+~~~
+
+## 代码示例
+
+### 基础用法
+
+~~~html
+<a-link to="simple-button">
+    <view class="link">
+        <text class="com-name">Button 按钮</text>
+        <a-icon name="arrow-right"/>
+    </view>
+</a-link>
+~~~
+
+### 完整链接
+
+~~~html
+<a-link to="../../simple-button/simple-button.stml" title="按钮示例页面">
+    <view class="link">
+        <text class="com-name">Button 按钮</text>
+        <a-icon name="arrow-right"/>
+    </view>
+</a-link>
+~~~
+
+## API
+
+### Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| to | 路由名称或者完整路径 | _string_ | - |
+| title | 页面的名称 | _string_ | - |
+
+# NavBar 导航栏
+
+### 引入
+
+```js
+import ANavBar from "../../components/act/a-nav-bar.stml";
+```
+
+## 代码演示
+
+### 基础用法
+
+```html
+  <a-nav-bar
+      title="标题"
+      left-text="返回"
+      right-text="按钮"
+      left-arrow
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+  />
+```
+
+```js
+import {Toast} from "../../components/act";
+export default {
+  name: "simple-nav-bar",
+  components: {AIcon, ANavBar},
+  methods: {
+    onClickLeft() {
+      Toast('返回2');
+    },
+    onClickRight() {
+      Toast('右侧');
+    }
+  }
+}
+```
+
+### 使用插槽
+
+通过插槽自定义导航栏两侧的内容。
+
+```html
+  <a-nav-bar title="标题" left-text="返回" left-arrow>
+    <template _slot="right" class="demo-right">
+      <a-icon name="search" size="18"/>
+      <text>文本</text>
+    </template>
+  </a-nav-bar>
+```
+
+## API
+
+### Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| title | 标题 | _string_ | `''` |
+| left-text | 左侧文案 | _string_ | `''` |
+| right-text | 右侧文案 | _string_ | `''` |
+| left-arrow | 是否显示左侧箭头 | _boolean_ | `false` |
+### Slots
+
+| 名称  | 说明               |
+| ----- | ------------------ |
+| left  | 自定义左侧区域内容 |
+| right | 自定义右侧区域内容 |
+
+### Events
+
+| 事件名      | 说明               | 回调参数            |
+| ----------- | ------------------ | ------------------- |
+| click-left  | 点击左侧按钮时触发 | _event: MouseEvent_ |
+| click-right | 点击右侧按钮时触发 | _event: MouseEvent_ |
