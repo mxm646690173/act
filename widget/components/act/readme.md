@@ -1286,6 +1286,8 @@ export default {
 }
 ```
 
+![](https://i.loli.net/2021/02/26/GY89TOoqnH2aw3u.png)
+
 ### 使用插槽
 
 通过插槽自定义导航栏两侧的内容。
@@ -1299,6 +1301,8 @@ export default {
   </a-nav-bar>
 ```
 
+![](https://i.loli.net/2021/02/26/IFtluprSTbckhxW.png)
+
 ## API
 
 ### Props
@@ -1309,6 +1313,7 @@ export default {
 | left-text | 左侧文案 | _string_ | `''` |
 | right-text | 右侧文案 | _string_ | `''` |
 | left-arrow | 是否显示左侧箭头 | _boolean_ | `false` |
+
 ### Slots
 
 | 名称  | 说明               |
@@ -1322,3 +1327,399 @@ export default {
 | ----------- | ------------------ | ------------------- |
 | click-left  | 点击左侧按钮时触发 | _event: MouseEvent_ |
 | click-right | 点击右侧按钮时触发 | _event: MouseEvent_ |
+
+# Popup 弹出层
+
+### 介绍
+
+弹出层容器，用于展示弹窗、信息提示等内容，支持多个弹出层叠加展示。
+
+### 引入
+
+```js
+import APopup from "../../components/act/a-popup.stml";
+```
+
+## 代码演示
+
+### 基础用法
+
+通过  ` $show `  控制弹出层是否展示。
+
+```html
+  <a-cell is-link @click="showPopup">展示弹出层</a-cell>
+
+  <a-popup $show="show">
+    <text  @click="test"> 内容</text>
+  </a-popup>
+```
+
+```js
+export default {
+  name: "simple-popup",
+  data() {
+    return {
+      show: false
+    }
+  },
+  methods: {
+    showPopup() {
+      this.data.show = true;
+    }
+  }
+}
+```
+
+![](https://i.loli.net/2021/02/26/GXKvUSYVwmWL2jJ.png)
+
+### 弹出位置
+
+通过 `position` 属性设置弹出位置，默认居中弹出，可以设置为 `top`、`bottom`、`left`、`right`。
+
+```html
+  <a-popup $show="show" position="top"> <text> 上 </text> </a-popup>
+  <a-popup $show="show" position="bottom"> <text> 下 </text> </a-popup>
+  <a-popup $show="show" position="left"> <text> 左 </text> </a-popup>
+  <a-popup $show="show" position="right"> <text> 右 </text> </a-popup>
+```
+
+### 关闭图标
+
+设置 `closeable` 属性后，会在弹出层的右上角显示关闭图标，并且可以通过 `close-icon` 属性自定义图标，使用 `close-icon-position` 属性可以自定义图标位置。
+
+```html
+  <a-popup $show="show"
+           closeable
+           position="bottom"
+           style="height: 30%;">
+    <text class="demo-content">关闭图标</text>
+  </a-popup>
+
+
+  <a-popup $show="show"
+           closeable
+           close-icon="success"
+           position="bottom"
+           style="height: 30%;">
+    <text class="demo-content">自定义图标</text>
+  </a-popup>
+
+
+  <a-popup $show="show"
+           closeable
+           close-icon="close"
+           close-icon-position="top-left"
+           position="bottom"
+           style="height: 30%;">
+    <text class="demo-content">关闭图标位置</text>
+  </a-popup>
+
+
+  <a-popup $show="show"
+           closeable
+           close-icon-color="red"
+           position="bottom"
+           style="height: 30%;">
+    <text class="demo-content">关闭图标颜色</text>
+  </a-popup>
+```
+
+### 圆角弹窗
+
+设置 `round` 属性后，弹窗会根据弹出位置添加不同的圆角样式。
+
+```html
+  <a-popup $show="show"
+           closeable
+           round
+           position="bottom"
+           style="height: 30%;">
+    <text class="demo-content">圆角弹窗</text>
+  </a-popup>
+```
+
+## API
+
+### Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| $show | 是否显示弹出层 | _boolean_ | `false` |
+| position | 弹出位置，可选值为 `top` `bottom` `right` `left` | _string_ | `center` |
+| round | 是否显示圆角 | _boolean_ | `false` |
+| closeable | 是否显示关闭图标 | _boolean_ | `false` |
+| close-icon | 关闭图标名称或图片链接 | _string_ | `cross` |
+| close-icon-position | 关闭图标位置，可选值为 `top-left`<br>`bottom-left` `bottom-right` | _string_ | `top-right` |
+
+### Events
+
+| 事件名           | 说明                       | 回调参数            |
+| ---------------- | -------------------------- | ------------------- |
+| close            | 关闭弹出层时触发           | -                   |
+
+# Stepper 步进器
+
+### 介绍
+
+步进器由增加按钮、减少按钮和输入框组成，用于在一定范围内输入、调整数字。
+
+### 引入
+
+```js
+import AStepper from "../../components/act/a-stepper.stml";
+```
+
+## 代码演示
+
+### 基础用法
+
+通过  ` $value `  绑定输入值，可以通过  ` change `  事件监听到输入值的变化。
+
+```html
+  <a-stepper $value="value" onChange="onChange"/>
+  <text>{{ value }}</text>
+```
+
+```js
+import {Toast} from "../../components/act";
+export default {
+  name: "simple-stepper",
+  data() {
+    return {
+      value: 2
+    }
+  },
+  methods: {
+    onChange(e) {
+      Toast(`onChange:\n${JSON.stringify(e)}`)
+    }
+  }
+}
+```
+
+![](https://i.loli.net/2021/02/26/W9pjeViUkqZPQ4s.png)
+
+### 步长设置
+
+通过 `step` 属性设置每次点击增加或减少按钮时变化的值，默认为 `1`。
+
+```html
+  <a-stepper $value="value" step="2"/>
+```
+
+### 限制输入范围
+
+通过 `min` 和 `max` 属性限制输入值的范围。
+
+```html
+  <a-stepper $value="value" min="5" max="8" />
+```
+
+### 限制输入整数
+
+设置 `integer` 属性后，输入框将限制只能输入整数。
+
+```html
+  <a-stepper $value="value" integer />
+```
+
+### 禁用状态
+
+通过设置 `disabled` 属性来禁用步进器，禁用状态下无法点击按钮或修改输入框。
+
+```html
+  <a-stepper $value="value" disabled />
+```
+
+### 禁用输入框
+
+通过设置 `disable-input` 属性来禁用输入框，此时按钮仍然可以点击。
+
+```html
+  <a-stepper $value="value" disable-input />
+```
+
+### 固定小数位数
+
+通过设置 `decimal-length` 属性可以保留固定的小数位数。
+
+```html
+  <a-stepper $value="value" step="0.2" :decimal-length="1" />
+```
+
+![](https://i.loli.net/2021/02/26/TrApNbFOYeafP9x.png)
+
+### 自定义大小
+
+通过 `input-width` 属性设置输入框宽度，通过 `button-size` 属性设置按钮大小和输入框高度。
+
+```html
+  <a-stepper $value="value" input-width="40" button-size="32" />
+```
+
+![](https://i.loli.net/2021/02/26/xLVdwhDGuq7TF4B.png)
+
+### 异步变更
+
+通过 `before-change` 属性可以在
+
+```html
+<van-stepper v-model="value" :before-change="beforeChange" />
+```
+
+```js
+import {Toast} from "../../components/act";
+
+export default {
+  name: "simple-stepper",
+  data() {
+    return {
+      value: 2
+    }
+  },
+  methods: {
+    beforeChange(value) {
+      Toast.loading({forbidClick: true, message: `正在提交 : ${value}`});
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          Toast.clear();
+          // 在 resolve 函数中返回 true 或 false
+          const result = Math.random() > 0.5;
+          resolve(result);
+          Toast(result ? '成功' : '失败')
+        }, 1000);
+      });
+    }
+  }
+}
+```
+
+### 圆角风格
+
+将 `theme` 设置为 `round` 来展示圆角风格的步进器。
+
+```html
+  <a-stepper $value="value" theme="round" button-size="22" disable-input />
+```
+
+![](https://i.loli.net/2021/02/26/C6G7hM5DbXPzl8J.png)
+
+## API
+
+### Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| $value | 当前输入的值 | _number / string_ | - |
+| min | 最小值 | _number / string_ | `1` |
+| max | 最大值 | _number / string_ | - |
+| step | 步长，每次点击时改变的值 | _number / string_ | `1` |
+| input-width | 输入框宽度，默认单位为 `px` | _number / string_ | `32px` |
+| button-size | 按钮大小以及输入框高度，默认单位为 `px` | _number / string_ | `28px` |
+| decimal-length | 固定显示的小数位数 | _number / string_ | - |
+| theme | 样式风格，可选值为 `round` | _string_ | - |
+| integer | 是否只允许输入整数 | _boolean_ | `false` |
+| disabled | 是否禁用步进器 | _boolean_ | `false` |
+| disable-input | 是否禁用输入框 | _boolean_ | `false` |
+| before-change | 输入值变化前的回调函数，返回 `false` 可阻止输入，支持返回 Promise | _(value) => boolean / Promise_ | `false` |
+
+### Events
+
+| 事件名 | 说明 | 回调参数 |
+| --- | --- | --- |
+| change | 当绑定值变化时触发的事件 | _value: string, detail: { name: string }_ |
+
+# Tag 标签
+
+### 引入
+
+```js
+import ATag from "../../components/act/a-tag.stml";
+```
+
+## 代码演示
+
+### 基础用法
+
+通过 `type` 属性控制标签颜色。
+
+```html
+<a-tag type="primary">标签</a-tag>
+<a-tag type="success">标签</a-tag>
+<a-tag type="danger">标签</a-tag>
+<a-tag type="warning">标签</a-tag>
+```
+
+![](https://i.loli.net/2021/02/26/fo8YJt65xXa3Lzl.png)
+
+### 空心样式
+
+设置 `plain` 属性设置为空心样式。
+
+```html
+<a-tag plain type="primary">标签</a-tag>
+```
+
+### 圆角样式
+
+通过 `round` 设置为圆角样式。
+
+```html
+<a-tag round type="primary">标签</a-tag>
+```
+
+### 标记样式
+
+通过 `mark` 设置为标记样式(半圆角)。
+
+```html
+<a-tag mark type="primary">标签</a-tag>
+```
+
+### 可关闭标签
+
+添加 `closeable` 属性表示标签是可关闭的，关闭标签时会触发 `close` 事件，在 `close` 事件中可以执行隐藏标签的逻辑。
+
+```html
+<a-tag :show="show" closeable type="primary" @close="close">
+  标签
+</a-tag>
+```
+
+```js
+export default {
+  name: "simple-tag",
+  data() {
+    return {
+      show: true
+    }
+  },
+  methods: {
+    close() {
+      this.data.show = false;
+    }
+  }
+}
+```
+
+![](https://i.loli.net/2021/02/26/FCUDd6Vi21rONX5.png)
+
+## API
+
+### Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 类型，可选值为 `primary` `success` `danger` `warning` | _string_ | `default` |
+| show | 是否展示标签 | _boolean_ | `true` |
+| plain | 是否为空心样式 | _boolean_ | `false` |
+| round | 是否为圆角样式 | _boolean_ | `false` |
+| mark | 是否为标记样式 | _boolean_ | `false` |
+| closeable | 是否为可关闭标签 | _boolean_ | `false` |
+
+### Events
+
+| 事件名 | 说明           | 回调参数            |
+| ------ | -------------- | ------------------- |
+| close  | 关闭标签时触发 | -                   |
+
