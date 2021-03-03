@@ -88,6 +88,12 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+      <a-link to="simple-count-down">
+        <view class="link">
+          <text class="com-name">CountDown 倒计时</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-empty">
         <view class="link">
           <text class="com-name">Empty 空状态</text>

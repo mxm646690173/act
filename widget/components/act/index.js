@@ -8,21 +8,49 @@ export {Toast};
  * @param VNode
  * @param children
  */
-export function slotSupport(VNode, children) {
+export function slotSupport(VNode, children, host) {
 
     let slots = {
         default: []
     };
 
-    children.forEach(item => {
-        if (item) {
-            if (item.nodeName === 'template' && item.attributes && item.attributes._slot) {
-                slots[item.attributes._slot] = item;
-            } else {
-                slots.default.push(item);
+    const dfsScope = node => {
+        if (node.nodeName === 'text') {
+            const text = node.children[0];
+            if (node.attributes.scoped || (typeof text === 'string' && text.startsWith('[[') && text.endsWith(']]'))) {
+                let path = text.replace(/[\[\]]/g, '').split(/[\.\[]/);
+                if (node.attributes.scoped) {
+                    path = node.attributes.scoped;
+                } else {
+                    node.attributes.scoped = path;
+                }
+                let data = host;
+                path.forEach(p => data = data[p]);
+                node.children[0] = String(data);
             }
         }
+
+        if (Array.isArray(node.children) && node.children.length) {
+            node.children.forEach(dfsScope);
+        }
+    }
+
+    children.forEach(node => {
+        if (node) {
+            if (node.nodeName === 'template' && node.attributes && node.attributes._slot) {
+                const slotInfo = node.attributes._slot.split(':');
+                if (slotInfo.length === 2) {
+                    node.attributes.scope = slotInfo[1];
+                    node.attributes._slot = slotInfo[0];
+                }
+                slots[node.attributes._slot] = node;
+            } else {
+                slots.default.push(node);
+            }
+            dfsScope(node);
+        }
     })
+
 
     if (Object.keys(slots).length === 1 && slots.default.length === 0) {
         // 没有 slot 项目 直接返回 不要再去查找组件
@@ -33,7 +61,7 @@ export function slotSupport(VNode, children) {
         if (node.attributes && node.attributes._slot) {
             if (slots[node.attributes._slot]) {
                 node.children = slots[node.attributes._slot].children;
-                node.attributes = slots[node.attributes._slot].attributes;
+                node.attributes = Object.assign(slots[node.attributes._slot].attributes, node.attributes);
             }
             // delete node.attributes._slot;
         } else if (Array.isArray(node.children) && node.children.length) {
@@ -41,6 +69,8 @@ export function slotSupport(VNode, children) {
         }
     }
     dfs(VNode);
+
+
     return VNode;
 }
 
@@ -219,4 +249,95 @@ export function compareDay(day1, day2) {
  */
 export function asset(name) {
     return `../../components/act/asset/${name}`;
+}
+
+/**
+ * 倒计时组件使用的格式化代码
+ * @param format
+ * @param currentTime
+ * @returns {*}
+ */
+export function parseFormat(format, currentTime) {
+    const {days} = currentTime;
+    let {hours, minutes, seconds, milliseconds} = currentTime;
+
+    if (format.indexOf('DD') === -1) {
+        hours += days * 24;
+    } else {
+        format = format.replace('DD', padZero(days));
+    }
+
+    if (format.indexOf('HH') === -1) {
+        minutes += hours * 60;
+    } else {
+        format = format.replace('HH', padZero(hours));
+    }
+
+    if (format.indexOf('mm') === -1) {
+        seconds += minutes * 60;
+    } else {
+        format = format.replace('mm', padZero(minutes));
+    }
+
+    if (format.indexOf('ss') === -1) {
+        milliseconds += seconds * 1000;
+    } else {
+        format = format.replace('ss', padZero(seconds));
+    }
+
+    if (format.indexOf('S') !== -1) {
+        const ms = padZero(milliseconds, 3);
+
+        if (format.indexOf('SSS') !== -1) {
+            format = format.replace('SSS', ms);
+        } else if (format.indexOf('SS') !== -1) {
+            format = format.replace('SS', ms.slice(0, 2));
+        } else {
+            format = format.replace('S', ms.charAt(0));
+        }
+    }
+
+    return format;
+}
+
+/**
+ * 补齐 0
+ * @param num
+ * @param targetLength
+ * @returns {string}
+ */
+export function padZero(num, targetLength = 2) {
+    let str = num + '';
+    while (str.length < targetLength) {
+        str = '0' + str;
+    }
+    return str;
+}
+
+
+const SECOND = 1000;
+const MINUTE = 60 * SECOND;
+const HOUR = 60 * MINUTE;
+const DAY = 24 * HOUR;
+
+/**
+ * 转换时间
+ * @param time
+ * @returns {{milliseconds: number, total, hours: number, seconds: number, minutes: number, days: number}}
+ */
+export function parseTime(time) {
+    const days = Math.floor(time / DAY);
+    const hours = Math.floor((time % DAY) / HOUR);
+    const minutes = Math.floor((time % HOUR) / MINUTE);
+    const seconds = Math.floor((time % MINUTE) / SECOND);
+    const milliseconds = Math.floor(time % SECOND);
+
+    return {
+        total: time,
+        days,
+        hours,
+        minutes,
+        seconds,
+        milliseconds,
+    };
 }

@@ -1,0 +1,67 @@
+<script>
+
+import {parseFormat, parseTime, slotSupport} from "./index";
+
+export default {
+  timer: null,
+  name: "a-count-down",
+  data() {
+    return {
+      time: 0
+    }
+  },
+  install() {
+    this.render = props => {
+      const {h} = apivm;
+
+      return slotSupport(h('view', {
+            class: `a-count-down ${props.class || ''}`,
+            style: `${props.style || ''}`,
+            _slot: 'default'
+          },
+
+
+          h('text', {
+                class: 'a-count-down__text'
+              },
+              this.timeStr
+          ))
+
+          , props.children, this
+      );
+    }
+  },
+  installed() {
+    this.data.time = this.props.time || 0;
+    this.runTimer();
+  },
+
+  computed: {
+    timeStr() {
+      const format = this.props.format || 'HH:mm:ss';
+      return parseFormat(format, this.timeData);
+    },
+    timeData() {
+      return parseTime(this.data.time)
+    }
+  },
+
+  methods: {
+    runTimer() {
+      const step = this.props.millisecond ? 1 : 1000;
+      if (this.data.time) {
+        this.data.time -= step;
+        this.timer = setTimeout(this.runTimer, step);
+      } else {
+        clearTimeout(this.data.timer);
+      }
+    }
+  }
+}
+</script>
+
+<style scoped>
+.a-count-down {
+  flex-flow: row nowrap;
+}
+</style>
