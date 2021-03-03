@@ -26,7 +26,7 @@ export function slotSupport(VNode, children, host) {
                 }
                 let data = host;
                 path.forEach(p => data = data[p]);
-                node.children[0] = String(data);
+                node.children[0] = JSON.stringify(data);
             }
         }
 
