@@ -52,8 +52,10 @@ export default {
       if (this.data.time) {
         this.data.time -= step;
         this.timer = setTimeout(this.runTimer, step);
+        this.fire('change', this.timeData);
       } else {
         clearTimeout(this.data.timer);
+        this.fire('finish');
       }
     }
   }
