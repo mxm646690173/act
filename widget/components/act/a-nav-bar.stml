@@ -14,7 +14,7 @@
         }
       </view>
 
-      <text class="a-nav-bar__title">
+      <text class="a-nav-bar__title" :style="`font-size: ${this.props['title-size']||16}px`">
         {this.props['title']}
       </text>
 
@@ -94,7 +94,6 @@ export default {
   align-self: center;
   text-align: center;
   font-weight: 500;
-  font-size: 16px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
