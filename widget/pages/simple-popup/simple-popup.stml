@@ -78,7 +78,7 @@
     </a-popup>
 
 
-    <a-popup $show="show[3]"
+    <a-popup $show="show[3]" @close="myClose"
              closeable
              position="bottom"
              style="height: 30%;">
@@ -145,8 +145,8 @@ export default {
       this.data.position = position;
       this.data.show[index] = true;
     },
-    myClose() {
-      console.log('myClose')
+    myClose(e) {
+      console.log('myClose', JSON.stringify(e))
     },
     test() {
       return api.toast({
