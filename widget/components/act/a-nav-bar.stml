@@ -73,9 +73,19 @@ export default {
 
 
 .a-nav-bar__click-warp {
+  position: absolute;
+  height: 100%;
   flex-flow: row nowrap;
   align-items: center;
   padding: 0 16px;
+}
+
+.a-nav-bar__left {
+  left: 0;
+}
+
+.a-nav-bar__right {
+  right: 0;
 }
 
 .a-nav-bar__text {
