@@ -76,6 +76,7 @@ export default {
           )
 
       return h(APopup, {
+            ...props,
             class: `a-calendar ${props.class || ''}`,
             style: `${props.style}`, position: 'bottom',
             ['$show']: props.$show,

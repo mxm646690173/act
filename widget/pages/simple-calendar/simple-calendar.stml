@@ -131,7 +131,7 @@
     </scroll-view>
 
 
-    <a-calendar style="height: 500px;" $show="show[0]" @confirm="myConfirm"/>
+    <a-calendar style="height: 500px;" $show="show[0]" @confirm="myConfirm" @close="myClose"/>
 
     <a-calendar style="height: 500px;" $show="show[1]" $default-date="value[1]"/>
 
@@ -234,6 +234,9 @@ export default {
       }
 
       return day;
+    },
+    myClose(e) {
+      console.log('myClose', JSON.stringify(e))
     }
   }
 
