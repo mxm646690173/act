@@ -5,6 +5,9 @@ import AIcon from "./a-icon.stml";
 export default {
   name: "a-button",
   install() {
+
+    const {h} = avm;
+
     this.render = props => {
       if (!props.type) props.type = 'default';
       if (!props.size) props.size = 'normal';
@@ -16,20 +19,18 @@ export default {
         })
       }
 
-      return superNode({
-        nodeName: 'button',
-        children: props.children,
-        attributes: {
-          class: mixedClass(`a-button a-button--${props.type} a-button--${props.size}`, {
-            [`a-button--plain a-button--plain---a-button--${props.type}`]: props.plain,
-            'a-button--hairline': props.hairline,
-            'a-button--disabled': props.disabled,
-            'a-button--square': props.square,
-            'a-button--round': props.round
-          }),
-          disabled: props.disabled,
-        }
-      }, props);
+      return h('button', {
+        ...props,
+        class: mixedClass(`a-button a-button--${props.type} a-button--${props.size} ${props.class || ''}`, {
+          [`a-button--plain a-button--plain---a-button--${props.type}`]: props.plain,
+          'a-button--hairline': props.hairline,
+          'a-button--disabled': props.disabled,
+          'a-button--square': props.square,
+          'a-button--round': props.round
+        }),
+        disabled: props.disabled,
+      }, props.children);
+
     }
   }
 }
