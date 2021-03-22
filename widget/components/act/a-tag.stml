@@ -7,7 +7,6 @@ export default {
   name: "a-tag",
   install() {
     this.render = props => {
-      console.log(props)
       if (typeof props.show !== 'undefined' && props.show === false) return false;
 
       const {h} = apivm;
