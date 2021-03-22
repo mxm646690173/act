@@ -47,7 +47,7 @@ export default {
   installed() {
     api.setStatusBarStyle && api.setStatusBarStyle({
       style: 'light',
-      color: '-'
+      color: '#1989fa'
     });
 
   },

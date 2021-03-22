@@ -23,6 +23,20 @@ Vant 本身是大家所熟知的，常用的组件库。 Vant 有完整的设计
 
 ## 使用文档
 
+### 安装方式
+
+1. 检出代码
+
+~~~bash
+git clone https://github.com/apicloudcom/act.git
+~~~
+
+2. 放置组件到组件目录
+
+项目目录下的 ` /widget/components/act/ ` 文件夹即为本组件的核心代码，复制到自己项目的components目录下即可使用。
+
+### 组件详细文档
+
 详见组件内部的: [说明文档 README.md](./widget/components/act/readme.md)
 
 ## 贡献代码
