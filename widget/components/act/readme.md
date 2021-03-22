@@ -1959,7 +1959,7 @@ import AGoodsCard from "../../components/act/a-goods-card.stml";
 
 ### 自定义内容
 
-`Card` 组件提供了多个插槽，可以灵活地自定义内容。
+`GoodsCard` 组件提供了多个插槽，可以灵活地自定义内容。
 
 ```html
   <a-goods-card
