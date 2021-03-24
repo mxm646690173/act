@@ -13,6 +13,7 @@
             @click-left="onClickLeft"
             @click-right="onClickRight"
             title-size="18"
+            title-color="red"
             height="44"
         />
       </view>
@@ -21,8 +22,8 @@
         <text class="simple-title">使用插槽</text>
         <a-nav-bar title="标题" left-text="返回" left-arrow>
           <template _slot="right" class="demo-right">
-            <a-icon name="search" size="18"/>
-            <text>文本</text>
+            <a-icon name="search" color="blue" size="18"/>
+            <text style="color:green">文本</text>
           </template>
         </a-nav-bar>
       </view>
