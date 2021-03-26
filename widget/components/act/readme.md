@@ -136,7 +136,7 @@ hairline    |是否使用 0.5px 边框    |boolean    |false
 ### 引入
 
 ~~~js
-import AButton from "../../components/act/a-badge.stml";
+import ABadge from "../../components/act/a-badge.stml";
 ~~~
 
 ## 代码示例
