@@ -18,6 +18,14 @@
         />
       </view>
 
+
+      <view class="simple">
+        <text class="simple-title">不要底边线</text>
+        <text class="simple-desc">通过添加 hide-line 属性设置隐藏底边线。</text>
+        <a-nav-bar hide-line title="没有底边线"/>
+      </view>
+
+
       <view class="simple">
         <text class="simple-title">使用插槽</text>
         <a-nav-bar title="标题" left-text="返回" left-arrow>

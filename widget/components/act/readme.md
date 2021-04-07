@@ -136,7 +136,7 @@ hairline    |是否使用 0.5px 边框    |boolean    |false
 ### 引入
 
 ~~~js
-import AButton from "../../components/act/a-badge.stml";
+import ABadge from "../../components/act/a-badge.stml";
 ~~~
 
 ## 代码示例
@@ -1316,6 +1316,7 @@ export default {
 | title-size | 标题字号 | _number_ | `16` |
 | title-color | 标题颜色 | _string_ | `#000` |
 | height | 导航栏高度 | _number_ | `46` |
+| hide-line | 是否隐藏底边线 | _boolean_ | `false` |
 
 ### Slots
 

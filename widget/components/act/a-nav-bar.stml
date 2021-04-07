@@ -1,6 +1,6 @@
 <template name="a-nav-bar">
   superNode(
-  <safe-area class="a-nav-bar">
+  <safe-area :class="`a-nav-bar${!this.props['hide-line']?' a-nav-bar--line':''}`">
     <view class="a-nav-bar__content" :style="`height: ${this.props['height']||46}px`">
 
       <view class="a-nav-bar__click-warp a-nav-bar__left" _slot="left" @click="leftClick">
@@ -69,6 +69,9 @@ export default {
 
 .a-nav-bar {
   background-color: #fff;
+}
+
+.a-nav-bar--line {
   box-shadow: 1px 1px 1px #e6e6e6;
 }
 
