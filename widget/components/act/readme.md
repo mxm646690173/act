@@ -1872,6 +1872,47 @@ export default {
 </style>
 ```
 
+### 手动控制
+
+通过 ref 获取到组件实例后，可以调用 `start`、`pause`、`reset` 方法。
+
+```html
+  <a-ref name="countDown">
+    <a-count-down
+        ref="countDown"
+        :time="3000"
+        millisecond
+        :auto-start="false"
+        format="ss:SSS"
+        @finish="onFinish"/>
+  </a-ref>
+```
+
+```js
+
+import ARef from "../../components/act/a-ref.stml";
+
+export default {
+  name: "simple-count-down",
+  methods: {
+    onFinish() {
+      Toast('倒计时结束')
+    },
+    start() {
+      this.$refs.countDown.start();
+    },
+    pause() {
+      this.$refs.countDown.pause();
+    },
+    reset() {
+      this.$refs.countDown.reset();
+    }
+  }
+}
+```
+
+![image.png](https://i.loli.net/2021/04/08/RF2S6nats3VqQy4.png)
+
 ## API
 
 ### Props
@@ -1880,6 +1921,7 @@ export default {
 | ----------- | -------------------- | ------------------ | ---------- |
 | time        | 倒计时时长，单位毫秒 | _number / string_ | `0`        |
 | format      | 时间格式             | _string_           | `HH:mm:ss` |
+| auto-start  | 是否自动开始倒计时   | _boolean_          | `true`     |
 
 ### format 格式
 
@@ -1916,6 +1958,16 @@ export default {
 | minutes      | 剩余分钟               | _number_ |
 | seconds      | 剩余秒数               | _number_ |
 | milliseconds | 剩余毫秒               | _number_ |
+
+### 方法
+
+通过 ref 可以获取到 CountDown 实例并调用实例方法。
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| start | 开始倒计时 | - | - |
+| pause | 暂停倒计时 | - | - |
+| reset | 重设倒计时，若 `auto-start` 为 `true`，重设后会自动开始倒计时 | - | - |
 
 # GoodsCard 商品卡片
 
