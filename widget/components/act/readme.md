@@ -113,6 +113,7 @@ square    |是否为方形按钮    |boolean    |false
 round    |是否为圆形按钮    |boolean    |false
 disabled    |是否禁用按钮|    boolean    |false
 hairline    |是否使用 0.5px 边框    |boolean    |false
+| text | 按钮文字 | _string_ | - |
 
 ### events 事件
 
