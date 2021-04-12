@@ -123,6 +123,9 @@ export default {
   border-radius: 999px;
 }
 
+.a-button--square {
+  border-radius: 0;
+}
 
 .a-button--large {
   width: 100%;
