@@ -1,0 +1,16 @@
+<template>
+  <simple-sfc attr="abc" />
+</template>
+
+<script>
+import ANavBar from "../../components/simple-sfc/simple-sfc.stml";
+
+export default {
+  name: "demo-simple-sfc",
+  components: {ANavBar}
+}
+</script>
+
+<style scoped>
+
+</style>
