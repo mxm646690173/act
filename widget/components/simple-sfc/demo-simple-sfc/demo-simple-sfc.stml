@@ -1,13 +1,13 @@
 <template>
-  <simple-sfc attr="abc" />
+  <simple-sfc attr="abc"/>
 </template>
 
 <script>
-import ANavBar from "../../components/simple-sfc/simple-sfc.stml";
+import SimpleSfc from "../../components/simple-sfc/simple-sfc.stml";
 
 export default {
   name: "demo-simple-sfc",
-  components: {ANavBar}
+  components: {SimpleSfc}
 }
 </script>
 
