@@ -51,6 +51,8 @@ AVM 组件包需要尽可能能支持多端运行，包含 STML（或者是 JS �
 
 1.0.3. 本文档同目录附带一个 zip 参考示例。
 
+ ` 下载地址 ` https://github.com/apicloudcom/act/blob/main/widget/components/simple-sfc.zip
+
 ##### 1.1. 组件包最佳实践
 
 1.1.1. 应尽可能的确保组件的轻量，避免引入大的外部样式表、字体文件等外部资源
