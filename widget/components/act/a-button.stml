@@ -29,7 +29,7 @@ export default {
           'a-button--round': props.round
         }),
         disabled: props.disabled,
-      }, props.children);
+      }, props.text, props.children);
 
     }
   }
@@ -123,6 +123,9 @@ export default {
   border-radius: 999px;
 }
 
+.a-button--square {
+  border-radius: 0;
+}
 
 .a-button--large {
   width: 100%;

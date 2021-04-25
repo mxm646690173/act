@@ -59,6 +59,35 @@
         </view>
 
       </view>
+
+
+      <view class="simple">
+        <text class="simple-title">手动控制</text>
+        <text class="simple-desc">
+          通过 ref 获取到组件实例后，可以调用 start、pause、reset 方法。
+        </text>
+
+
+        <view class="demo-row">
+          <a-ref name="countDown">
+            <a-count-down
+                ref="countDown"
+                :time="3000"
+                millisecond
+                :auto-start="false"
+                format="ss:SSS"
+                @finish="onFinish"/>
+          </a-ref>
+        </view>
+
+        <a-grid column-num="3" style="margin-top: 10px;" gutter="10">
+          <a-grid-item text="开始" icon="play-circle" @click="start"/>
+          <a-grid-item text="暂停" icon="pause-circle" @click="pause"/>
+          <a-grid-item text="重置" icon="refresh" @click="reset"/>
+        </a-grid>
+      </view>
+
+
     </scroll-view>
   </view>
 </template>
@@ -66,13 +95,31 @@
 <script>
 import ANavBar from "../../components/act/a-nav-bar.stml";
 import ACountDown from "../../components/act/a-count-down.stml";
+import ARef from "../../components/act/a-ref.stml";
+import {Toast} from "../../components/act";
+import AGrid from "../../components/act/a-grid.stml";
+import AGridItem from "../../components/act/a-grid-item.stml";
 
 export default {
   name: "simple-count-down",
-  components: {ACountDown, ANavBar},
+  components: {AGridItem, AGrid, ARef, ACountDown, ANavBar},
   data() {
     return {
       time: Array.from({length: 5}).fill(30 * 60 * 60 * 1000)
+    }
+  },
+  methods: {
+    onFinish() {
+      Toast('倒计时结束')
+    },
+    start() {
+      this.$refs.countDown.start();
+    },
+    pause() {
+      this.$refs.countDown.pause();
+    },
+    reset() {
+      this.$refs.countDown.reset();
     }
   }
 }

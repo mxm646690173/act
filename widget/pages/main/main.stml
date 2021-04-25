@@ -117,6 +117,14 @@
         </view>
       </a-link>
 
+      <a-link to="simple-grid">
+        <view class="link">
+          <text class="com-name">Grid 宫格</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
+
+
       <view style="height: 36px;">
 
       </view>

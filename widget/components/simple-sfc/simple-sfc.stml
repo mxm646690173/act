@@ -1,5 +1,7 @@
 <template>
-  <text>Hello SFC</text>
+  <view class="simple-sfc">
+    <text class="simple-sfc__text">Hello SFC</text>
+  </view>
 </template>
 
 <script>
@@ -10,7 +12,11 @@ export default {
 </script>
 
 <style scoped>
-.sfc {
+.simple-sfc {
+
+}
+
+.simple-sfc__text {
 
 }
 </style>

@@ -19,21 +19,20 @@ export default {
             style: `${props.style || ''}`,
             _slot: 'default'
           },
-
-
           h('text', {
                 class: 'a-count-down__text'
               },
               this.timeStr
           ))
-
           , props.children, this
       );
     }
   },
   installed() {
     this.data.time = this.props.time || 0;
-    this.runTimer();
+    if (this.props['auto-start'] !== false) {
+      this.start();
+    }
   },
 
   computed: {
@@ -47,16 +46,31 @@ export default {
   },
 
   methods: {
-    runTimer() {
+    start() {
+      if (this.timer || this.data.time === 0) return;
       const step = this.props.millisecond ? 1 : 1000;
-      if (this.data.time) {
+
+      const _run = () => {
         this.data.time -= step;
-        this.timer = setTimeout(this.runTimer, step);
-        this.fire('change', this.timeData);
-      } else {
-        clearTimeout(this.data.timer);
-        this.fire('finish');
+        if (this.data.time) {
+          this.timer = setTimeout(_run, step);
+          this.fire('change', this.timeData);
+        } else {
+          this.pause();
+          this.fire('finish');
+        }
       }
+
+      _run();
+
+    },
+    pause() {
+      clearTimeout(this.timer);
+      this.timer = false;
+    },
+    reset() {
+      this.pause();
+      this.data.time = this.props.time || 0;
     }
   }
 }
