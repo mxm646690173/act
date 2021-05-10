@@ -2195,7 +2195,6 @@ import AGridItem from "../../components/act/a-grid-item.stml";
 | icon-size | 图标大小，默认单位为`px` | _number \| string_ | `28px` |
 | gutter | 格子之间的间距，默认单位为`px` | _number \| string_ | `0` |
 | border | 是否显示边框 | _boolean_ | `true` |
-| center | 是否将格子内容居中显示 | _boolean_ | `true` |
 | square | 是否将格子固定为正方形 | _boolean_ | `false` |
 | direction | 格子内容排列的方向，可选值为 `horizontal` | _string_ | `vertical` |
 
@@ -2209,6 +2208,7 @@ import AGridItem from "../../components/act/a-grid-item.stml";
 | badge | 图标右上角徽标的内容 | _number \| string_ | - |
 | url | 点击后跳转的链接地址 | _string_ | - |
 | to | 点击后跳转的目标路由对象 | _string \| object_ | - |
+| center | 是否将格子内容居中显示 | _boolean_ | `true` |
 
 ### GridItem Events
 
