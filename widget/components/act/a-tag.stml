@@ -12,6 +12,7 @@ export default {
       const {h} = apivm;
 
       const attr = {
+        ...props,
         class: mixedClass(`a-tag a-tag--${props.type || 'default'} ${props.class || ''}`, {
           [`a-tag--plain a-tag--plain---a-tag--${props.type}`]: props.plain,
           'a-tag--round': props.round,
