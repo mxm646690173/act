@@ -61,8 +61,13 @@ export function slotSupport(VNode, children, host) {
     const dfs = (node) => {
         if (node.attributes && node.attributes._slot) {
             if (slots[node.attributes._slot]) {
-                node.children = slots[node.attributes._slot].children;
-                node.attributes = Object.assign(slots[node.attributes._slot].attributes, node.attributes);
+                if (node.attributes._slot === 'default') {
+                    node.children = [...node.children, ...slots[node.attributes._slot]];
+                } else {
+                    node.children = slots[node.attributes._slot].children;
+                    node.attributes = Object.assign(slots[node.attributes._slot].attributes, node.attributes);
+                }
+
             }
             // delete node.attributes._slot;
         } else if (Array.isArray(node.children) && node.children.length) {
