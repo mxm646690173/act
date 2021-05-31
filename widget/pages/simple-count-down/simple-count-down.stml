@@ -93,12 +93,12 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import ACountDown from "../../components/act/a-count-down.stml";
-import ARef from "../../components/act/a-ref.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import ACountDown from "../../components/act/a-count-down";
+import ARef from "../../components/act/a-ref";
 import {Toast} from "../../components/act";
-import AGrid from "../../components/act/a-grid.stml";
-import AGridItem from "../../components/act/a-grid-item.stml";
+import AGrid from "../../components/act/a-grid";
+import AGridItem from "../../components/act/a-grid-item";
 
 export default {
   name: "simple-count-down",

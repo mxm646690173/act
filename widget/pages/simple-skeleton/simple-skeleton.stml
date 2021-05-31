@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import "../../components/act/a-nav-bar.stml";
-import "../../components/act/a-skeleton/a-skeleton.stml";
+import "../../components/act/a-nav-bar";
+import "../../components/act/a-skeleton";
 
 export default {
   name: "simple-skeleton",

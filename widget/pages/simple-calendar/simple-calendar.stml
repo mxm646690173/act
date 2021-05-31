@@ -167,11 +167,11 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import ACellGroup from "../../components/act/a-cell-group.stml";
-import ACell from "../../components/act/a-cell.stml";
-import ACalendar from "../../components/act/a-calendar.stml";
-import APopup from "../../components/act/a-popup.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import ACellGroup from "../../components/act/a-cell-group";
+import ACell from "../../components/act/a-cell";
+import ACalendar from "../../components/act/a-calendar";
+import APopup from "../../components/act/a-popup";
 import {Toast} from "../../components/act";
 
 export default {
