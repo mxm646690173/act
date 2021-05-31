@@ -94,7 +94,7 @@
 
         <a-grid :column-num="2">
           <a-grid-item icon="home" text="路由跳转" to="simple-button"/>
-          <a-grid-item icon="search" text="URL 跳转" url="../simple-button/simple-button.stml"/>
+          <a-grid-item icon="search" text="URL 跳转" url="../simple-button/simple-button"/>
         </a-grid>
 
       </view>
@@ -117,9 +117,9 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import AGrid from "../../components/act/a-grid.stml";
-import AGridItem from "../../components/act/a-grid-item.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import AGrid from "../../components/act/a-grid";
+import AGridItem from "../../components/act/a-grid-item";
 
 export default {
   name: "simple-grid",

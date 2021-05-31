@@ -65,10 +65,10 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import AGoodsCard from "../../components/act/a-goods-card.stml";
-import ATag from "../../components/act/a-tag.stml";
-import AButton from "../../components/act/a-button.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import AGoodsCard from "../../components/act/a-goods-card";
+import ATag from "../../components/act/a-tag";
+import AButton from "../../components/act/a-button";
 
 export default {
   name: "simple-goods-card",

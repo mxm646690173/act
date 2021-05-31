@@ -71,7 +71,7 @@
         </text>
 
         <a-cell-group>
-          <a-cell title="URL 跳转" is-link url="../simple-button/simple-button.stml"/>
+          <a-cell title="URL 跳转" is-link url="../simple-button/simple-button"/>
           <a-cell title="路由跳转" is-link to="simple-button"/>
         </a-cell-group>
       </view>
@@ -142,10 +142,7 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import ACellGroup from "../../components/act/a-cell-group.stml";
-import ACell from "../../components/act/a-cell.stml";
-import ATag from "../../components/act/a-tag.stml";
+import {ANavBar, ACell, ATag, ACellGroup} from "../../components/act";
 
 export default {
   name: "simple-cell",

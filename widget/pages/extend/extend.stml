@@ -21,9 +21,9 @@
 
 <script>
 
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import ALink from "../../components/act/a-link.stml";
-import AIcon from "../../components/act/a-icon.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import ALink from "../../components/act/a-link";
+import AIcon from "../../components/act/a-icon";
 
 export default {
   name: "extend",

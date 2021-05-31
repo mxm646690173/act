@@ -130,8 +130,8 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import AStepper from "../../components/act/a-stepper.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import AStepper from "../../components/act/a-stepper";
 import {Toast} from "../../components/act";
 
 export default {

@@ -76,8 +76,8 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import AIcon from "../../components/act/a-icon.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import AIcon from "../../components/act/a-icon";
 
 export default {
   name: "simple-icon",
