@@ -1,5 +1,5 @@
 <widget id="A6166334630499" version="0.0.1">
     <name>ACT</name>
-    <preference name="avm" value="true"/>
+    <preference name="windowBackground" value="#fff" />
     <content src="app.json"/>
 </widget>

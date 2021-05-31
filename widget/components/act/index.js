@@ -131,6 +131,9 @@ export function linkTo(to, title) {
         if (to.endsWith('.stml')) {
             options.name = title || to.split('/').pop().replace('.stml', '');
             options.url = to;
+        } else if (to.endsWith('.js')) {
+            options.name = title || to.split('/').pop().replace('.js', '');
+            options.url = to;
         } else {
             options.name = title || to;
             options.url = `../${to}/${to}.stml`;

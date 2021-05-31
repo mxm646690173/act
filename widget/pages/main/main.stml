@@ -94,9 +94,21 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+      <a-link to="simple-divider">
+        <view class="link">
+          <text class="com-name">Divider 分割线</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-empty">
         <view class="link">
           <text class="com-name">Empty 空状态</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
+      <a-link to="simple-skeleton">
+        <view class="link">
+          <text class="com-name">Skeleton 骨架屏</text>
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
