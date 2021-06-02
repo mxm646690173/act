@@ -46,7 +46,11 @@ export default {
                 })
               }, props.label))
               :
-              h('view', {class: 'a-cell__title', style: ' flex-direction: row;flex:1;', _slot: 'title'}),
+              isField ? null : h('view', {
+                class: 'a-cell__title',
+                style: ' flex-direction: row;flex:1;',
+                _slot: 'title'
+              }),
           h('text', {
             class: mixedClass('a-cell__value', {
               'a-cell__value--alone': !props.title
