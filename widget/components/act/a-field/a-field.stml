@@ -121,6 +121,7 @@ export default {
   line-height: 24px;
   width: 100%;
   flex-shrink: 0;
+  background: transparent;
 }
 
 .a-field--disabled {
