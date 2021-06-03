@@ -154,5 +154,6 @@ export default {
 
 .a-tabs__pane {
   flex: 1;
+  padding: 24px 20px;
 }
 </style>
