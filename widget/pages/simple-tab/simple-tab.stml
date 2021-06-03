@@ -1,0 +1,78 @@
+<template>
+  <view class="page">
+    <a-nav-bar title="simple-tab" left-arrow/>
+    <scroll-view style="flex: 1;" scroll-y>
+
+
+      <view class="simple">
+        <text class="simple-title">
+          基本用法 {active}
+        </text>
+
+        <text class="simple-desc">
+          通过 $active 绑定当前激活标签对应的索引值，默认情况下启用第一个标签。
+        </text>
+
+        <a-tabs $active="active">
+          <a-tab title="标签 1">
+            <text>内容 1</text>
+          </a-tab>
+          <a-tab title="标签 2">
+            <text>内容 2</text>
+          </a-tab>
+          <a-tab title="标签 3">
+            <text>内容 3</text>
+          </a-tab>
+          <a-tab title="标签 4">
+            <text>内容 4</text>
+          </a-tab>
+        </a-tabs>
+
+
+      </view>
+
+    </scroll-view>
+  </view>
+</template>
+
+<script>
+import "../../components/act/a-nav-bar";
+import ATabs from "../../components/act/a-tabs";
+import ATab from "../../components/act/a-tab";
+
+export default {
+  name: "simple-tab",
+  components: {ATabs, ATab},
+  data() {
+    return {
+      active: 2
+    }
+  }
+}
+</script>
+
+<style scoped>
+.page {
+  height: 100%;
+  flex: 1;
+  background-color: #F8F8F8;
+}
+
+
+.simple {
+  padding-bottom: 28px;
+}
+
+.simple-title {
+  margin: 16px;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.simple-desc {
+  color: #999;
+  font-size: 14px;
+  margin: 0 16px 16px;
+}
+
+</style>

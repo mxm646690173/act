@@ -1,0 +1,92 @@
+<script>
+import {syncModel} from "../utils";
+
+export default {
+  name: 'a-tabs',
+  data() {
+    return {
+      current: 0
+    }
+  },
+  install() {
+    const ns = 'a-tabs';
+    syncModel.call(this);
+
+    this.current = this.$model.active();
+
+    this.render = props => {
+      return h('view', {class: `${ns}`},
+          h('view', {class: `${ns}__wrap`},
+              props.children.map((child, index) =>
+                  h('text', {
+                    class: `${ns}__nav ${this.current === index ? ns + '__nav--active' : ns + '__nav--normal'}`,
+                    onclick: this.onclick.bind(this, index)
+                  }, child.attributes.title))
+          ),
+          h('swiper', {
+                class: `${ns}__content`,
+                onchange: this.onchange,
+                current: this.current
+              },
+              props.children.map((child, index) => h('swiper-item', {
+                class: `${ns}__pane`
+              }, child))
+          )
+      )
+    };
+  },
+
+  onchange({detail: {current}}) {
+    this.fire('onchange', {current, type: 'swiper'});
+    this.current = current;
+    this.$model.active(current);
+  }
+  ,
+  onclick(current) {
+    this.fire('onchange', {current, type: 'click'});
+    this.current = current;
+    this.$model.active(current);
+  }
+}
+</script>
+
+<style>
+
+.a-tabs {
+  background: #FFF;
+}
+
+.a-tabs__wrap {
+  flex-flow: row nowrap;
+  height: 44px;
+  align-items: center;
+}
+
+.a-tabs__nav {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  height: 44px;
+  line-height: 44px;
+}
+
+.a-tabs__nav--normal {
+  color: #666;
+  font-weight: normal;
+}
+
+.a-tabs__nav--active {
+  color: #333;
+  font-weight: bold;
+}
+
+.a-tabs__content {
+  flex: 1;
+  height: 200px;
+}
+
+.a-tabs__pane {
+  flex: 1;
+  height: 200px;
+}
+</style>
