@@ -1,5 +1,5 @@
 <template>
-  {!('loading' in this.props && !this.props.loading) && 
+  {(this.props.loading && 
   <view class="a-skeleton">
     {this.props.avatar && <view class={avatarClass} style={avatarStyle}/>}
     <view style="flex:1">
@@ -10,7 +10,7 @@
       </view>
       }
     </view>
-  </view>
+  </view>) || this.getChildNode()
   }
 </template>
 
@@ -23,17 +23,12 @@ export default {
   name: "a-skeleton",
   data() {
     return {
-      loading: true
     }
   },
   computed: {
     rows() {
-      let row = this.props.row || 0
-      let rows = [];
-      for (let i = 0; i < row; i++) {
-        rows.push('');
-      }
-      return rows;
+      let row = this.props.row || 0;
+      return Array.from({length: row}).fill('');
     },
     avatarClass() {
       return 'a-skeleton_avatar ' + (this.props['avatar-shape'] == 'square' ? '' : 'a-skeleton_round');
@@ -47,7 +42,13 @@ export default {
       return titleWidth ? `width:${titleWidth};` : '';
     }
   },
+  beforeRender() {
+    if (!('loading' in this.props)) this.props.loading = true;
+  },
   methods:{
+    getChildNode(){
+      return this.props.children.length > 0 ? this.props.children[0] : null;
+    },
     getRowStyle(index) {
       return `width:${this.getRowWidth(index)};`;
     },

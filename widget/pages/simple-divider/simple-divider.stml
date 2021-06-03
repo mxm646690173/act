@@ -12,26 +12,26 @@
       <view class="simple">
         <text class="simple-title">展示文本</text>
 
-        <a-divider text="文本"/>
+        <a-divider content="文本"/>
       </view>
 
       <view class="simple">
         <text class="simple-title">内容位置</text>
 
-        <a-divider text="文本" content-position="left"/>
-        <a-divider text="文本" content-position="right"/>
+        <a-divider content="文本" content-position="left"/>
+        <a-divider content="文本" content-position="right"/>
       </view>
 
       <view class="simple">
         <text class="simple-title">虚线</text>
 
-        <a-divider dashed text="文本"/>
+        <a-divider dashed content="文本"/>
       </view>
 
       <view class="simple">
         <text class="simple-title">自定义样式</text>
 
-        <a-divider style="padding:0 16px;" color="#1989fa" lineColor="#1989fa" text="文本"/>
+        <a-divider style="padding:0 16px;" color="#1989fa" line-color="#1989fa" content="文本"/>
       </view>
 
     </scroll-view>

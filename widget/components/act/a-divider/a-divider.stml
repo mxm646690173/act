@@ -1,9 +1,9 @@
 <template>
   {
-    this.props.text ? 
+    this.props.content ? 
     <view class={boxClass} style={this.props.style || ''}>
       <view class={this.lineClass('left')} style={lineStyle}></view>
-      <text class="a-divider_text" style={textStyle}>{this.props.text}</text>
+      <text class="a-divider_text" style={textStyle}>{this.props.content}</text>
       <view class={this.lineClass('right')} style={lineStyle}></view>
     </view>
     :
@@ -21,7 +21,7 @@ export default {
       return `a-divider ${this.props.class||''}`;
     },
     lineStyle(){
-      return this.props.lineColor?`border-top-color:${this.props.lineColor};`:'';
+      return this.props['line-color']?`border-top-color:${this.props['line-color']};`:'';
     },
     textStyle(){
       return this.props.color?`color:${this.props.color};`:'';

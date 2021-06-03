@@ -21,10 +21,12 @@ export default {
         this.data.value = this.$model.value();
       }
 
+      const inputAlign = this.props['input-align'];
       const attr = {
         value: this.data.value,
-        class: mixedClass('a-field__control', {'a-field__control--error': props.error}),
+        class: mixedClass('a-field__control', {'a-field__control--error': props.error, 'a-field__control-center':inputAlign=='center', 'a-field__control-right':inputAlign=='right'}),
         onInput: this.handleOnInput,
+        onConfirm: this.handleOnConfirm,
         placeholder: props.placeholder,
         type: props.type === 'password' ? 'password' : 'text',
         'keyboard-type': props.type || 'default',
@@ -32,7 +34,9 @@ export default {
         onfocus: this.handleOnFocus,
         onblur: this.handleOnBlur,
         maxlength: props.maxlength,
-        autofocus: props.autofocus,
+      }
+      if (props.autofocus) {
+        attr.autofocus = true;
       }
 
       if (props.type === 'password') { //安卓端支持
@@ -71,7 +75,7 @@ export default {
           ),
           (props['clearable'] && this.data.value && this.data.isFocus && h('template', {
             _slot: 'right-icon',
-            onClick: _ => this.onClean(_)
+            onClick: _ => this.onClear(_)
           }, h(AIcon, {
             name: 'delete-filling', color: '#c8c9cc'
           }))) || (props['right-icon'] && h('template', {_slot: 'right-icon'}, h(AIcon, {
@@ -86,8 +90,11 @@ export default {
       this.setValue(value, 'input');
     }
   },
-  onClean(_) {
-    this.setValue('', 'clean');
+  handleOnConfirm(e) {
+    this.fire('confirm', e.detail);
+  },
+  onClear(_) {
+    this.setValue('', 'clear');
   },
   handleOnFocus(_) {
     this.data.isFocus = true;
@@ -127,6 +134,14 @@ export default {
 .a-field--disabled {
   cursor: not-allowed;
   opacity: 0.3;
+}
+
+.a-field__control-center {
+  text-align: center;
+}
+
+.a-field__control-right {
+  text-align: right;
 }
 
 .a-field__control--error {

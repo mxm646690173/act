@@ -75,13 +75,22 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+      <a-link to="simple-search">
+        <view class="link">
+          <text class="com-name">Search 搜索</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-stepper">
         <view class="link">
           <text class="com-name">Stepper 步进器</text>
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+
+
       <text class="title">展示组件</text>
+
       <a-link to="simple-badge">
         <view class="link">
           <text class="com-name">Badge 徽标</text>
@@ -115,6 +124,16 @@
       <a-link to="simple-tag">
         <view class="link">
           <text class="com-name">Tag 标签</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
+
+
+      <text class="title">反馈组件</text>
+
+      <a-link to="simple-share-sheet">
+        <view class="link">
+          <text class="com-name">ShareSheet 分享面板</text>
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
