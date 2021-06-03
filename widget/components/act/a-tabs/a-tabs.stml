@@ -45,7 +45,7 @@ export default {
   },
 
   onchange({detail: {current}}) {
-    this.fire('onchange', {current, type: 'swiper'});
+    this.fire('change', {current, type: 'swiper'});
     this.current = current;
     this.$model.active = current;
 
@@ -58,7 +58,7 @@ export default {
   onclick(current) {
 
     const _run = () => {
-      this.fire('onchange', {current, type: 'click'});
+      this.fire('change', {current, type: 'click'});
       this.current = current;
       this.$model.active = current;
     }

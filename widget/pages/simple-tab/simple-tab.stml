@@ -59,7 +59,7 @@
           Tab 支持两种样式风格：line 和card，默认为 line 样式，可以通过 type 属性切换样式风格。
         </text>
 
-        <a-tabs type="card">
+        <a-tabs type="card" onchange={this.onchange}>
           <a-tab title="标签 1">
             <text>内容 1</text>
           </a-tab>
@@ -111,7 +111,9 @@ export default {
     }
   },
   methods: {
-    onClick: (name, title) => Toast(`${name}已被禁用`),
+    onchange(e) {
+      console.log(JSON.stringify(e))
+    },
     beforeChange(index) {
       console.log('beforeChange')
       // 返回 false 表示阻止此次切换
