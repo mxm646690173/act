@@ -52,6 +52,25 @@
 
       </view>
 
+
+      <view class="simple">
+        <text class="simple-title">
+          禁用标签
+        </text>
+
+        <text class="simple-desc">
+          设置 disabled 属性即可禁用标签，如果需要监听禁用标签的点击事件，可以在 a-tabs 上监听disabled 事件。
+        </text>
+
+        <a-tabs @disabled="onClickDisabled">
+          <a-tab title="标签 1">内容 1</a-tab>
+          <a-tab title="标签 2" disabled>内容 2</a-tab>
+          <a-tab title="标签 3">内容 3</a-tab>
+        </a-tabs>
+
+
+      </view>
+
     </scroll-view>
   </view>
 </template>
@@ -60,6 +79,7 @@
 import "../../components/act/a-nav-bar";
 import ATabs from "../../components/act/a-tabs";
 import ATab from "../../components/act/a-tab";
+import Toast from '../../components/act/a-toast';
 
 export default {
   name: "simple-tab",
@@ -68,6 +88,9 @@ export default {
     return {
       active: [2, 0]
     }
+  },
+  methods: {
+    onClickDisabled: (name, title) => Toast(`${name}已被禁用`)
   }
 }
 </script>

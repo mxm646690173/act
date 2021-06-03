@@ -15,8 +15,8 @@ export default {
     this.render = props => {
       const {h} = apivm;
       syncModel.call(this);
-      if (this.$model.value && this.$model.value()) {
-        this.data.value = this.reviseValue(this.$model.value());
+      if (this.$model.value) {
+        this.data.value = this.reviseValue(this.$model.value);
       }
 
       const [isMin, isMax] = this.range;
@@ -76,7 +76,7 @@ export default {
     const _run = () => {
       value = this.reviseValue(Number(value));
       const {fire, $model, data} = this;
-      $model.value && $model.value(value);
+      $model.value = value;
       fire('change', {value, type});
       data.value = value;
     }
