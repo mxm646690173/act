@@ -11,27 +11,23 @@ export default {
   install() {
     const ns = 'a-tabs';
     syncModel.call(this);
-
     this.breakpoint = this.props.breakpoint || 5;
-
     this.current = this.$model.active || 0;
 
-
     const isScroll = this.props.children.length > this.breakpoint;
-
     const navCls = ns + '__nav--' + (isScroll ? 'scroll' : 'flat');
 
-    this.render = props => {
-
-      return h('view', {class: `${ns}`},
+    this.render = (props) => {
+      const {type = 'line'} = props;
+      return h('view', {class: `${ns} ${ns}--${type} ${props.class || ''}`, style: props.style},
           h(isScroll ? 'scroll-view' : 'view', {
-                class: `${ns}__wrap`,
+                class: `${ns}__wrap  ${ns}__wrap--${type} `,
                 'scroll-x': true,
                 'scroll-y': false
               },
               props.children.map((child, index) =>
                   h('text', {
-                    class: `${ns}__nav ${navCls} ${parseInt(this.current) === index ? ns + '__nav--active' : ns + '__nav--normal'}`,
+                    class: `${ns}__nav ${navCls}  ${ns}__nav--${type} ${ns}__nav--${type}--${index === props.children.length - 1 ? 'last' : 'not-last'} ${parseInt(this.current) === index ? ns + '__nav--active--' + type : ns + '__nav--normal--' + type}`,
                     onclick: this.onclick.bind(this, index)
                   }, child.attributes.title))
           ),
@@ -75,21 +71,43 @@ export default {
 
 <style>
 
-.a-tabs {
+.a-tabs--line {
   background: #FFF;
+}
+
+.a-tabs--card {
+  background: transparent;
 }
 
 .a-tabs__wrap {
   flex-flow: row nowrap;
-  height: 44px;
   align-items: center;
+}
+
+.a-tabs__wrap--line {
+  height: 44px;
+}
+
+.a-tabs__wrap--card {
+  height: 32px;
+  margin: 0 16px;
+  border: 1px solid #ee0a24;
+  border-radius: 2px;
 }
 
 .a-tabs__nav {
   text-align: center;
   font-size: 14px;
+}
+
+.a-tabs__nav--line {
   height: 44px;
   line-height: 44px;
+}
+
+.a-tabs__nav--card {
+  height: 30px;
+  line-height: 30px;
 }
 
 .a-tabs__nav--scroll {
@@ -100,14 +118,33 @@ export default {
   flex: 1;
 }
 
-.a-tabs__nav--normal {
+.a-tabs__nav--normal--line {
   color: #666;
   font-weight: normal;
 }
 
-.a-tabs__nav--active {
+.a-tabs__nav--active--line {
   color: #333;
   font-weight: bold;
+}
+
+.a-tabs__nav--normal--card {
+  color: #ee0a24;
+  background-color: #fff;
+}
+
+.a-tabs__nav--active--card {
+  color: #fff;
+  background-color: #ee0a24;
+  border-right: none;
+}
+
+.a-tabs__nav--card--last {
+  border-right: none;
+}
+
+.a-tabs__nav--card--not-last {
+  border-right: 1px solid #ee0a24;
 }
 
 .a-tabs__content {
