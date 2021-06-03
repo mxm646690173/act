@@ -12,14 +12,26 @@ export default {
     const ns = 'a-tabs';
     syncModel.call(this);
 
-    this.current = this.$model.active();
+    this.breakpoint = this.props.breakpoint || 5;
+
+    this.current = this.$model.active() || 0;
+
+
+    const isScroll = this.props.children.length > this.breakpoint;
+
+    const navCls = ns + '__nav--' + (isScroll ? 'scroll' : 'flat');
 
     this.render = props => {
+
       return h('view', {class: `${ns}`},
-          h('view', {class: `${ns}__wrap`},
+          h(isScroll ? 'scroll-view' : 'view', {
+                class: `${ns}__wrap`,
+                'scroll-x': true,
+                'scroll-y': false
+              },
               props.children.map((child, index) =>
                   h('text', {
-                    class: `${ns}__nav ${this.current === index ? ns + '__nav--active' : ns + '__nav--normal'}`,
+                    class: `${ns}__nav ${navCls} ${parseInt(this.current) === index ? ns + '__nav--active' : ns + '__nav--normal'}`,
                     onclick: this.onclick.bind(this, index)
                   }, child.attributes.title))
           ),
@@ -40,12 +52,23 @@ export default {
     this.fire('onchange', {current, type: 'swiper'});
     this.current = current;
     this.$model.active(current);
+
+    console.log([current, this.breakpoint])
+    if (current >= this.breakpoint - 1) {
+      this.setNavPos();
+    }
   }
   ,
   onclick(current) {
     this.fire('onchange', {current, type: 'click'});
     this.current = current;
     this.$model.active(current);
+  }
+  ,
+  setNavPos() {
+    api.toast({
+      msg: '调整Nav位置逻辑等待外形查询功能后完善'
+    })
   }
 }
 </script>
@@ -63,11 +86,18 @@ export default {
 }
 
 .a-tabs__nav {
-  flex: 1;
   text-align: center;
   font-size: 14px;
   height: 44px;
   line-height: 44px;
+}
+
+.a-tabs__nav--scroll {
+  padding: 0 15px;
+}
+
+.a-tabs__nav--flat {
+  flex: 1;
 }
 
 .a-tabs__nav--normal {
@@ -82,11 +112,10 @@ export default {
 
 .a-tabs__content {
   flex: 1;
-  height: 200px;
+  min-height: 100px;
 }
 
 .a-tabs__pane {
   flex: 1;
-  height: 200px;
 }
 </style>

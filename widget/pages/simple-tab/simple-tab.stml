@@ -6,14 +6,14 @@
 
       <view class="simple">
         <text class="simple-title">
-          基本用法 {active}
+          基本用法 {active[0]}
         </text>
 
         <text class="simple-desc">
           通过 $active 绑定当前激活标签对应的索引值，默认情况下启用第一个标签。
         </text>
 
-        <a-tabs $active="active">
+        <a-tabs $active="active[0]">
           <a-tab title="标签 1">
             <text>内容 1</text>
           </a-tab>
@@ -26,6 +26,27 @@
           <a-tab title="标签 4">
             <text>内容 4</text>
           </a-tab>
+        </a-tabs>
+
+
+      </view>
+
+
+      <view class="simple">
+        <text class="simple-title">
+          标签栏滚动
+        </text>
+
+        <text class="simple-desc">
+          标签数量超过 5 个时，标签栏可以在水平方向上滚动，切换时会自动将当前标签居中。
+        </text>
+
+        <a-tabs $active="active[1]">
+          {Array.from({ length:8 },( _ , i ) => i + 1 ).map( i =>
+          <a-tab title={`标签 ${i}`}>
+            <text>内容 {i}</text>
+          </a-tab>
+          )}
         </a-tabs>
 
 
@@ -45,7 +66,7 @@ export default {
   components: {ATabs, ATab},
   data() {
     return {
-      active: 2
+      active: [2, 0]
     }
   }
 }
