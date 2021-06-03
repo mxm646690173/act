@@ -56,9 +56,24 @@ export default {
   }
   ,
   onclick(current) {
-    this.fire('onchange', {current, type: 'click'});
-    this.current = current;
-    this.$model.active = current;
+
+    const _run = () => {
+      this.fire('onchange', {current, type: 'click'});
+      this.current = current;
+      this.$model.active = current;
+    }
+
+    if (this.props['before-change']) {
+
+      const result = this.props['before-change'](current);
+
+      const __run = _ => _ && _run()
+
+      result.then ? result.then(__run) : __run(result);
+    } else {
+      _run();
+    }
+
   }
   ,
   setNavPos() {
