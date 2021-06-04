@@ -17,8 +17,8 @@ export default {
       const {h} = apivm;
 
 
-      if (this.$model.value && this.$model.value()) {
-        this.data.value = this.$model.value();
+      if (this.$model.value) {
+        this.data.value = this.$model.value;
       }
 
       const inputAlign = this.props['input-align'];
@@ -106,7 +106,7 @@ export default {
   },
   setValue(value, type) {
     const {fire, $model, data} = this;
-    $model.value && $model.value(value);
+    $model.value = value;
     fire(type, {value});
     data.value = value;
   }

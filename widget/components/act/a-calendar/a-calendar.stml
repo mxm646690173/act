@@ -208,9 +208,9 @@ export default {
     ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
     const {props, fire, $model, data} = this;
     const result = props.type === 'single' ? data.selectDay[0] : data.selectDay;
-    $model['show'](false);
+    $model.show = false;
     fire('confirm', result);
-    $model['default-date'] && $model['default-date'](result);
+    $model['default-date'] = result;
   },
   getDayInfo(date) {
     const {props, data} = this;

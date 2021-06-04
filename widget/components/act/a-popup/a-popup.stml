@@ -11,7 +11,7 @@ export default {
 
     this.render = props => {
       const {h, extractClass} = apivm;
-      return this.$model.show() && h('view', {
+      return this.$model.show && h('view', {
             ...extractClass(props, `a-popup__overlay`),
             onClick: _ => this.handleClose(_, 'overlay')
           },
@@ -32,7 +32,7 @@ export default {
   },
   handleClose(ev, type) {
     ev.stopPropagation ? ev.stopPropagation() : ev.cancelBubble = true;
-    this.$model.show(false);
+    this.$model.show = false;
     this.fire('close', {type});
   }
 }

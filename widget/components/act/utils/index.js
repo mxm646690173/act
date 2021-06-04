@@ -181,9 +181,15 @@ export function syncModel() {
             let data = _host.data;
             const lastKey = path.pop();
             path.forEach(p => data = data[p]);
-            $model[k.substr(1)] = value => {
-                return value === undefined ? data[lastKey] : data[lastKey] = value;
-            };
+            // $model[k.substr(1)] = value => {
+            //     return value === undefined ? data[lastKey] : data[lastKey] = value;
+            // };
+
+            Object.defineProperty($model, k.substr(1), {
+                get: () => data[lastKey],
+                set: v => data[lastKey] = v
+            })
+
         }
     });
     this.$model = $model;
