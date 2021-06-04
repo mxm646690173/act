@@ -32,7 +32,12 @@
             <a-icon name="arrow-right"/>
           </view>
         </a-link>
-
+        <a-link to="simple-iconfont">
+          <view class="link">
+            <text class="com-name">Iconfont 图标解决方案</text>
+            <a-icon name="arrow-right"/>
+          </view>
+        </a-link>
 
         <view class="link" onClick={_=>api.toast({msg:"该组件请暂时使用引擎提供的基础组件代替"})}>
           <text class="com-name">Image 图片</text>
