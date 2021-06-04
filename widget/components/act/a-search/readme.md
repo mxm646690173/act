@@ -21,6 +21,8 @@ $value 用于控制搜索框中的文字，placeholder 设置搜索框占位文�
 <a-search $value="value1" :placeholder="placeholder" />
 ```
 
+![](https://docs.apicloud.com/act/search/1.png)
+
 ### 事件监听
 
 Search 组件提供了 search 和 cancel 事件，search 事件在点击键盘上的搜索/回车按钮后触发，cancel 事件在点击搜索框右侧取消按钮时触发。
@@ -39,6 +41,8 @@ Search 组件提供了 search 和 cancel 事件，search 事件在点击键盘�
 
 Tips: h5 环境下，在 a-search 外层增加 form 标签，且 action 不为空，即可在 iOS 输入法中显示搜索按钮，App 端不需要增加 form 标签。
 
+![](https://docs.apicloud.com/act/search/2.png)
+
 ### 搜索框内容对齐
 
 通过 input-align 属性设置搜索框内容的对齐方式，可选值为 center、right。
@@ -47,6 +51,8 @@ Tips: h5 环境下，在 a-search 外层增加 form 标签，且 action 不为�
 <a-search $value="value3" :placeholder="placeholder" input-align="center" />
 ```
 
+![](https://docs.apicloud.com/act/search/3.png)
+
 ### 禁用搜索框
 
 通过 disabled 属性禁用搜索框。
@@ -54,6 +60,8 @@ Tips: h5 环境下，在 a-search 外层增加 form 标签，且 action 不为�
 ```html
 <a-search $value="value4" :placeholder="placeholder" disabled />
 ```
+
+![](https://docs.apicloud.com/act/search/4.png)
 
 ### 自定义背景色
 
@@ -67,6 +75,8 @@ Tips: h5 环境下，在 a-search 外层增加 form 标签，且 action 不为�
 	background="#4fc08d"
 />
 ```
+
+![](https://docs.apicloud.com/act/search/5.png)
 
 ### 自定义按钮
 
@@ -85,6 +95,8 @@ Tips: h5 环境下，在 a-search 外层增加 form 标签，且 action 不为�
   </template>
 </a-search>
 ```
+
+![](https://docs.apicloud.com/act/search/6.png)
 
 ## API
 

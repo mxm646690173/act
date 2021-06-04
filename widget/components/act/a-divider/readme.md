@@ -21,6 +21,8 @@ import "../../components/act/a-divider";
 <a-divider/>
 ```
 
+![](https://docs.apicloud.com/act/divider/1.png)
+
 ### 展示文字
 
 通过 content 可以在分割线中间插入内容。
@@ -28,6 +30,8 @@ import "../../components/act/a-divider";
 ```html
 <a-divider content="文本"/>
 ```
+
+![](https://docs.apicloud.com/act/divider/2.png)
 
 ### 内容位置
 
@@ -38,6 +42,8 @@ import "../../components/act/a-divider";
 <a-divider content="文本" content-position="right"/>
 ```
 
+![](https://docs.apicloud.com/act/divider/3.png)
+
 ### 虚线
 
 添加 dashed 属性使分割线渲染为虚线。
@@ -46,6 +52,8 @@ import "../../components/act/a-divider";
 <a-divider dashed content="文本"/>
 ```
 
+![](https://docs.apicloud.com/act/divider/4.png)
+
 ### 自定义样式
 
 可以通过 color 设置文字颜色，通过 line-color 设置线条颜色。
@@ -53,6 +61,8 @@ import "../../components/act/a-divider";
 ```html
 <a-divider style="padding:0 16px;" color="#1989fa" line-color="#1989fa" content="文本"/>
 ```
+
+![](https://docs.apicloud.com/act/divider/5.png)
 
 ## API
 

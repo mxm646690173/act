@@ -6,7 +6,7 @@
         <text v-if={this.props.title} class="a-share-sheet-header-title">{this.props.title}</text>
         <text v-if={this.props.description} class="a-share-sheet-header-desc">{this.props.description}</text>
       </view>
-      <scroll-view v-for="(option,i) in options" class={"a-share-sheet-options"+(i>0?' a-share-sheet-options-border':'')} scroll-x bounces={false} show-scrollbar={false}>
+      <scroll-view v-for="(option,i) in options" class={"a-share-sheet-options"+(i>0?' a-share-sheet-options-border':'')} scroll-x always-bounces={false} show-scrollbar={false}>
         <view v-for="(item,j) in option" class="a-share-sheet-option" data-option={item} @click="onSelect">
           <image src={this.getIconURL(item.icon)} class="a-share-sheet-icon"/>
           <text v-if={item.name} class="a-share-sheet-name">{item.name}</text>
@@ -71,7 +71,7 @@ export default {
     onBlock() {},
     getIconURL(icon) {
       if (PRESET_ICONS.indexOf(icon) !== -1) {
-        return `https://img.yzcdn.cn/vant/share-icon-${icon}.png`;
+        return `https://docs.apicloud.com/act/img/share-icon-${icon}.png`;
       }
       return icon;
     }

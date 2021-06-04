@@ -49,6 +49,8 @@ export default {
 }
 ```
 
+![](https://docs.apicloud.com/act/sharesheet/1.png)
+
 ### 展示多行选项
 
 当分享选项的数量较多时，可以将 options 定义为数组嵌套的格式，每个子数组会作为一行选项展示。
@@ -91,6 +93,8 @@ export default {
   }
 };
 ```
+
+![](https://docs.apicloud.com/act/sharesheet/2.png)
 
 ## API
 

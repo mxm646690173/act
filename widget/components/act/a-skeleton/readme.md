@@ -21,6 +21,8 @@ import "../../components/act/a-skeleton";
 <a-skeleton title row="3"/>
 ```
 
+![](https://docs.apicloud.com/act/skeleton/1.png)
+
 ### 显示头像
 
 通过 avatar 属性显示头像占位图。
@@ -28,6 +30,8 @@ import "../../components/act/a-skeleton";
 ```html
 <a-skeleton title avatar row="3"/>
 ```
+
+![](https://docs.apicloud.com/act/skeleton/2.png)
 
 ### 展示子组件
 
@@ -66,6 +70,8 @@ export default {
   }
 }
 ```
+
+![](https://docs.apicloud.com/act/skeleton/3.png)
 
 ## API
 
