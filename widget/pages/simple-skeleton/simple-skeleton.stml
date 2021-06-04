@@ -18,19 +18,22 @@
       </view>
 
       <view class="simple">
-        <text class="simple-title">具体应用示例</text>
-        <text class="simple-desc">将开关打开表示内容加载完成，此时会隐藏占位的 Skeleton，并展示具体内容。</text>
+        <text class="simple-title">展示子组件</text>
+        <text class="simple-desc">将 loading 属性设置成 false 表示内容加载完成，此时会隐藏占位图，并显示 Skeleton 的子组件。</text>
 
         <switch style="margin-bottom:16px" onchange="onchange"/>
 
-        <a-skeleton v-if="loading" title avatar row="3"/>
-        <view v-else class="demo-preview">
-          <image class="demo-img" src="https://docs.apicloud.com/apicloud3/favicon.png" />
-          <view style="flex:1">
-            <text class="demo-title">{title}</text>
-            <text class="demo-desc">{desc}</text>
+        <a-skeleton loading={loading} title avatar row="3">
+          <view class="demo-preview">
+            <view>
+              <image class="demo-img" src="https://docs.apicloud.com/apicloud3/favicon.png" />
+            </view>
+            <view style="flex:1">
+              <text class="demo-title">{title}</text>
+              <text class="demo-desc">{desc}</text>
+            </view>
           </view>
-        </view>
+        </a-skeleton>
       </view>
 
     </scroll-view>

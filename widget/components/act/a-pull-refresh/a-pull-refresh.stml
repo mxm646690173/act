@@ -1,0 +1,19 @@
+<template>
+  <view></view>
+</template>
+
+<script>
+export default {
+  name: "a-pull-refresh",
+  computed: {
+    
+  },
+  methods:{
+    
+  }
+}
+</script>
+
+<style scoped>
+
+</style>
