@@ -1,5 +1,5 @@
 <template>
-  {this.$model.show() &&
+  {this.$model.show &&
   <a-popup $show="show" round position="bottom" @close="onClose">
     <view @click="onBlock">
       <view class="a-share-sheet-header">
@@ -22,7 +22,7 @@
 
 <script>
 
-import '../a-popup/a-popup.stml'
+import '../a-popup'
 import {syncModel} from "../utils/index";
 
 const PRESET_ICONS = [
@@ -54,7 +54,7 @@ export default {
   methods:{
     onCancel() {
       this.data.show = false;
-      this.$model.show(false);
+      this.$model.show = false;
     },
     onSelect(e) {
       let detail = {option:e.currentTarget.dataset.option};

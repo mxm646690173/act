@@ -49,7 +49,7 @@ export default {
       this.fire('search', e.detail);
     },
     onCancel() {
-      this.$model.value('');
+      this.$model.value = '';
       this.fire('cancel', {});
     },
     haveSlot(name) {
