@@ -135,7 +135,12 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
-
+      <a-link to="simple-tab">
+        <view class="link">
+          <text class="com-name">Tab 标签页</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
 
       <view style="height: 36px;">
 
