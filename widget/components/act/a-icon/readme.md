@@ -1,17 +1,8 @@
-
 # Icon 图标
 
 #### 介绍
 
-基于字体的图标集，可以通过 Icon 组件使用，也可以在其他组件中通过 `icon` 属性引用。
-
-> 目前暂不支持自定义字体，故无法引入iconfont字体图标。
->
-> 目前暂不支持svg渲染，故无法引入svg图片。
->
-> 临时性的使用服务端渲染替代实现icon组件。
->
-> 待底层更新后，该组件可以同步更新渲染模式，业务逻辑层不发生变化。
+基于后端服务渲染实现，可以通过 Icon 组件使用，也可以在其他组件中通过 `icon` 属性引用。
 
 #### 引入
 
@@ -64,48 +55,3 @@ import AIcon from "../../components/act/a-icon";
 并且持续收集中。
 
 ![](https://i.loli.net/2021/02/25/PfxHkhGXue8IMA7.png)
-
-# Link
-
-### 介绍
-
-这是一个抽象组件，为组件提供统一的跳转路由功能。
-
-### 引入
-
-~~~js
-import ALink from "../../components/act/a-link";
-~~~
-
-## 代码示例
-
-### 基础用法
-
-~~~html
-<a-link to="simple-button">
-    <view class="link">
-        <text class="com-name">Button 按钮</text>
-        <a-icon name="arrow-right"/>
-    </view>
-</a-link>
-~~~
-
-### 完整链接
-
-~~~html
-<a-link to="../../simple-button/simple-button" title="按钮示例页面">
-    <view class="link">
-        <text class="com-name">Button 按钮</text>
-        <a-icon name="arrow-right"/>
-    </view>
-</a-link>
-~~~
-
-## API
-
-### Props
-
-| 参数 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| to | 路由名称或者完整路径 | _string_ | - |
-| title | 页面的名称 | _string_ | - |
