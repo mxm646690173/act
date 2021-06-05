@@ -7,7 +7,7 @@
 ### 引入
 
 ~~~js
-import ABadge from "../../components/act/a-amount";
+import AAmount from "../../components/act/a-amount";
 ~~~
 
 ## 代码示例
