@@ -1,9 +1,8 @@
-
 # Layout 布局
 
 #### 介绍
 
-Layout 提供了 `a-row` 和 `a-col` 两个组件来进行行列布局。
+Layout 提供了 a-row 和 a-col 两个组件来进行行列布局。
 
 #### 引入
 
