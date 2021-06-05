@@ -10,15 +10,34 @@
       </view>
       <view class="simple">
         <text class="simple-title">基本用法</text>
-        <text class="simple-desc">
-          Icon 的 name 属性支持传入图标名称或图片链接，所有可用的图标名称见右侧示例。
-        </text>
+
 
         <view class="row">
           <a-iconfont name="mine"/>
-          <a-iconfont>mine</a-iconfont>
-          <a-iconfont>&#xe70e;</a-iconfont>
+
+          <text class="simple-desc">
+            name 属性支持传入图标名称。
+          </text>
         </view>
+
+
+        <view class="row">
+          <a-iconfont>mine</a-iconfont>
+
+          <text class="simple-desc">
+            还可以将图标名称作为子节点。
+          </text>
+        </view>
+
+
+        <view class="row">
+          <a-iconfont>&#xe70e;</a-iconfont>
+
+          <text class="simple-desc">
+            也支持图标Unicode实体子节点。
+          </text>
+        </view>
+
       </view>
 
       <view class="simple">
@@ -48,10 +67,7 @@
       <view class="simple">
         <text class="simple-title">所有图标</text>
         <text class="simple-desc">
-          图标样式持续更新中。
-        </text>
-        <text class="simple-desc">
-          以 logo-i 为前缀的带有辨识度品牌色的多色图标不可更改颜色。
+          以下显示当前字体包内所有图标。
         </text>
         <view class="row">
           <view class="icon-item" v-for="[icon,name] in icons">
