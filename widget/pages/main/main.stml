@@ -95,7 +95,12 @@
 
 
       <text class="title">展示组件</text>
-
+      <a-link to="simple-amount">
+        <view class="link">
+          <text class="com-name">Amount 金融数字</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-badge">
         <view class="link">
           <text class="com-name">Badge 徽标</text>
