@@ -14,7 +14,7 @@ import AAmount from "../../components/act/a-amount";
 
 ### 基础用法
 
-通过 value 传递数据，默认四舍五入保留两位。
+通过 value 传递数据，默认去尾法留两位。
 
 ~~~html
 <a-amount :value="1234.125"/>

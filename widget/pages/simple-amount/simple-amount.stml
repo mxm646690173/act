@@ -6,7 +6,7 @@
       <view class="simple">
         <text class="simple-title">基础用法</text>
 
-        <text class="simple-desc">通过 value 传递数据。默认四舍五入保留两位。</text>
+        <text class="simple-desc">通过 value 传递数据。默认去尾法留两位。</text>
         <view class="row">
           <a-amount :value="1234.125"/>
         </view>
