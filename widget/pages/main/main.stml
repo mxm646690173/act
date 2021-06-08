@@ -141,6 +141,13 @@
 
       <text class="title">反馈组件</text>
 
+      <a-link to="simple-pull-refresh">
+        <view class="link">
+          <text class="com-name">PullRefresh 下拉刷新</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
+
       <a-link to="simple-share-sheet">
         <view class="link">
           <text class="com-name">ShareSheet 分享面板</text>

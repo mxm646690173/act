@@ -5,15 +5,15 @@
     <view class={contentClass}>
       <view>
         <!-- 灵异事件，不包一层，编译后 v-if 失效。。。 -->
-        <view v-if={this.props.label || this.haveSlot('label')} class="a-search-label" >
-          <text v-if={!this.haveSlot('label')} class="a-search-label-default" >{this.props.label}</text>
+        <view v-if={this.props.label || haveSlot('label', this.props)} class="a-search-label" >
+          <text v-if={!haveSlot('label', this.props)} class="a-search-label-default" >{this.props.label}</text>
           <view _slot="label"></view>
         </view>
       </view>
       <a-field clearable {...this.fieldAttrs} label="" left-icon={this.props['left-icon']||'search'} confirm-type="search" @confirm="onConfirm" />
     </view>
     <view v-if={this.props['show-action']} class="a-search-action">
-      <text v-if={!this.haveSlot('action')} class="a-search-action-cancel" @click="onCancel" >{this.props['action-text'] || '取消'}</text>
+      <text v-if={!haveSlot('action', this.props)} class="a-search-action-cancel" @click="onCancel" >{this.props['action-text'] || '取消'}</text>
       <view _slot="action"></view>
     </view>
   </view>
@@ -23,7 +23,7 @@
 
 <script>
 import '../a-field/a-field.stml'
-import {syncModel, slotSupport} from "../utils/index";
+import {syncModel, slotSupport, haveSlot} from "../utils/index";
 
 export default {
   name: "a-search",
@@ -52,18 +52,10 @@ export default {
       this.$model.value = '';
       this.fire('cancel', {});
     },
-    haveSlot(name) {
-      let flag = false;
-      let children = this.props.children;
-      children.forEach(node => {
-        if (node && node.nodeName === 'template' && node.attributes && node.attributes._slot == name) {
-          flag = true;
-        }
-      });
-      return flag;
-    },
     beforeRender(){
-      syncModel.call(this);
+      if (!this.$model) {
+        syncModel.call(this);
+      }
     }
   }
 }

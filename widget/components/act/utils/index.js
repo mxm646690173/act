@@ -76,6 +76,23 @@ export function slotSupport(VNode, children, host) {
 }
 
 /**
+ * 检测是否存在指定插槽
+ * @param name
+ * @param props
+ * @returns {Boolean}
+ */
+export function haveSlot(name, props) {
+    let flag = false;
+    let children = props.children;
+    children.forEach(node => {
+      if (node && node.nodeName === 'template' && node.attributes && node.attributes._slot == name) {
+        flag = true;
+      }
+    });
+    return flag;
+}
+
+/**
  * 继承父组件的 class 、style
  * @param VNode
  * @param props

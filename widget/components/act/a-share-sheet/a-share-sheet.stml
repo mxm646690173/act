@@ -8,7 +8,7 @@
       </view>
       <scroll-view v-for="(option,i) in options" class={"a-share-sheet-options"+(i>0?' a-share-sheet-options-border':'')} scroll-x always-bounces={false} show-scrollbar={false}>
         <view v-for="(item,j) in option" class="a-share-sheet-option" data-option={item} @click="onSelect">
-          <image src={this.getIconURL(item.icon)} class="a-share-sheet-icon"/>
+          <image src={this.getIconURL(item.icon)} class="a-share-sheet-icon" policy="cache_only" />
           <text v-if={item.name} class="a-share-sheet-name">{item.name}</text>
           <text v-if={item.description} class="a-share-sheet-option-description">{item.description}</text>
         </view>
@@ -78,7 +78,9 @@ export default {
   },
   beforeRender(){
     this.data.show = true;
-    syncModel.call(this);
+    if (!this.$model) {
+      syncModel.call(this);
+    }
   }
 }
 </script>
