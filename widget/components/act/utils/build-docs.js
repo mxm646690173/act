@@ -20,7 +20,7 @@ components.forEach(com => {
     const md = `${actRoot}/${com}/readme.md`;
     try {
         const parsed = parser.parse(fs.readFileSync(md).toString());
-        readme += (`## ${parsed[2][2]}  \n\n \` 组件介绍 \` ${parsed[4][1]}\n\n \` 文档链接 \` [./${com}/readme.md](./${com}/readme.md) \n\n \` 最近更新 \` ${fs.statSync(md).mtime.toLocaleString()} \n\n`);
+        readme += (`## [${parsed[2][2]}](./${com})  \n\n \` 组件介绍 \` ${parsed[4][1]}\n\n \` 文档链接 \` [./${com}/readme.md](./${com}/readme.md) \n\n \` 最近更新 \` ${fs.statSync(md).mtime.toLocaleString()} \n\n`);
         total++;
     } catch (e) {
 
