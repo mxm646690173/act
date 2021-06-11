@@ -108,10 +108,10 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import ABadge from "../../components/act/a-badge.stml";
-import ARow from "../../components/act/a-row.stml";
-import AIcon from "../../components/act/a-icon.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import ABadge from "../../components/act/a-badge";
+import ARow from "../../components/act/a-row";
+import AIcon from "../../components/act/a-icon";
 
 export default {
   name: "simple-badge",

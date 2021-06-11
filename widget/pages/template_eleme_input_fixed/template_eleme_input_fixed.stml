@@ -100,9 +100,9 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import ATag from "../../components/act/a-tag.stml";
-import AEmpty from "../../components/act/a-empty.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import ATag from "../../components/act/a-tag";
+import AEmpty from "../../components/act/a-empty";
 
 export default {
   name: "ele-me-input-fixed",

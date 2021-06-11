@@ -107,8 +107,8 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import AButton from "../../components/act/a-button.stml";
+import "../../components/act/a-nav-bar";
+import "../../components/act/a-button";
 
 export default {
   name: "simple-button",
@@ -116,10 +116,6 @@ export default {
     return {
       text: '哈哈哈 '
     }
-  },
-  components: {AButton, ANavBar},
-  onstalled() {
-
   },
   methods: {
     test() {

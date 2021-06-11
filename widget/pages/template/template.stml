@@ -13,9 +13,9 @@
 
 <script>
 
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import ACellGroup from "../../components/act/a-cell-group.stml";
-import ACell from "../../components/act/a-cell.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import ACellGroup from "../../components/act/a-cell-group";
+import ACell from "../../components/act/a-cell";
 
 export default {
   name: "template",

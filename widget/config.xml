@@ -1,5 +1,6 @@
 <widget id="A6166334630499" version="0.0.1">
     <name>ACT</name>
-    <preference name="avm" value="true"/>
+    <preference name="windowBackground" value="#fff"/>
     <content src="app.json"/>
+    <preference name="font" family="iconfont" value="widget/components/act/a-iconfont/fonts/iconfont.ttf"/>
 </widget>

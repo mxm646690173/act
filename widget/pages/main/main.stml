@@ -32,7 +32,12 @@
             <a-icon name="arrow-right"/>
           </view>
         </a-link>
-
+        <a-link to="simple-iconfont">
+          <view class="link">
+            <text class="com-name">Iconfont 图标解决方案</text>
+            <a-icon name="arrow-right"/>
+          </view>
+        </a-link>
 
         <view class="link" onClick={_=>api.toast({msg:"该组件请暂时使用引擎提供的基础组件代替"})}>
           <text class="com-name">Image 图片</text>
@@ -75,13 +80,27 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+      <a-link to="simple-search">
+        <view class="link">
+          <text class="com-name">Search 搜索</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-stepper">
         <view class="link">
           <text class="com-name">Stepper 步进器</text>
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+
+
       <text class="title">展示组件</text>
+      <a-link to="simple-amount">
+        <view class="link">
+          <text class="com-name">Amount 金融数字</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-badge">
         <view class="link">
           <text class="com-name">Badge 徽标</text>
@@ -94,15 +113,44 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+      <a-link to="simple-divider">
+        <view class="link">
+          <text class="com-name">Divider 分割线</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-empty">
         <view class="link">
           <text class="com-name">Empty 空状态</text>
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
+      <a-link to="simple-skeleton">
+        <view class="link">
+          <text class="com-name">Skeleton 骨架屏</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
       <a-link to="simple-tag">
         <view class="link">
           <text class="com-name">Tag 标签</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
+
+
+      <text class="title">反馈组件</text>
+
+      <a-link to="simple-pull-refresh">
+        <view class="link">
+          <text class="com-name">PullRefresh 下拉刷新</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
+
+      <a-link to="simple-share-sheet">
+        <view class="link">
+          <text class="com-name">ShareSheet 分享面板</text>
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
@@ -123,7 +171,12 @@
           <a-icon name="arrow-right"/>
         </view>
       </a-link>
-
+      <a-link to="simple-tab">
+        <view class="link">
+          <text class="com-name">Tab 标签页</text>
+          <a-icon name="arrow-right"/>
+        </view>
+      </a-link>
 
       <view style="height: 36px;">
 
@@ -136,9 +189,9 @@
 
 <script>
 
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import AIcon from "../../components/act/a-icon.stml";
-import ALink from "../../components/act/a-link.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import AIcon from "../../components/act/a-icon";
+import ALink from "../../components/act/a-link";
 
 export default {
   name: "main",

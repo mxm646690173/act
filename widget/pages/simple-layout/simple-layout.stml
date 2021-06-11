@@ -168,9 +168,9 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import ARow from "../../components/act/a-row.stml";
-import ACol from "../../components/act/a-col.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import ARow from "../../components/act/a-row";
+import ACol from "../../components/act/a-col";
 
 export default {
   name: "simple-layout",

@@ -55,9 +55,9 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
+import ANavBar from "../../components/act/a-nav-bar";
 import {Toast} from "../../components/act";
-import AIcon from "../../components/act/a-icon.stml";
+import AIcon from "../../components/act/a-icon";
 
 export default {
   name: "simple-nav-bar",

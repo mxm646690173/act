@@ -62,9 +62,9 @@
 </template>
 
 <script>
-import ANavBar from "../../components/act/a-nav-bar.stml";
-import AEmpty from "../../components/act/a-empty.stml";
-import AButton from "../../components/act/a-button.stml";
+import ANavBar from "../../components/act/a-nav-bar";
+import AEmpty from "../../components/act/a-empty";
+import AButton from "../../components/act/a-button";
 
 export default {
   name: "simple-empty",
