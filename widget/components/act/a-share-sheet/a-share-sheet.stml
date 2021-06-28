@@ -68,7 +68,9 @@ export default {
       }
       this.onCancel();
     },
-    onBlock() {},
+    onBlock(e) {
+      e.stopPropagation && e.stopPropagation();
+    },
     getIconURL(icon) {
       if (PRESET_ICONS.indexOf(icon) !== -1) {
         return `https://docs.apicloud.com/act/img/share-icon-${icon}.png`;
