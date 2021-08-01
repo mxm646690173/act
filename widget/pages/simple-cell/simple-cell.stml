@@ -10,8 +10,8 @@
         </text>
 
         <a-cell-group>
-          <a-cell title="单元格" value="内容"/>
-          <a-cell title="单元格" value="内容" label="描述信息"/>
+          <a-cell title="单元格" value="内容" @click="showParam('Vue风格传参')"/>
+          <a-cell title="单元格" value="内容" label="描述信息" onClick={()=>this.showParam('React风格传参')}/>
         </a-cell-group>
 
       </view>
@@ -146,7 +146,12 @@ import {ANavBar, ACell, ATag, ACellGroup} from "../../components/act";
 
 export default {
   name: "simple-cell",
-  components: {ATag, ACell, ACellGroup, ANavBar}
+  components: {ATag, ACell, ACellGroup, ANavBar},
+  methods:{
+    showParam(msg){
+      console.log(msg)
+    }
+  }
 }
 </script>
 
