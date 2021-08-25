@@ -12,16 +12,19 @@ export default {
         props.content = Math.min(props.content, props.max) + '+';
       }
 
+      const {offsetX = -5, offsetY = -5} = props;
+      const style = `top:${offsetY}px;right:${offsetX}px;` + (props.color ? 'background-color:' + props.color : '');
+
       return h('view', {
             class: `a-badge__wrapper ${props.class || ''}`,
             style: `${props.style}||''`,
           }, props.children,
           props.dot ? h('view', {
             class: `a-badge a-badge--fixed a-badge--dot`,
-            style: props.color ? 'background-color:' + props.color : ''
+            style
           }) : slotSupport(h('text', {
             class: `a-badge a-badge--fixed`,
-            style: props.color ? 'background-color:' + props.color : '',
+            style,
             _slot: 'content'
           }, props.content), props.children),
       );
@@ -53,8 +56,8 @@ export default {
 
 .a-badge--fixed {
   position: absolute;
-  top: -5px;
-  right: -5px;
+  /*top: -5px;*/
+  /*right: -5px;*/
 }
 
 .a-badge--dot {
