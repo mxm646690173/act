@@ -18,6 +18,7 @@ export default {
     const navCls = ns + '__nav--' + (isScroll ? 'scroll' : 'flat');
 
     this.render = (props) => {
+      const {h} = apivm;
       const {type = 'line'} = props;
       return h('view', {class: `${ns} ${ns}--${type} ${props.class || ''}`, style: props.style},
           h(isScroll ? 'scroll-view' : 'view', {
