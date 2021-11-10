@@ -15,7 +15,7 @@ export default {
       (Array.isArray(props.children) && props.children.length === 1 && typeof props.children[0] === 'string') && (props.title = props.children);
 
 
-      const attr = {
+      const attr = {...props,
         class: mixedClass(`a-cell a-cell__root ${props.class || ''} ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
           'a-cell--large': isLarge,
           'a-cell--center': props.center
@@ -23,8 +23,15 @@ export default {
         style: props.style
       }
 
-      if (!this._host['a-swipe-cell']) {
-        attr.onClick = this.cellClick
+      // if (!this._host['a-swipe-cell']) {
+      //   attr.onClick = this.cellClick
+      // }
+
+
+      if (props.url) {
+        attr.onClick = ()=>linkTo(props.url, props.title);
+      } else if (props.to) {
+        attr.onClick =()=> linkTo(props.to, props.title);
       }
 
       return slotSupport(h('view', attr,
@@ -76,17 +83,17 @@ export default {
       ), props.children);
     }
   },
-  cellClick(e) {
-    console.log('cell-click')
-    this.fire('click', e);
-    if (this.props.url) {
-      linkTo(this.props.url, this.props.title);
-    } else if (this.props.to) {
-      linkTo(this.props.to, this.props.title);
-    } else {
-      this.props.onClick && this.props.onClick(e);
-    }
-  },
+  // cellClick(e) {
+  //   console.log('cell-click')
+  //   this.fire('click', e);
+  //   if (this.props.url) {
+  //     linkTo(this.props.url, this.props.title);
+  //   } else if (this.props.to) {
+  //     linkTo(this.props.to, this.props.title);
+  //   } else {
+  //     this.props.onClick && this.props.onClick(e);
+  //   }
+  // },
 }
 </script>
 

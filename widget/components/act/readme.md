@@ -18,7 +18,7 @@
 
  ` 文档链接 ` [./a-badge/readme.md](./a-badge/readme.md) 
 
- ` 最近更新 ` 2021/5/31 下午3:40:16 
+ ` 最近更新 ` 2021/8/25 下午6:14:00 
 
 ## [Button 按钮](./a-button)  
 
@@ -147,6 +147,14 @@
  ` 文档链接 ` [./a-pull-refresh/readme.md](./a-pull-refresh/readme.md) 
 
  ` 最近更新 ` 2021/6/8 下午2:00:54 
+
+## [Ref 组件引用](./a-ref)  
+
+ ` 组件介绍 ` 用于在父组件注册子组件对象的场景。可以在父组件调用子组件方法。
+
+ ` 文档链接 ` [./a-ref/readme.md](./a-ref/readme.md) 
+
+ ` 最近更新 ` 2021/9/2 下午2:54:15 
 
 ## [Search 搜索](./a-search)  
 

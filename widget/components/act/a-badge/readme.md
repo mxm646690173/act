@@ -99,3 +99,5 @@ import ABadge from "../../components/act/a-badge";
 | color | 徽标背景颜色 | _string_ | `#ee0a24` |
 | dot | 是否展示为小红点 | _boolean_ | `false` |
 | max | 最大值，超过最大值会显示 `{max}+`，仅当  ` content `  为数字时有效 | _number / string_ | - |
+| offsetX | 从右侧开始计算横向的偏移量 | _number_ | `-5` |
+| offsetY | 从顶侧开始计算纵向的偏移量 | _number_ | `-5` |
