@@ -110,6 +110,10 @@ export default {
       active: [2, 0]
     }
   },
+  apiready(){
+    console.log(this)
+    this.active[0] = 3;
+  },
   methods: {
     onchange(e) {
       console.log(JSON.stringify(e))
