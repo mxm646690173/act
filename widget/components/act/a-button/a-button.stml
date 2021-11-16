@@ -28,7 +28,6 @@ export default {
           'a-button--square': props.square,
           'a-button--round': props.round
         }),
-        disabled: props.disabled,
       }, props.text, props.children);
 
     }
