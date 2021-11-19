@@ -24,7 +24,11 @@ export default {
       const inputAlign = this.props['input-align'];
       const attr = {
         value: this.data.value,
-        class: mixedClass('a-field__control', {'a-field__control--error': props.error, 'a-field__control-center':inputAlign=='center', 'a-field__control-right':inputAlign=='right'}),
+        class: mixedClass('a-field__control', {
+          'a-field__control--error': props.error,
+          'a-field__control-center': inputAlign === 'center',
+          'a-field__control-right': inputAlign === 'right'
+        }),
         onInput: this.handleOnInput,
         onConfirm: this.handleOnConfirm,
         placeholder: props.placeholder,
@@ -33,7 +37,7 @@ export default {
         'confirm-type': props['confirm-type'] || 'done',
         onfocus: this.handleOnFocus,
         onblur: this.handleOnBlur,
-        maxlength: props.maxlength,
+        maxlength: props.maxlength || false,
       }
       if (props.autofocus) {
         attr.autofocus = true;

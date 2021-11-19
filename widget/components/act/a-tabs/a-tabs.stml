@@ -5,32 +5,40 @@ export default {
   name: 'a-tabs',
   data() {
     return {
-      current: 0
+      // current: 0
     }
   },
   install() {
     const ns = 'a-tabs';
     syncModel.call(this);
     this.breakpoint = this.props.breakpoint || 5;
-    this.current = this.$model.active || 0;
 
     const isScroll = this.props.children.length > this.breakpoint;
-    const navCls = ns + '__nav--' + (isScroll ? 'scroll' : 'flat');
-
+    const scrollCls = pos => `${ns}__${pos}--${(isScroll ? 'scroll' : 'flat')}`;
     this.render = (props) => {
+      this.current = this.$model.active || 0;
       const {h} = apivm;
       const {type = 'line'} = props;
       return h('view', {class: `${ns} ${ns}--${type} ${props.class || ''}`, style: props.style},
           h(isScroll ? 'scroll-view' : 'view', {
-                class: `${ns}__wrap  ${ns}__wrap--${type} `,
+                class: `${ns}__wrap  ${ns}__wrap--${type} ${scrollCls('wrap')}`,
                 'scroll-x': true,
                 'scroll-y': false
               },
-              props.children.map((child, index) =>
-                  h('text', {
-                    class: `${ns}__nav ${navCls}  ${ns}__nav--${type} ${ns}__nav--${type}--${index === props.children.length - 1 ? 'last' : 'not-last'} ${parseInt(this.current) === index ? ns + '__nav--active--' + type : ns + '__nav--normal--' + type}`,
-                    onclick: this.onclick.bind(this, index)
-                  }, child.attributes.title))
+              props.children.map((child, index) => {
+
+                    const navProps = {
+                      class: `${ns}__nav ${scrollCls('nav')}  ${ns}__nav--${type} ${ns}__nav--${type}--${index === props.children.length - 1 ? 'last' : 'not-last'} ${parseInt(this.current) === index ? ns + '__nav--active--' + type : ns + '__nav--normal--' + type}`,
+                      onclick: this.onclick.bind(this, index)
+                    };
+
+                    if (isScroll) {
+                      navProps.style = `width:${api.winWidth / this.breakpoint}px;flex-shrink:0;`
+                    }
+
+                    return h('text', navProps, child.attributes.title)
+                  }
+              )
           ),
           h('swiper', {
                 class: `${ns}__content`,
@@ -49,8 +57,7 @@ export default {
     this.fire('change', {current, type: 'swiper'});
     this.current = current;
     this.$model.active = current;
-
-    console.log([current, this.breakpoint])
+    this.update();
     if (current >= this.breakpoint - 1) {
       this.setNavPos();
     }
@@ -62,6 +69,7 @@ export default {
       this.fire('change', {current, type: 'click'});
       this.current = current;
       this.$model.active = current;
+      this.update();
     }
 
     if (this.props['before-change']) {
@@ -101,7 +109,11 @@ export default {
 }
 
 .a-tabs__wrap--line {
-  height: 44px;
+  /*height: 44px;*/
+}
+
+.a-tabs__wrap--scroll {
+  display: flex !important;
 }
 
 .a-tabs__wrap--card {
@@ -127,7 +139,7 @@ export default {
 }
 
 .a-tabs__nav--scroll {
-  padding: 0 15px;
+  white-space: nowrap;
 }
 
 .a-tabs__nav--flat {
