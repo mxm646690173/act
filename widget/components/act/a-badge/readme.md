@@ -1,4 +1,3 @@
-
 # Badge 徽标
 
 ### 介绍
@@ -101,3 +100,4 @@ import ABadge from "../../components/act/a-badge";
 | max | 最大值，超过最大值会显示 `{max}+`，仅当  ` content `  为数字时有效 | _number / string_ | - |
 | offsetX | 从右侧开始计算横向的偏移量 | _number_ | `-5` |
 | offsetY | 从顶侧开始计算纵向的偏移量 | _number_ | `-5` |
+| size | 徽标内文字大小 | _number_ | `10` |
