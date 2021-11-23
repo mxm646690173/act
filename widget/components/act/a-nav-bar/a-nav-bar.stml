@@ -73,6 +73,7 @@ export default {
 
 .a-nav-bar--line {
   box-shadow: 1px 1px 1px #e6e6e6;
+  margin-bottom: 2px;
 }
 
 .a-nav-bar__content {
