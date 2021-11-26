@@ -212,6 +212,16 @@ export function syncModel() {
     this.$model = $model;
 }
 
+/**
+ * 返回安全的 props
+ * @param props
+ * @returns {{[p: string]: unknown}}
+ */
+export function safeProps(props) {
+    return Object.fromEntries(Object.entries(props).map(([k, v]) => [k.replace(/[$#;@]/g, '_'), v]))
+}
+
+
 export function dateFormat(fmt, date) {
     let ret;
     const opt = {

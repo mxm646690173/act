@@ -1,7 +1,7 @@
 <script>
 import ACell from '../a-cell';
 import AIcon from '../a-icon';
-import {mixedClass, syncModel} from "../utils";
+import {mixedClass, safeProps, syncModel} from "../utils";
 
 export default {
   name: "a-field",
@@ -62,7 +62,7 @@ export default {
       }
 
       return h(ACell, {
-            ...props,
+            ...safeProps(props),
             title: props.label,
             label: '',
             class: mixedClass(`a-field ${props.class || ''} `, {
