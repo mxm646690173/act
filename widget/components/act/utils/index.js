@@ -85,9 +85,9 @@ export function haveSlot(name, props) {
     let flag = false;
     let children = props.children;
     children.forEach(node => {
-      if (node && node.nodeName === 'template' && node.attributes && node.attributes._slot == name) {
-        flag = true;
-      }
+        if (node && node.nodeName === 'template' && node.attributes && node.attributes._slot === name) {
+            flag = true;
+        }
     });
     return flag;
 }
