@@ -11,6 +11,7 @@ export default {
       if (props.max && parseInt(props.max) < parseInt(props.content)) {
         props.content = props.max + '+';
       }
+
       const {color = '#ee0a24', size = 10} = props;
 
       const {offsetX = -5, offsetY = -5} = props;
@@ -26,8 +27,7 @@ export default {
           }) : slotSupport(h('text', {
             class: `a-badge a-badge--fixed`,
             style,
-            _slot: 'content',
-            hidden:props.content <= 0 ? true : false
+            _slot: 'content'
           }, props.content), props.children),
       );
     }
@@ -56,7 +56,6 @@ export default {
 
 .a-badge--fixed {
   position: absolute;
-  z-index: 9;
 }
 
 .a-badge--dot {
