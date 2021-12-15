@@ -24,11 +24,11 @@ export default {
           props.dot ? h('view', {
             class: `a-badge a-badge--fixed a-badge--dot`,
             style
-          }) : slotSupport(h('text', {
+          }) : props.content ? slotSupport(h('text', {
             class: `a-badge a-badge--fixed`,
             style,
             _slot: 'content'
-          }, props.content), props.children),
+          }, props.content), props.children) : '',
       );
     }
   }
