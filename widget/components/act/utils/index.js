@@ -183,9 +183,8 @@ export function mixedClass(cls, extra) {
  */
 export function syncModel() {
     const $model = {};
-    const {props} = this;
     let {_host} = this;
-    Object.entries(props).forEach(([k, v]) => {
+    Object.entries(this.props).forEach(([k, v]) => {
         if (k.startsWith('$')) {
             const path = v.replace(/]/g, '').split(/[.[]/);
             while (typeof _host.data[path[0]] === 'undefined') {
