@@ -183,9 +183,8 @@ export function mixedClass(cls, extra) {
  */
 export function syncModel() {
     const $model = {};
-    const {props} = this;
     let {_host} = this;
-    Object.entries(props).forEach(([k, v]) => {
+    Object.entries(this.props).forEach(([k, v]) => {
         if (k.startsWith('$')) {
             const path = v.replace(/]/g, '').split(/[.[]/);
             while (typeof _host.data[path[0]] === 'undefined') {
@@ -279,14 +278,7 @@ export function compareDay(day1, day2) {
     return (day1 - day2) / 86400000;
 }
 
-/**
- * 附件路径
- * @param name
- * @returns {string}
- */
-export function asset(name) {
-    return `../../components/act/asset/${name}`;
-}
+
 
 /**
  * 倒计时组件使用的格式化代码

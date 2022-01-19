@@ -38,8 +38,7 @@ export default {
     }
   },
   onClose(_) {
-    const {fire} = this;
-    fire('close');
+    this.fire('close');
   }
 }
 </script>

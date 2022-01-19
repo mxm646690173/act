@@ -1,6 +1,12 @@
 <script>
-
-import {asset} from "../utils";
+/**
+ * 附件路径
+ * @param name
+ * @returns {string}
+ */
+function asset(name) {
+  return `../../components/act/a-empty/asset/${name}`;
+}
 
 export default {
   name: "a-empty",

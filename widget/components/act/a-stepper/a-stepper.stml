@@ -61,9 +61,8 @@ export default {
     }
   },
   handleClick(change, _) {
-    const {data, props} = this;
-    change *= typeof props.step === 'undefined' ? 1 : props.step;
-    const value = data.value + change;
+    change *= typeof this.props.step === 'undefined' ? 1 : this.props.step;
+    const value = this.data.value + change;
     this.handleValue(value, 'click');
   },
   computed: {
@@ -75,10 +74,9 @@ export default {
 
     const _run = () => {
       value = this.reviseValue(Number(value));
-      const {fire, $model, data} = this;
-      $model.value = value;
-      fire('change', {value, type});
-      data.value = value;
+      this.$model.value = value;
+      this.fire('change', {value, type});
+      this.data.value = value;
     }
 
     if (this.props['before-change']) {
@@ -94,15 +92,14 @@ export default {
     this.handleValue(value, 'blur');
   },
   reviseValue(value) {
-    const {props} = this;
     const [isMin, isMax] = this.getRange(value);
     if (isMin) {
-      value = props.min;
+      value = this.props.min;
     } else if (isMax) {
-      value = props.max;
+      value = this.props.max;
     }
 
-    if (props.integer) {
+    if (this.props.integer) {
       value = Math.trunc(value);
     }
 

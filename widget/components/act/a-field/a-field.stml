@@ -109,10 +109,9 @@ export default {
     this.fire('blur', _);
   },
   setValue(value, type) {
-    const {fire, $model, data} = this;
-    $model.value = value;
-    fire(type, {value});
-    data.value = value;
+    this.$model.value = value;
+    this.fire(type, {value});
+    this.data.value = value;
   }
 }
 </script>
