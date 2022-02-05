@@ -90,7 +90,7 @@ export default {
   renderBody() {
     const {h} = apivm;
 
-    const baseTime = this.props['min-date'].getTime();
+    const baseTime = this.props['min-date'].setDate(1);
 
     let offset = 0;
 
