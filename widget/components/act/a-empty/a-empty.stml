@@ -1,12 +1,4 @@
 <script>
-/**
- * 附件路径
- * @param name
- * @returns {string}
- */
-function asset(name) {
-  return `../../components/act/a-empty/asset/${name}`;
-}
 
 export default {
   name: "a-empty",
@@ -20,7 +12,7 @@ export default {
       }
 
       if (!props.image.includes('/')) {
-        props.image = asset(`empty-image-${props.image || ''}.png`);
+        props.image = this.asset(`empty-image-${props.image || ''}.png`);
       }
 
 
@@ -39,6 +31,14 @@ export default {
       );
 
     }
+  },
+  /**
+   * 附件路径
+   * @param name
+   * @returns {string}
+   */
+   asset(name){
+     return `../../image/act/${name}`;
   }
 }
 </script>
