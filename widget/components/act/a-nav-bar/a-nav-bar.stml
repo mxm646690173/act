@@ -3,7 +3,7 @@
   <safe-area :class="`a-nav-bar${!this.props['hide-line']?' a-nav-bar--line':''}`">
     <view class="a-nav-bar__content" :style="`height: ${this.props['height']||46}px`">
 
-      <view class="a-nav-bar__click-warp a-nav-bar__left" _slot="left" @click="leftClick">
+      <view v-if="this.props['left-arrow']" class="a-nav-bar__click-warp a-nav-bar__left" _slot="left" @click="leftClick">
         {
         this.props['left-arrow'] &&
         <a-icon name="arrow-left" class="a-nav-bar__icon" color="#333"/>
