@@ -77,7 +77,7 @@ export default {
               h('input', attr),
               props['error-message'] && h('text', {class: `a-field__error-msg`}, props['error-message'])
           ),
-          (props['clearable'] && this.data.value && this.data.isFocus && h('template', {
+          (props['clearable'] && this.data.value && (api.systemType==='android'||this.data.isFocus) && h('template', {
             _slot: 'right-icon',
             onClick: _ => this.onClear(_)
           }, h(AIcon, {
