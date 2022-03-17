@@ -145,7 +145,7 @@ export default {
               const day = this.getDayInfo(date);
 
               return h('view', {
-                    class: `a-calendar__day  a-calendar--${day.type}`,
+                    class: `a-calendar__day  a-calendar__day--${day.type}`,
                     style: index ? '' : `margin-left:${monthInfo.dayOffset * 14.285}%;`,
                     onClick: _ => this.handleDateCellClick(day, _)
                   },
@@ -313,9 +313,20 @@ export default {
   align-items: center;
 }
 
-.a-calendar--selected, .a-calendar--start, .a-calendar--end {
-  background: #ee0a24;
+
+.a-calendar__day--normal {
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.a-calendar__day--selected, .a-calendar__day--start, .a-calendar__day--end {
+  background-color: #ee0a24;
   border-radius: 4px;
+}
+
+
+.a-calendar__day-num--normal, .a-calendar__top-info--normal, .a-calendar__bottom-info--normal {
+  color: #323233;
 }
 
 .a-calendar__day-num--selected, .a-calendar__day-num--start, .a-calendar__day-num--end,
@@ -324,7 +335,8 @@ export default {
   color: #FFF;
 }
 
-.a-calendar--middle {
+
+.a-calendar__day--middle {
   background: rgba(238, 10, 36, 0.1);
 }
 
@@ -332,14 +344,6 @@ export default {
   color: #ee0a24;
 }
 
-.a-calendar--normal {
-  background-color: transparent;
-  border-radius: 0;
-}
-
-.a-calendar__day-num--normal, .a-calendar__top-info--normal, .a-calendar__bottom-info--normal {
-  color: #323233;
-}
 
 .a-calendar__footer {
   -webkit-flex-shrink: 0;
