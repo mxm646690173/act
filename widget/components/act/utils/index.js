@@ -217,7 +217,12 @@ export function syncModel() {
  * @returns {{[p: string]: unknown}}
  */
 export function safeProps(props) {
-    return Object.fromEntries(Object.entries(props).map(([k, v]) => [k.replace(/[$#;@]/g, '_'), v]))
+    // return Object.fromEntries(Object.entries(props).map(([k, v]) => [k.replace(/[$#;@]/g, '_'), v]))
+    const o = {};
+    for (const k in props) {
+        o[k.replace(/[$#;@]/g, '_')] = props[k];
+    }
+    return o;
 }
 
 
@@ -277,7 +282,6 @@ export function compareDay(day1, day2) {
     // }
     return (day1 - day2) / 86400000;
 }
-
 
 
 /**
