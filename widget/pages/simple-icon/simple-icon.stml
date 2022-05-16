@@ -5,10 +5,12 @@
 
       <view class="todo">
         <text class="simple-title">说明</text>
-        <text class="simple-desc ">目前暂不支持自定义字体，故无法引入iconfont字体图标。
-          目前暂不支持svg渲染，故无法引入svg图片。
-          临时性的使用服务端渲染替代实现icon组件。
-          待底层更新后，该组件可以同步更新渲染模式。
+        <text class="simple-desc ">
+
+          本组件是一个临时过渡方案。现在已经有更成熟、更自由、性能更好的 [a-iconfont] 方案。
+          本组件是基于后端渲染实现，线上服务将于 2022 年 12 月 31 日 停止。 项目中有使用到的建议迁移到[a-iconfont] 组件，或者后端私有部署。
+          私有部署源码参考：https://github.com/YangYongAn/icon.yangyongan.com
+
         </text>
       </view>
       <view class="simple">
