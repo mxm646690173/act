@@ -77,7 +77,7 @@ export default {
   flex-direction: column;
   box-sizing: border-box;
   padding: 16px 8px;
-  background-color: #fff;
+  background: #fff;
 }
 
 .a-grid-item__content--border {
