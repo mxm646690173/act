@@ -20,7 +20,7 @@ export default {
         class: mixedClass(`a-cell a-cell__root ${props.class || ''} ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
           'a-cell--large': isLarge,
           'a-cell--center': props.center,
-          'a-cell__root-not-from-search': props.class.indexOf('form-search') === -1
+          'a-cell__root-not-from-search': props.class && props.class.indexOf('form-search') === -1
         }),
         style: props.style
       }
